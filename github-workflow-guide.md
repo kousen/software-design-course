@@ -34,6 +34,29 @@ git clone https://github.com/YOUR-USERNAME/assignment-name.git
 cd assignment-name
 ```
 
+### Step 2.5: Add Upstream Remote (Important!)
+
+After cloning your fork, add the original repository as an upstream remote:
+
+```bash
+git remote add upstream https://github.com/ORIGINAL-REPO/assignment-name.git
+```
+
+This allows you to pull any updates from the original assignment if needed:
+```bash
+git pull upstream main
+```
+
+Verify your remotes are set correctly:
+```bash
+git remote -v
+# Should show:
+# origin    https://github.com/YOUR-USERNAME/assignment-name.git (fetch)
+# origin    https://github.com/YOUR-USERNAME/assignment-name.git (push)
+# upstream  https://github.com/ORIGINAL-REPO/assignment-name.git (fetch)
+# upstream  https://github.com/ORIGINAL-REPO/assignment-name.git (push)
+```
+
 ### Step 3: Complete the Assignment
 
 1. Open the project in IntelliJ IDEA
@@ -127,6 +150,8 @@ If you need to make changes after submitting:
 | Commit changes      | `git commit -m "message"` |
 | Push to GitHub      | `git push origin main`    |
 | Pull latest changes | `git pull origin main`    |
+| Add upstream remote | `git remote add upstream <original-repo-url>` |
+| Pull from upstream  | `git pull upstream main`  |
 | See commit history  | `git log --oneline`       |
 
 Remember: The key is to fork first, work in your fork, and submit your fork's URL to Moodle!

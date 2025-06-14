@@ -21,7 +21,7 @@ subprojects {
     }
 
     dependencies {
-        testImplementation(platform("org.junit:junit-bom:5.11.3"))
+        testImplementation(platform("org.junit:junit-bom:5.13.1"))
         testImplementation("org.junit.jupiter:junit-jupiter")
         testImplementation("org.assertj:assertj-core:3.25.1")
     }

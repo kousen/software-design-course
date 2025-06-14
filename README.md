@@ -16,19 +16,25 @@ This course teaches modern software design principles using Java, with emphasis 
 
 ```
 software-design-course/
-├── slides/                  # Slidev presentations for each week
+├── build.gradle.kts          # Root Gradle build file
+├── settings.gradle.kts       # Multi-module configuration
+├── slides/                   # Slidev presentations for each week
 │   ├── 01-introduction/
 │   ├── 02-modern-java/
 │   └── ...
-├── examples/               # Code examples and demonstrations
+├── examples/                 # Code examples (Gradle modules)
 │   ├── modern-java/
-│   ├── testing/
-│   └── patterns/
-├── assignments/            # Student assignments and starter code
-├── live-coding/           # Templates for in-class coding sessions
-├── course-schedule.md     # Detailed 14-week schedule
-├── syllabus.md           # Course syllabus
-└── README.md             # This file
+│   ├── testing-fundamentals/
+│   └── design-patterns/
+├── assignments/              # Student assignments (Gradle modules)
+│   ├── assignment-01-tdd/
+│   └── assignment-02-refactoring/
+├── live-coding/             # In-class sessions (Gradle modules)
+│   ├── session-01-java-basics/
+│   └── session-03-streams/
+├── course-schedule.md       # Detailed 14-week schedule
+├── syllabus.md             # Course syllabus
+└── README.md               # This file
 ```
 
 ### Quick Links
@@ -43,19 +49,20 @@ software-design-course/
 - Java 21 LTS (required)
 - IntelliJ IDEA (Ultimate Edition with student license)
 - Git
-- Maven or Gradle
+- Gradle (included via wrapper)
 
 #### Setup Instructions
 1. Clone this repository
-2. Open in IntelliJ IDEA
+2. Open in IntelliJ IDEA (it will auto-detect the Gradle multi-module structure)
 3. Ensure Java 21 is configured as Project SDK
-4. Run `./mvnw test` to verify setup
+4. Run `./gradlew build` to build all modules
+5. Run `./gradlew test` to run all tests across modules
 
 ### Key Technologies
 
 - **Language:** Java 21 LTS
 - **Testing:** JUnit 5, AssertJ, Mockito, jqwik
-- **Build Tools:** Maven/Gradle
+- **Build Tool:** Gradle (multi-module project)
 - **IDE:** IntelliJ IDEA
 - **Version Control:** Git/GitHub
 - **CI/CD:** GitHub Actions

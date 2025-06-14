@@ -16,7 +16,7 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - **Primary Language:** Java 21 LTS (not Kotlin as in previous years)
   - Java 25 LTS releases September 2025, but course maintains Java 21 compatibility
 - **Testing Framework:** JUnit 5 with AssertJ and jqwik
-- **Build Tool:** Maven or Gradle
+- **Build Tool:** Gradle (multi-module project with Kotlin DSL)
 - **Presentation Tool:** Slidev
 - **Version Control:** Git/GitHub
 
@@ -54,26 +54,39 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - [ ] Develop additional practice exercises
 - [ ] Set up Discord/Slack for class communication
 
-## File Structure Convention
+## Multi-Module Structure
+
+This project uses Gradle's multi-module capabilities:
 
 ```
+Root Project (software-design-course)
+├── build.gradle.kts           # Root build configuration
+├── settings.gradle.kts        # Module definitions
+└── subprojects/              # All inherit Java 21, JUnit 5, AssertJ
+
+Module Structure:
 slides/XX-topic/
-├── slides.md          # Slidev presentation
-├── examples/          # Code shown in slides
-├── exercises/         # In-class exercises
-└── README.md          # Topic overview and resources
+├── slides.md                 # Slidev presentation
+├── README.md                 # Topic overview and resources
 
-examples/topic/
-├── src/main/java/    # Production code
-├── src/test/java/    # Test code
-├── pom.xml           # Maven configuration
-└── README.md         # Example explanation
+examples/module-name/         # Gradle submodule
+├── build.gradle.kts         # Module-specific dependencies
+├── src/main/java/           # Production code
+├── src/test/java/           # Test code
+└── README.md                # Example explanation
 
-assignments/assignment-X/
-├── starter/          # Starter code for students
-├── solution/         # Reference solution (private)
-├── rubric.md         # Grading criteria
-└── README.md         # Assignment instructions
+assignments/assignment-X/     # Gradle submodule
+├── build.gradle.kts         # Assignment dependencies
+├── src/main/java/           # Starter/skeleton code
+├── src/test/java/           # Test cases
+├── rubric.md                # Grading criteria
+└── README.md                # Assignment instructions
+
+live-coding/session-X/       # Gradle submodule
+├── build.gradle.kts         # Session dependencies
+├── src/main/java/           # Demo code
+├── src/test/java/           # Test examples
+└── README.md                # Session notes
 ```
 
 ## Code Style Guidelines
@@ -122,8 +135,10 @@ assignments/assignment-X/
 
 ## Important Reminders
 
-1. Always check that Maven/Gradle builds work
-2. Verify all tests pass before committing examples
-3. Keep examples focused on single concepts
+1. Always check that Gradle builds work: `./gradlew build`
+2. Verify all tests pass before committing: `./gradlew test`
+3. Each module should focus on single concepts
 4. Use realistic scenarios when possible
 5. Remember the audience is undergraduate CS majors
+6. New modules are easy to add to settings.gradle.kts
+7. Common dependencies are inherited from root build.gradle.kts

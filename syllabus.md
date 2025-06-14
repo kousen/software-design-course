@@ -67,8 +67,9 @@ Upon successful completion of this course, students will be able to:
 ### Software Requirements
 All software is free for educational use:
 
-1. **Java Development Kit (JDK)** - Version 17 or higher (21 LTS recommended)
+1. **Java Development Kit (JDK)** - Version 21 LTS (required)
    - Download from [adoptium.net](https://adoptium.net)
+   - Note: Java 23 (next LTS) releases September 2025, but we'll maintain Java 21 compatibility throughout the course
    
 2. **IntelliJ IDEA** - Ultimate Edition (free with student license)
    - Available at [JetBrains Student License](https://www.jetbrains.com/student/)

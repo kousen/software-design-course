@@ -13,7 +13,8 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - Emphasize multiple programming paradigms (OOP, FP, DOP)
 
 ### Technology Stack
-- **Primary Language:** Java 17+ (not Kotlin as in previous years)
+- **Primary Language:** Java 21 LTS (not Kotlin as in previous years)
+  - Java 23 LTS releases September 2025, but course maintains Java 21 compatibility
 - **Testing Framework:** JUnit 5 with AssertJ and jqwik
 - **Build Tool:** Maven or Gradle
 - **Presentation Tool:** Slidev

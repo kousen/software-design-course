@@ -39,7 +39,8 @@ Fall 2025 | Trinity College
 - Optional for null safety
 - Records (Java 14+)
 - Pattern matching (Java 17+)
-- Sealed classes
+- Sealed classes (Java 17+)
+- Text blocks (Java 15+)
 
 ---
 
@@ -206,10 +207,10 @@ Fall 2025 | Trinity College
 - Thread-safe patterns
 
 ### Session 24 (Nov 20): Modern Concurrency
-- CompletableFuture
-- Reactive programming intro
-- Virtual threads (Java 21)
-- Async patterns
+- CompletableFuture and async programming
+- Virtual threads (Java 21 LTS feature)
+- Structured concurrency (Java 21 preview)
+- Reactive programming concepts
 
 ---
 

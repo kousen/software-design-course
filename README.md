@@ -40,7 +40,7 @@ software-design-course/
 ### Getting Started
 
 #### Prerequisites
-- Java 17 or higher (Java 21 LTS recommended)
+- Java 21 LTS (required)
 - IntelliJ IDEA (Ultimate Edition with student license)
 - Git
 - Maven or Gradle
@@ -48,12 +48,12 @@ software-design-course/
 #### Setup Instructions
 1. Clone this repository
 2. Open in IntelliJ IDEA
-3. Ensure Java 17+ is configured
+3. Ensure Java 21 is configured as Project SDK
 4. Run `./mvnw test` to verify setup
 
 ### Key Technologies
 
-- **Language:** Java 17+
+- **Language:** Java 21 LTS
 - **Testing:** JUnit 5, AssertJ, Mockito, jqwik
 - **Build Tools:** Maven/Gradle
 - **IDE:** IntelliJ IDEA

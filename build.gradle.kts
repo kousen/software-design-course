@@ -1,5 +1,5 @@
 plugins {
-    java apply false
+    java
 }
 
 allprojects {

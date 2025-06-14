@@ -41,6 +41,8 @@ software-design-course/
 
 - [Course Schedule](course-schedule.md)
 - [Syllabus](syllabus.md)
+- [GitHub Workflow Guide](github-workflow-guide.md)
+- [Gradle Guide](gradle-guide.md)
 - [Student Resources](#student-resources)
 
 ### Getting Started

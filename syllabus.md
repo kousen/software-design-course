@@ -4,8 +4,8 @@
 ### Fall 2025
 
 **Location:** MECC 124  
-**Time:** Tuesdays & Thursdays, 10:50 AM - 12:05 PM  
-**Current Revision:** January 15, 2025
+**Time:** Tuesdays & Thursdays, 10:50 AM–12:05 PM  
+**Current Revision:** June 14, 2025
 
 ---
 
@@ -14,7 +14,7 @@
 **Instructor:** Ken Kousen  
 **Email:** kkousen@trincoll.edu  
 **Office:** MECC 175  
-**Office Hours:** Wednesdays, 1:30 PM - 3:00 PM  
+**Office Hours:** Wednesdays, 1:30 PM–3:00 PM  
 **Course Repository:** [GitHub link to be provided]
 
 ---
@@ -38,7 +38,7 @@ Upon successful completion of this course, students will be able to:
    - Evaluate trade-offs between different architectural approaches
 
 2. **Modern Java Development**
-   - Utilize Java 8+ features including lambdas, streams, and Optional
+   - Use Java 8+ features including lambdas, streams, and Optional
    - Implement functional programming patterns in Java
    - Apply data-oriented programming with records and pattern matching
    - Write concurrent and thread-safe code
@@ -60,7 +60,7 @@ Upon successful completion of this course, students will be able to:
 ## Required Materials
 
 ### Textbook
-- **Head First Java, 3rd Edition** by Kathy Sierra and Bert Bates (O'Reilly)
+- **Head First Java, 3rd Edition** by Trisha Gee, Kathy Sierra, and Bert Bates (O'Reilly)
   - Used primarily as a reference for Java fundamentals
   - Available in print or ebook format
 
@@ -68,31 +68,31 @@ Upon successful completion of this course, students will be able to:
 All software is free for educational use:
 
 1. **Java Development Kit (JDK)** - Version 21 LTS (required)
-   - Download from [adoptium.net](https://adoptium.net)
+   - Download from [adoptium.net](https://adoptium.net) if you don't have a preference (any valid distribution will do)
    - Note: Java 25 (next LTS) releases September 2025, but we'll maintain Java 21 compatibility throughout the course
    
-2. **IntelliJ IDEA** - Ultimate Edition (free with student license)
-   - Available at [JetBrains Student License](https://www.jetbrains.com/student/)
+2. **IntelliJ IDEA** Ultimate Edition (free with student license)
+   - Available at [JetBrains Education License](https://www.jetbrains.com/student/)
    
 3. **Git** - Version control system
    - [git-scm.com](https://git-scm.com)
    
 4. **GitHub Account** - For code submission and collaboration
-   - Sign up at [github.com](https://github.com)
+   - Sign up at [GitHub.com](https://github.com)
 
-5. **Maven or Gradle** - Build automation (covered in class)
+5. **Gradle** — Build automation (covered in class)
 
 ---
 
 ## Grading
 
-| Component | Weight | Description |
-|-----------|--------|-------------|
-| Programming Assignments | 25% | Weekly coding exercises and projects |
-| Quizzes | 20% | Short assessments on readings and concepts |
-| Midterm Project | 20% | Design pattern implementation project |
-| Final Project | 25% | Comprehensive software design project |
-| Class Participation | 10% | Active engagement, code reviews, discussions |
+| Component               | Weight | Description                                  |
+|-------------------------|--------|----------------------------------------------|
+| Programming Assignments | 25%    | Weekly coding exercises and projects         |
+| Quizzes                 | 20%    | Short assessments on readings and concepts   |
+| Midterm Project         | 20%    | Design pattern implementation project        |
+| Final Project           | 25%    | Comprehensive software design project        |
+| Class Participation     | 10%    | Active engagement, code reviews, discussions |
 
 ### Grading Scale
 - A: 93-100
@@ -125,10 +125,10 @@ Each student receives **3 late days** for the semester:
 - Communicate late day usage via email when submitting
 
 ### Collaboration Policy
-- Students may work in pairs on assignments (groups of 2 maximum)
+- Students may work in pairs on assignments (groups of two maximum)
 - Both partners must contribute equally and submit together
 - Individual work is also acceptable
-- All submitted code must be understood by both partners
+- Both partners must understand all submitted code
 
 ---
 
@@ -148,12 +148,12 @@ AI tools like GitHub Copilot, ChatGPT, Claude, and others are transforming softw
 2. You must verify AI suggestions for correctness
 3. You must be able to explain your code in detail
 4. You must document significant AI assistance in comments
-5. All tests must pass - you are responsible for correctness
+5. All tests must pass—you are responsible for correctness
 
 ### AI-Specific Assignments
 Some assignments will specifically require:
 - Evaluating AI-generated code quality
-- Comparing human vs AI solutions
+- Comparing human vs. AI solutions
 - Testing AI-generated implementations
 - Prompt engineering exercises
 
@@ -164,10 +164,10 @@ Some assignments will specifically require:
 The detailed schedule is available in `course-schedule.md`. Key topics include:
 
 - **Weeks 1-3:** Modern Java, Testing Fundamentals
-- **Weeks 4-6:** Clean Code, SOLID Principles, AI Collaboration
-- **Weeks 7-10:** Design Patterns (Creational, Structural, Behavioral)
-- **Weeks 11-12:** Paradigm Integration, Concurrent Programming
-- **Weeks 13-14:** CI/CD, Final Projects
+- **Weeks 4–6:** Clean Code, SOLID Principles, AI Collaboration
+- **Weeks 7–10:** Design Patterns (Creational, Structural, Behavioral)
+- **Weeks 11–12:** Paradigm Integration, Concurrent Programming
+- **Weeks 13–14:** CI/CD, Final Projects
 
 **Important Dates:**
 - No class: October 14 (Fall Break)
@@ -220,7 +220,7 @@ In case of severe weather or other emergencies:
 ## Resources and Support
 
 ### Academic Resources
-- Office hours: Wednesdays 1:30-3:00 PM
+- Office hours: Wednesdays 1:30–3:00 PM
 - Course GitHub repository (examples, slides, assignments)
 - Class Discord/Slack channel (to be created)
 

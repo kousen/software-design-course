@@ -31,7 +31,7 @@ Fall 2025 | Trinity College
 
 ### Session 3 (Sept 9): Streams API
 - Stream creation and operations
-- Intermediate vs terminal operations
+- Intermediate vs. terminal operations
 - Collectors and reduction
 - Parallel streams
 
@@ -79,7 +79,7 @@ Fall 2025 | Trinity College
 ---
 
 ## Week 5: Code Quality & AI Collaboration
-**September 30 - October 2**
+**September 30—October 2**
 
 ### Session 9 (Sept 30): Clean Code & Refactoring
 - Code smells identification
@@ -215,7 +215,7 @@ Fall 2025 | Trinity College
 ---
 
 ## Week 13: DevOps & Deployment
-**November 25** *(Thanksgiving week - shortened)*
+**November 25** *(Thanksgiving week—shortened)*
 
 ### Session 25 (Nov 25): CI/CD Pipelines
 - GitHub Actions
@@ -223,7 +223,7 @@ Fall 2025 | Trinity College
 - Automated testing in CI
 - Deployment strategies
 
-### Session 26: NO CLASS - Thanksgiving Break
+### Session 26: NO CLASS—Thanksgiving Break
 
 ---
 
@@ -256,7 +256,7 @@ Fall 2025 | Trinity College
 - Pattern recognition in frameworks
 - Refactoring to patterns
 
-### Final Project (Weeks 11-14)
+### Final Project (Weeks 11–14)
 - Full application using course concepts
 - Must include: testing, patterns, clean architecture
 - AI-assisted development with critical evaluation

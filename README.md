@@ -1,5 +1,5 @@
 # CPSC 310: Software Design
-## Trinity College - Fall 2025
+## Trinity College—Fall 2025
 
 This repository contains course materials for CPSC 310: Software Design, taught at Trinity College by Ken Kousen.
 
@@ -71,18 +71,17 @@ software-design-course/
 ### Course Topics by Week
 
 1. **Weeks 1-3:** Modern Java & Testing Fundamentals
-2. **Weeks 4-6:** Clean Code, SOLID, AI Collaboration
+2. **Weeks 4–6:** Clean Code, SOLID, AI Collaboration
 3. **Weeks 7-10:** Design Patterns
-4. **Weeks 11-12:** Paradigm Integration & Concurrency
-5. **Weeks 13-14:** DevOps & Final Projects
+4. **Weeks 11–12:** Paradigm Integration & Concurrency
+5. **Weeks 13–14:** DevOps & Final Projects
 
 ### Student Resources
 
 #### Recommended Reading
-- *Head First Java* (3rd Edition) - Course textbook
+- *Head First Java* (3rd Edition)—Course textbook
 - *Effective Java* by Joshua Bloch
-- *Clean Code* by Robert C. Martin
-- *Design Patterns* by Gang of Four
+- *Design Patterns* by Gamma, Helm, Johnson, and Vlissides
 
 #### Online Resources
 - [Java Documentation](https://docs.oracle.com/en/java/)

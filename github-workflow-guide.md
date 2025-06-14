@@ -5,7 +5,7 @@ This guide explains how to work with GitHub for assignments in this course. You'
 ## Prerequisites
 
 Before starting, ensure you have:
-1. A GitHub account (free at [github.com](https://github.com))
+1. A GitHub account (free at [GitHub.com](https://github.com))
 2. Git installed on your computer ([git-scm.com](https://git-scm.com))
 3. IntelliJ IDEA configured with Git
 
@@ -102,7 +102,7 @@ If you need to make changes after submitting:
 
 ### Can't find the Fork button
 - Make sure you're logged into GitHub
-- You may have already forked it - check your repositories
+- You may have already forked it—check your repositories
 
 ### Lost local changes
 - Before making changes, always check you're on the right branch: `git branch`
@@ -121,14 +121,14 @@ If you need to make changes after submitting:
 
 ## Quick Command Reference
 
-| Action | Command |
-|--------|---------|
-| Clone repository | `git clone <url>` |
-| Check status | `git status` |
-| Add all changes | `git add .` |
-| Commit changes | `git commit -m "message"` |
-| Push to GitHub | `git push origin main` |
-| Pull latest changes | `git pull origin main` |
-| See commit history | `git log --oneline` |
+| Action              | Command                   |
+|---------------------|---------------------------|
+| Clone repository    | `git clone <url>`         |
+| Check status        | `git status`              |
+| Add all changes     | `git add .`               |
+| Commit changes      | `git commit -m "message"` |
+| Push to GitHub      | `git push origin main`    |
+| Pull latest changes | `git pull origin main`    |
+| See commit history  | `git log --oneline`       |
 
 Remember: The key is to fork first, work in your fork, and submit your fork's URL to Moodle!

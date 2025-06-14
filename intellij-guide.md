@@ -56,20 +56,20 @@ This guide covers IntelliJ IDEA basics for students new to the IDE. IDEA is a po
 ## Basic Navigation
 
 ### Opening Files
-| Action | Shortcut |
-|--------|----------|
+| Action                | Shortcut                            |
+|-----------------------|-------------------------------------|
 | Open any file quickly | `Ctrl+Shift+N` (Cmd+Shift+O on Mac) |
-| Open any class | `Ctrl+N` (Cmd+O on Mac) |
-| Recent files | `Ctrl+E` (Cmd+E on Mac) |
-| Switch between tabs | `Ctrl+Tab` |
+| Open any class        | `Ctrl+N` (Cmd+O on Mac)             |
+| Recent files          | `Ctrl+E` (Cmd+E on Mac)             |
+| Switch between tabs   | `Ctrl+Tab`                          |
 
 ### Code Navigation
-| Action | Shortcut |
-|--------|----------|
-| Go to declaration | `Ctrl+B` (Cmd+B on Mac) |
+| Action               | Shortcut                        |
+|----------------------|---------------------------------|
+| Go to declaration    | `Ctrl+B` (Cmd+B on Mac)         |
 | Go to implementation | `Ctrl+Alt+B` (Cmd+Alt+B on Mac) |
-| Find usages | `Alt+F7` |
-| Back/Forward | `Ctrl+Alt+Left/Right` |
+| Find usages          | `Alt+F7`                        |
+| Back/Forward         | `Ctrl+Alt+Left/Right`           |
 
 ## Writing Code
 
@@ -80,28 +80,28 @@ This guide covers IntelliJ IDEA basics for students new to the IDE. IDEA is a po
 - `Ctrl+Shift+Space` for smart completion
 
 ### Live Templates
-| Template | Expands to |
-|----------|------------|
-| `psvm` | `public static void main(String[] args)` |
-| `sout` | `System.out.println()` |
-| `fori` | for loop with index |
-| `iter` | enhanced for loop |
+| Template | Expands to                               |
+|----------|------------------------------------------|
+| `psvm`   | `public static void main(String[] args)` |
+| `sout`   | `System.out.println()`                   |
+| `fori`   | for loop with index                      |
+| `iter`   | enhanced for loop                        |
 
 ### Code Generation
-| Action | Shortcut |
-|--------|----------|
-| Generate code | `Alt+Insert` |
+| Action           | Shortcut                  |
+|------------------|---------------------------|
+| Generate code    | `Alt+Insert`              |
 | Override methods | Select from generate menu |
-| Getters/Setters | Select from generate menu |
-| Constructor | Select from generate menu |
+| Getters/Setters  | Select from generate menu |
+| Constructor      | Select from generate menu |
 
 ### Refactoring
-| Action | Shortcut |
-|--------|----------|
-| Rename | `Shift+F6` |
-| Extract method | `Ctrl+Alt+M` |
-| Extract variable | `Ctrl+Alt+V` |
-| Refactor this | `Ctrl+Alt+Shift+T` |
+| Action           | Shortcut           |
+|------------------|--------------------|
+| Rename           | `Shift+F6`         |
+| Extract method   | `Ctrl+Alt+M`       |
+| Extract variable | `Ctrl+Alt+V`       |
+| Refactor this    | `Ctrl+Alt+Shift+T` |
 
 ## Running and Testing
 
@@ -130,12 +130,12 @@ This guide covers IntelliJ IDEA basics for students new to the IDE. IDEA is a po
 - **Branches:** Switch branches
 
 ### Common Git Operations
-| Action | How to |
-|--------|---------|
-| Commit changes | `Ctrl+K` (Cmd+K on Mac) |
-| Update project | `Ctrl+T` (Cmd+T on Mac) |
-| Push commits | `Ctrl+Shift+K` (Cmd+Shift+K on Mac) |
-| View diff | Right-click file → Git → Compare with... |
+| Action         | How to                                   |
+|----------------|------------------------------------------|
+| Commit changes | `Ctrl+K` (Cmd+K on Mac)                  |
+| Update project | `Ctrl+T` (Cmd+T on Mac)                  |
+| Push commits   | `Ctrl+Shift+K` (Cmd+Shift+K on Mac)      |
+| View diff      | Right-click file → Git → Compare with... |
 
 ### GitHub Integration
 1. **File → Settings → Version Control → GitHub**
@@ -200,15 +200,15 @@ public void someMethod() {
 ## Keyboard Shortcuts Summary
 
 ### Most Important
-| Action | Windows/Linux | Mac |
-|--------|---------------|-----|
-| Find anything | `Shift+Shift` | `Shift+Shift` |
-| Run | `Shift+F10` | `Ctrl+R` |
-| Debug | `Shift+F9` | `Ctrl+D` |
-| Find in file | `Ctrl+F` | `Cmd+F` |
-| Replace | `Ctrl+R` | `Cmd+R` |
-| Comment/uncomment | `Ctrl+/` | `Cmd+/` |
-| Format code | `Ctrl+Alt+L` | `Cmd+Alt+L` |
+| Action            | Windows/Linux | Mac           |
+|-------------------|---------------|---------------|
+| Find anything     | `Shift+Shift` | `Shift+Shift` |
+| Run               | `Shift+F10`   | `Ctrl+R`      |
+| Debug             | `Shift+F9`    | `Ctrl+D`      |
+| Find in file      | `Ctrl+F`      | `Cmd+F`       |
+| Replace           | `Ctrl+R`      | `Cmd+R`       |
+| Comment/uncomment | `Ctrl+/`      | `Cmd+/`       |
+| Format code       | `Ctrl+Alt+L`  | `Cmd+Alt+L`   |
 
 ### Learning More
 - **Help → Keymap Reference** for complete shortcut list
@@ -256,8 +256,8 @@ public void someMethod() {
 
 ## Getting Help
 
-- **Help → Find Action** - Search for any IDE function
-- **Help → IntelliJ IDEA Help** - Complete documentation
+- **Help → Find Action**—Search for any IDE function
+- **Help → IntelliJ IDEA Help**—Complete documentation
 - **View → Quick Documentation** (`Ctrl+Q`) for Java API docs
 - Ask in office hours for IDEA-specific questions
 

@@ -69,7 +69,7 @@ All software is free for educational use:
 
 1. **Java Development Kit (JDK)** - Version 21 LTS (required)
    - Download from [adoptium.net](https://adoptium.net)
-   - Note: Java 23 (next LTS) releases September 2025, but we'll maintain Java 21 compatibility throughout the course
+   - Note: Java 25 (next LTS) releases September 2025, but we'll maintain Java 21 compatibility throughout the course
    
 2. **IntelliJ IDEA** - Ultimate Edition (free with student license)
    - Available at [JetBrains Student License](https://www.jetbrains.com/student/)

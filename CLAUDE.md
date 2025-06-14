@@ -14,7 +14,7 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 
 ### Technology Stack
 - **Primary Language:** Java 21 LTS (not Kotlin as in previous years)
-  - Java 23 LTS releases September 2025, but course maintains Java 21 compatibility
+  - Java 25 LTS releases September 2025, but course maintains Java 21 compatibility
 - **Testing Framework:** JUnit 5 with AssertJ and jqwik
 - **Build Tool:** Maven or Gradle
 - **Presentation Tool:** Slidev

@@ -72,7 +72,7 @@ All software is free for educational use:
    - Note: Java 25 (next LTS) releases September 2025, but we'll maintain Java 21 compatibility throughout the course
    
 2. **IntelliJ IDEA** Ultimate Edition (free with student license)
-   - Available at [JetBrains Education License](https://www.jetbrains.com/student/)
+   - Apply for student pack at [JetBrains Student Pack](https://www.jetbrains.com/academy/student-pack/)
    
 3. **Git** - Version control system
    - [git-scm.com](https://git-scm.com)

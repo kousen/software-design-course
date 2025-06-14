@@ -5,8 +5,8 @@ This guide covers IntelliJ IDEA basics for students new to the IDE. IDEA is a po
 ## Getting Started
 
 ### Installation
-1. Go to [JetBrains Student License](https://www.jetbrains.com/student/)
-2. Sign up with your Trinity College email
+1. Go to [JetBrains Student Pack](https://www.jetbrains.com/academy/student-pack/)
+2. Apply for the student pack with your Trinity College email
 3. Download **IntelliJ IDEA Ultimate** (not Community - Ultimate has more features)
 4. Install and activate with your student license
 

@@ -85,11 +85,15 @@ software-design-course/
 
 ### Assignment Submission
 
-All assignments should be submitted via GitHub:
-1. Fork the assignment repository
-2. Complete the assignment in your fork
-3. Submit a pull request before the deadline
-4. Ensure all tests pass in CI
+Assignments will be distributed via Moodle and this repository:
+1. Download starter code from this repository
+2. Complete the assignment locally
+3. Submit via Moodle before the deadline
+4. Ensure all tests pass locally before submission
+
+For pair programming:
+- Both students must be listed in submission
+- Include a brief note about contribution division
 
 ### AI Tool Guidelines
 

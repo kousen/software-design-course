@@ -85,15 +85,18 @@ software-design-course/
 
 ### Assignment Submission
 
-Assignments will be distributed via Moodle and this repository:
-1. Download starter code from this repository
-2. Complete the assignment locally
-3. Submit via Moodle before the deadline
-4. Ensure all tests pass locally before submission
+All assignments follow the fork-and-submit workflow:
+1. Fork the assignment repository from GitHub
+2. Clone your fork locally and complete the work
+3. Push your solution to your forked repository
+4. Submit your repository URL to Moodle
+
+See [GitHub Workflow Guide](github-workflow-guide.md) for detailed instructions.
 
 For pair programming:
-- Both students must be listed in submission
-- Include a brief note about contribution division
+- One person forks and adds partner as collaborator
+- Both students submit the same repository URL
+- Include both names in README or CONTRIBUTORS file
 
 ### AI Tool Guidelines
 

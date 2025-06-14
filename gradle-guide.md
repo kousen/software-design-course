@@ -26,31 +26,31 @@ Always use `./gradlew` (Linux/Mac) or `gradlew.bat` (Windows) instead of `gradle
 
 ### Basic Tasks
 
-| Command | Description |
-|---------|-------------|
-| `./gradlew build` | Compile code, run tests, create JARs |
-| `./gradlew test` | Run all tests |
-| `./gradlew clean` | Delete build outputs |
-| `./gradlew assemble` | Compile and package (skip tests) |
+| Command              | Description                          |
+|----------------------|--------------------------------------|
+| `./gradlew build`    | Compile code, run tests, create JARs |
+| `./gradlew test`     | Run all tests                        |
+| `./gradlew clean`    | Delete build outputs                 |
+| `./gradlew assemble` | Compile and package (skip tests)     |
 
 ### Development Tasks
 
-| Command | Description |
-|---------|-------------|
+| Command                       | Description                                  |
+|-------------------------------|----------------------------------------------|
 | `./gradlew test --continuous` | Automatically re-run tests when files change |
-| `./gradlew build --scan` | Generate build scan with detailed info |
-| `./gradlew dependencies` | Show all project dependencies |
-| `./gradlew tasks` | List all available tasks |
+| `./gradlew build --scan`      | Generate build scan with detailed info       |
+| `./gradlew dependencies`      | Show all project dependencies                |
+| `./gradlew tasks`             | List all available tasks                     |
 
 ### Multi-Module Commands
 
 Since this is a multi-module project, you can run tasks on specific modules:
 
-| Command | Description |
-|---------|-------------|
-| `./gradlew :examples:modern-java:test` | Run tests for specific module |
-| `./gradlew :assignments:assignment-01-tdd:build` | Build specific assignment |
-| `./gradlew examples:build` | Build all example modules |
+| Command                                          | Description                   |
+|--------------------------------------------------|-------------------------------|
+| `./gradlew :examples:modern-java:test`           | Run tests for specific module |
+| `./gradlew :assignments:assignment-01-tdd:build` | Build specific assignment     |
+| `./gradlew examples:build`                       | Build all example modules     |
 
 ## Project Structure
 

@@ -18,8 +18,6 @@ Before starting, ensure you have:
 3. Select your personal GitHub account as the destination
 4. Wait for the fork to complete (usually takes a few seconds)
 
-![Fork Button Location](images/fork-button.png) *(Note: Image placeholder)*
-
 ### Step 2: Clone Your Fork Locally
 
 1. On your forked repository page, click the green **Code** button

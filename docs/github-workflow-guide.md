@@ -1,6 +1,6 @@
 # GitHub Workflow Guide for CPSC 310
 
-This guide explains how to work with GitHub for assignments in this course. You'll fork assignment repositories, complete the work in your fork, and submit the repository URL via Moodle.
+This guide explains how to work with GitHub in this course. It covers both the **assignment submission workflow** (fork-and-submit) and the **professional development workflow** (issue-based feature development) that we demonstrate in class.
 
 ## Prerequisites
 
@@ -9,7 +9,9 @@ Before starting, ensure you have:
 2. Git installed on your computer ([git-scm.com](https://git-scm.com))
 3. IntelliJ IDEA configured with Git
 
-## Assignment Workflow
+## Part 1: Assignment Submission Workflow
+
+This is the workflow you'll use for individual assignments.
 
 ### Step 1: Fork the Assignment Repository
 
@@ -155,3 +157,148 @@ If you need to make changes after submitting:
 | See commit history  | `git log --oneline`       |
 
 Remember: The key is to fork first, work in your fork, and submit your fork's URL to Moodle!
+
+---
+
+## Part 2: Professional Development Workflow
+
+This is the workflow used for contributing to the main course repository and professional software development. We demonstrate this process when adding new course materials.
+
+### Overview: Issue-Based Feature Development
+
+1. **Create GitHub Issue** → 2. **Create Feature Branch** → 3. **Implement with TDD** → 4. **Create Pull Request** → 5. **Code Review & Merge** → 6. **Cleanup**
+
+### Step 1: Create a GitHub Issue
+
+Before implementing any feature, create an issue to track the work:
+
+```bash
+gh issue create --title "Feature Title" --body "Detailed description of what needs to be implemented"
+```
+
+Or manually on GitHub:
+1. Go to the repository
+2. Click **Issues** tab
+3. Click **New Issue**
+4. Write a clear title and detailed description
+5. Include acceptance criteria and requirements
+
+### Step 2: Create a Feature Branch
+
+Create a dedicated branch for your work:
+
+```bash
+# Make sure you're on main and it's up to date
+git checkout main
+git pull origin main
+
+# Create and switch to a new feature branch
+git checkout -b feature/issue-description
+```
+
+**Branch naming conventions:**
+- `feature/add-solid-examples`
+- `feature/dry-principle-implementation`
+- `bugfix/fix-validation-error`
+- `docs/update-setup-guide`
+
+### Step 3: Implement with Test-Driven Development (TDD)
+
+Follow the TDD cycle while implementing:
+
+1. **Red**: Write a failing test
+2. **Green**: Write minimal code to make it pass
+3. **Refactor**: Improve the code while keeping tests green
+
+```bash
+# Run tests frequently
+./gradlew test
+
+# Commit regularly with meaningful messages
+git add .
+git commit -m "Add validation tests for email format"
+git commit -m "Implement email validation logic"
+git commit -m "Refactor validation to eliminate duplication"
+```
+
+### Step 4: Create a Pull Request
+
+Once your feature is complete and all tests pass:
+
+```bash
+# Push your feature branch to GitHub
+git push -u origin feature/your-feature-name
+
+# Create a pull request using GitHub CLI
+gh pr create --title "Implement Feature X" --body "Description of changes"
+```
+
+**Pull Request Best Practices:**
+- Write a clear title and description
+- Reference the issue: "Closes #123"
+- Include test results
+- Explain what was implemented
+- Add screenshots for UI changes
+
+### Step 5: Code Review and Merge
+
+After creating the PR:
+1. **Code Review**: Team members review the changes
+2. **Address Feedback**: Make requested changes if needed
+3. **Merge**: Once approved, merge the PR
+4. **Close Issue**: GitHub automatically closes linked issues
+
+```bash
+# Merge and cleanup (done by reviewer/maintainer)
+gh pr merge 123 --squash --delete-branch
+```
+
+### Step 6: Cleanup and Sync
+
+After the PR is merged:
+
+```bash
+# Switch back to main
+git checkout main
+
+# Pull the latest changes (including your merged feature)
+git pull origin main
+
+# Your feature branch is automatically deleted on GitHub
+# Delete it locally too
+git branch -d feature/your-feature-name
+```
+
+### Benefits of This Workflow
+
+- **Traceability**: Every change is linked to an issue
+- **Code Quality**: TDD ensures comprehensive testing
+- **Collaboration**: Pull requests enable code review
+- **Documentation**: Issues and PRs provide project history
+- **Safety**: Feature branches prevent breaking main branch
+
+### Example: Adding DRY Principle Examples
+
+Here's how we implemented DRY examples using this workflow:
+
+1. **Issue #2**: "Implement DRY (Don't Repeat Yourself) Principle Examples"
+2. **Branch**: `feature/dry-principle-examples`
+3. **TDD**: Wrote tests first, then implementation
+4. **PR #3**: Comprehensive description with test results
+5. **Merge**: Squashed commits and merged to main
+6. **Cleanup**: Feature branch automatically deleted
+
+### When to Use Each Workflow
+
+**Assignment Workflow (Fork-and-Submit):**
+- Individual assignments
+- Student submissions
+- When you need a separate copy for grading
+
+**Professional Workflow (Issue-Branch-PR):**
+- Contributing to shared repositories
+- Team projects
+- Adding features to the course materials
+- Professional software development
+
+---

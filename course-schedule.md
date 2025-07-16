@@ -112,67 +112,61 @@ Fall 2025 | Trinity College
 
 ---
 
-## Week 7: Software Architecture
-**October 16** *(Note: No class Oct 14)*
+## Week 7: SOLID Principles Applied  
+**October 16 (Note: No class Oct 14)**
 
-### Session 13 (Oct 16): Architecture Patterns
-- Layered architecture
-- MVC and MVP patterns
-- Microservices overview
-- Event-driven architecture
-
-### Session 14 (Oct 16): API Design
-- RESTful principles
-- API versioning strategies
-- Documentation with OpenAPI
-- Contract-first development
+### Session 13 (Oct 16): SOLID in Practice
+- Review of all five SOLID principles
+- Recognizing SOLID violations in real code
+- Refactoring exercises to apply SOLID
+- SOLID principles in modern Java
 
 ---
 
-## Week 8: Creational Design Patterns
+## Week 8: Architecture & Creational Patterns
 **October 21-23**
 
-### Session 15 (Oct 21): Factory & Builder
+### Session 14 (Oct 21): Software Architecture
+- Layered architecture
+- MVC and MVP patterns
+- Architecture patterns and SOLID
+- Dependency injection in practice
+
+### Session 15 (Oct 23): Factory & Builder Patterns
 - Factory Method pattern
 - Abstract Factory pattern
 - Builder pattern
-- Fluent interfaces
-
-### Session 16 (Oct 23): Singleton & Prototype
-- Singleton pattern (and why to avoid it)
-- Prototype pattern
-- Object Pool pattern
-- Creation patterns in modern Java
+- How these patterns support OCP
 
 ---
 
 ## Week 9: Structural Design Patterns
 **October 28-30**
 
-### Session 17 (Oct 28): Adapter & Decorator
+### Session 16 (Oct 28): Adapter & Decorator
 - Adapter pattern
 - Decorator pattern
 - Enhancing functionality
 - Java I/O as decorator example
 
-### Session 18 (Oct 30): Proxy & Composite
+### Session 17 (Oct 30): Composite, Proxy & Facade
+- Composite pattern for hierarchies
 - Proxy pattern types
-- Composite pattern
-- Facade pattern
-- Structural patterns in frameworks
+- Facade pattern for simplification
+- How these patterns follow ISP
 
 ---
 
 ## Week 10: Behavioral Design Patterns
 **November 4-6**
 
-### Session 19 (Nov 4): Observer & Strategy
+### Session 18 (Nov 4): Observer & Strategy
 - Observer pattern
 - Java event model
 - Strategy pattern
 - Functional strategies with lambdas
 
-### Session 20 (Nov 6): Command & Iterator
+### Session 19 (Nov 6): Command & Iterator
 - Command pattern
 - Iterator pattern and Java collections
 - Template Method pattern
@@ -183,13 +177,13 @@ Fall 2025 | Trinity College
 ## Week 11: Programming Paradigms
 **November 11-13**
 
-### Session 21 (Nov 11): Functional Programming in Java
+### Session 20 (Nov 11): Functional Programming in Java
 - Pure functions and immutability
 - Higher-order functions
 - Monadic patterns
 - Functional error handling
 
-### Session 22 (Nov 13): Data-Oriented Programming
+### Session 21 (Nov 13): Data-Oriented Programming
 - Data as data philosophy
 - Records and sealed types
 - Pattern matching for data
@@ -200,13 +194,13 @@ Fall 2025 | Trinity College
 ## Week 12: Concurrent Programming
 **November 18-20**
 
-### Session 23 (Nov 18): Thread Safety
+### Session 22 (Nov 18): Thread Safety
 - Java memory model
 - Synchronization mechanisms
 - Concurrent collections
 - Thread-safe patterns
 
-### Session 24 (Nov 20): Modern Concurrency
+### Session 23 (Nov 20): Modern Concurrency
 - CompletableFuture and async programming
 - Virtual threads (Java 21 LTS feature)
 - Structured concurrency (Java 21 preview)
@@ -217,25 +211,25 @@ Fall 2025 | Trinity College
 ## Week 13: DevOps & Deployment
 **November 25** *(Thanksgiving week—shortened)*
 
-### Session 25 (Nov 25): CI/CD Pipelines
-- GitHub Actions
-- Build automation with Maven/Gradle
-- Automated testing in CI
-- Deployment strategies
+### Session 24 (Nov 25): CI/CD & API Design
+- GitHub Actions for CI/CD
+- RESTful API design principles
+- API versioning and documentation
+- Automated deployment pipelines
 
-### Session 26: NO CLASS—Thanksgiving Break
+### Session 25: NO CLASS—Thanksgiving Break
 
 ---
 
 ## Week 14: Course Synthesis
 **December 2-4**
 
-### Session 27 (Dec 2): Project Presentations I
+### Session 26 (Dec 2): Project Presentations I
 - Student project demonstrations
 - Peer code reviews
 - Design decisions discussion
 
-### Session 28 (Dec 4): Project Presentations II & Wrap-up
+### Session 27 (Dec 4): Project Presentations II & Wrap-up
 - Final project presentations
 - Industry preparation
 - Course retrospective

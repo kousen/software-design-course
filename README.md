@@ -20,10 +20,13 @@ software-design-course/
 ├── settings.gradle.kts                        # Multi-module configuration
 ├── slides/                                    # Slidev presentations
 │   ├── solid-principles.md                   # SOLID principles presentation
-│   └── dry-principle.md                      # DRY principle presentation
+│   ├── dry-principle.md                      # DRY principle presentation
+│   └── testing-fundamentals.md               # Testing fundamentals presentation
 ├── examples/                                  # Code examples (Gradle modules)
 │   ├── modern-java/                          # (planned)
-│   ├── testing-fundamentals/                 # (planned)
+│   ├── testing-fundamentals/                 # JUnit 5, AssertJ, jqwik examples
+│   │   └── src/main/java/edu/trincoll/       # Test subjects and utilities
+│   │   └── src/test/java/edu/trincoll/       # Comprehensive test examples
 │   └── design-patterns/                      # SOLID and DRY examples implemented
 │       └── src/main/java/edu/trincoll/       # Package structure
 │           ├── solid/                        # SRP and OCP examples
@@ -72,7 +75,7 @@ software-design-course/
 ### Key Technologies
 
 - **Language:** Java 21 LTS
-- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, Mockito, jqwik (planned)
+- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, jqwik 1.9.1, Mockito
 - **Build Tool:** Gradle 8.14.2 (multi-module project)
 - **IDE:** IntelliJ IDEA
 - **Version Control:** Git/GitHub
@@ -110,6 +113,17 @@ software-design-course/
   - ValidationUtils and ReportUtils as DRY solutions
   - TDD implementation with comprehensive test coverage
 
+- **Testing Fundamentals (Week 3-4):**
+  - Complete Slidev presentation (44 slides) covering JUnit 5, AssertJ, and modern testing
+  - Comprehensive code examples module with 101 passing tests
+  - JUnit 5 basics, lifecycle management, and advanced features
+  - AssertJ fluent assertions for better test readability
+  - Extensive parameterized testing (value, method, CSV, enum sources)
+  - Property-based testing with jqwik 1.9.1 (compatible with JUnit Platform 1.11.0)
+  - TDD methodology with Calculator examples using Arrange-Act-Assert pattern
+  - Nested test organization for hierarchical test structure
+  - Complete documentation with teaching objectives and progressive learning path
+
 - **Student Resources:**
   - GitHub workflow guide (assignment + professional workflows)
   - Gradle build tool setup guide
@@ -122,7 +136,6 @@ software-design-course/
 
 📋 **Planned:**
 - Modern Java examples and exercises (Weeks 1-2)
-- Testing fundamentals with JUnit 5, AssertJ, and jqwik (Week 3-4)
 - Remaining SOLID principles: LSP, ISP, DIP examples
 - Complete design patterns catalog (Weeks 8-10)
 - AI collaboration exercises and evaluation methods
@@ -140,6 +153,7 @@ software-design-course/
 - [Baeldung Java Tutorials](https://www.baeldung.com/)
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [AssertJ Documentation](https://assertj.github.io/doc/)
+- [jqwik User Guide](https://jqwik.net/docs/current/user-guide.html)
 
 ### Assignment Submission
 

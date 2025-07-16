@@ -15,8 +15,8 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 ### Technology Stack
 - **Primary Language:** Java 21 LTS (not Kotlin as in previous years)
   - Java 25 LTS releases September 2025, but course maintains Java 21 compatibility
-- **Testing Framework:** JUnit 5 with AssertJ and jqwik
-- **Build Tool:** Gradle (multi-module project with Kotlin DSL)
+- **Testing Framework:** JUnit 5.11.0 with AssertJ 3.26.3 and jqwik 1.9.1
+- **Build Tool:** Gradle 8.14.2 (multi-module project with Kotlin DSL)
 - **Presentation Tool:** Slidev
 - **Version Control:** Git/GitHub
 
@@ -51,12 +51,20 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - [x] Organize documentation structure with docs/ folder
 - [x] Update GitHub workflow guide with professional development process
 - [x] Establish issue → branch → TDD → PR → merge workflow
+- [x] Implement comprehensive testing fundamentals module (Issue #10)
+- [x] Create 44-slide Slidev presentation on testing fundamentals
+- [x] Develop 101 test examples covering JUnit 5, AssertJ, and jqwik
+- [x] Resolve jqwik version compatibility with JUnit Platform 1.11.0
+- [x] Implement property-based testing with jqwik 1.9.1
+- [x] Create TDD methodology examples with Calculator
+- [x] Add nested test organization and parameterized testing examples
 
 ### ✅ Medium Priority (Completed)
 - [x] Create AssertJ fluent assertion examples (in SOLID and DRY tests)
 - [x] Develop comprehensive testing approach with TDD methodology
 - [x] Set up professional development workflow documentation
 - [x] Create student setup guides (GitHub, Gradle, IntelliJ)
+- [x] Design property-based testing module with jqwik (Issue #10)
 
 ## Remaining Tasks
 
@@ -67,12 +75,10 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
   - Optional and modern error handling
   - Records and pattern matching
 - [ ] Complete remaining SOLID principles: LSP, ISP, DIP examples
-- [ ] Develop JUnit 5 testing curriculum with comprehensive examples
 - [ ] Design starter code templates for assignments
 - [ ] Create design patterns examples (Weeks 8-10)
 
 ### Medium Priority
-- [ ] Design property-based testing module with jqwik
 - [ ] Develop live coding demo templates for each session
 - [ ] Create grading rubrics for major projects
 - [ ] Set up remaining Slidev presentations for each week
@@ -136,12 +142,14 @@ live-coding/session-X/       # Gradle submodule
 
 - Every example should have comprehensive tests
 - Show multiple testing approaches:
-  - Traditional unit tests (JUnit 5.11.0) ✅ Implemented in SOLID and DRY examples
+  - Traditional unit tests (JUnit 5.11.0) ✅ Implemented across all modules
   - Fluent assertions (AssertJ 3.26.3) ✅ Implemented across all test suites
-  - Property-based tests (jqwik) 📋 Planned for Week 4
+  - Property-based tests (jqwik 1.9.1) ✅ Implemented in testing-fundamentals module
+  - Parameterized tests ✅ Extensive examples with multiple sources
+  - Nested test organization ✅ Hierarchical test structure demonstrated
 - Tests should demonstrate good practices ✅ TDD approach used for all implementations
 - Include both positive and negative test cases ✅ Comprehensive coverage in validation examples
-- Use TDD methodology ✅ Red-Green-Refactor cycle demonstrated in DRY implementation
+- Use TDD methodology ✅ Red-Green-Refactor cycle demonstrated throughout
 
 ## AI Integration Notes
 
@@ -170,12 +178,13 @@ live-coding/session-X/       # Gradle submodule
 ## Important Reminders
 
 1. Always check that Gradle builds work: `./gradlew build` ✅ Verified working
-2. Verify all tests pass before committing: `./gradlew test` ✅ All tests passing (19/19)
-3. Each module should focus on single concepts ✅ design-patterns module contains SOLID and DRY examples
-4. Use realistic scenarios when possible ✅ Employee/payroll, discount, validation, and reporting examples
+2. Verify all tests pass before committing: `./gradlew test` ✅ All tests passing (120+/120+ across all modules)
+3. Each module should focus on single concepts ✅ Separate modules for design patterns and testing
+4. Use realistic scenarios when possible ✅ Employee/payroll, discount, validation, Calculator, FizzBuzz examples
 5. Remember the audience is undergraduate CS majors
 6. New modules are easy to add to settings.gradle.kts ✅ Structure established
-7. Common dependencies are inherited from root build.gradle.kts ✅ JUnit/AssertJ configured
-8. Follow GitHub workflow: issue → branch → TDD → PR → merge → cleanup ✅ Demonstrated with Issues #1-3
-9. Document all implementations with comprehensive slide presentations ✅ SOLID and DRY complete
+7. Common dependencies are inherited from root build.gradle.kts ✅ JUnit/AssertJ/jqwik configured
+8. Follow GitHub workflow: issue → branch → TDD → PR → merge → cleanup ✅ Demonstrated with Issues #1-3, #10
+9. Document all implementations with comprehensive slide presentations ✅ SOLID, DRY, and testing fundamentals complete
 10. Use edu.trincoll package structure for all examples ✅ Consistent across all implementations
+11. Maintain JUnit Platform compatibility when adding jqwik ✅ jqwik 1.9.1 works with JUnit Platform 1.11.0

@@ -19,18 +19,26 @@ software-design-course/
 ├── build.gradle.kts                           # Root Gradle build file
 ├── settings.gradle.kts                        # Multi-module configuration
 ├── slides/                                    # Slidev presentations
-│   └── solid-principles.md                   # SOLID principles presentation
+│   ├── solid-principles.md                   # SOLID principles presentation
+│   └── dry-principle.md                      # DRY principle presentation
 ├── examples/                                  # Code examples (Gradle modules)
 │   ├── modern-java/                          # (planned)
 │   ├── testing-fundamentals/                 # (planned)
-│   └── design-patterns/                      # SOLID examples implemented
-│       └── src/main/java/edu/trincoll/solid/ # SRP and OCP examples
+│   └── design-patterns/                      # SOLID and DRY examples implemented
+│       └── src/main/java/edu/trincoll/       # Package structure
+│           ├── solid/                        # SRP and OCP examples
+│           └── dry/                          # DRY principle examples
 ├── assignments/                               # Student assignments (Gradle modules)
 │   ├── assignment-01-tdd/                    # (planned)
 │   └── assignment-02-refactoring/            # (planned)
 ├── live-coding/                              # In-class sessions (Gradle modules)
 │   ├── session-01-java-basics/              # (planned)
 │   └── session-03-streams/                  # (planned)
+├── docs/                                     # Documentation and guides
+│   ├── github-workflow-guide.md             # Git/GitHub workflow for students
+│   ├── gradle-guide.md                      # Gradle build tool guide
+│   ├── intellij-guide.md                    # IntelliJ IDEA setup guide
+│   └── moodle-submission-template.md        # Assignment submission template
 ├── course-schedule.md                        # Updated 14-week schedule
 ├── syllabus.md                              # Course syllabus
 ├── CLAUDE.md                                # Project context for AI assistance
@@ -41,9 +49,9 @@ software-design-course/
 
 - [Course Schedule](course-schedule.md)
 - [Syllabus](syllabus.md)
-- [GitHub Workflow Guide](github-workflow-guide.md)
-- [Gradle Guide](gradle-guide.md)
-- [IntelliJ IDEA Guide](intellij-guide.md)
+- [GitHub Workflow Guide](docs/github-workflow-guide.md)
+- [Gradle Guide](docs/gradle-guide.md)
+- [IntelliJ IDEA Guide](docs/intellij-guide.md)
 - [Student Resources](#student-resources)
 
 ### Getting Started
@@ -120,7 +128,7 @@ All assignments follow the fork-and-submit workflow:
 3. Push your solution to your forked repository
 4. Submit your repository URL to Moodle
 
-See [GitHub Workflow Guide](github-workflow-guide.md) for detailed instructions.
+See [GitHub Workflow Guide](docs/github-workflow-guide.md) for detailed instructions.
 
 For pair programming:
 - One person forks and adds partner as collaborator

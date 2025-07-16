@@ -152,4 +152,6 @@ For errors or suggestions:
 
 ### License
 
-This course material is provided for educational purposes to Trinity College students enrolled in CPSC 310.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This course material is freely available for educational use and can be adapted for other software design courses.

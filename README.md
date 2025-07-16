@@ -16,25 +16,25 @@ This course teaches modern software design principles using Java, with emphasis 
 
 ```
 software-design-course/
-├── build.gradle.kts          # Root Gradle build file
-├── settings.gradle.kts       # Multi-module configuration
-├── slides/                   # Slidev presentations for each week
-│   ├── 01-introduction/
-│   ├── 02-modern-java/
-│   └── ...
-├── examples/                 # Code examples (Gradle modules)
-│   ├── modern-java/
-│   ├── testing-fundamentals/
-│   └── design-patterns/
-├── assignments/              # Student assignments (Gradle modules)
-│   ├── assignment-01-tdd/
-│   └── assignment-02-refactoring/
-├── live-coding/             # In-class sessions (Gradle modules)
-│   ├── session-01-java-basics/
-│   └── session-03-streams/
-├── course-schedule.md       # Detailed 14-week schedule
-├── syllabus.md             # Course syllabus
-└── README.md               # This file
+├── build.gradle.kts                           # Root Gradle build file
+├── settings.gradle.kts                        # Multi-module configuration
+├── slides/                                    # Slidev presentations
+│   └── solid-principles.md                   # SOLID principles presentation
+├── examples/                                  # Code examples (Gradle modules)
+│   ├── modern-java/                          # (planned)
+│   ├── testing-fundamentals/                 # (planned)
+│   └── design-patterns/                      # SOLID examples implemented
+│       └── src/main/java/edu/trincoll/solid/ # SRP and OCP examples
+├── assignments/                               # Student assignments (Gradle modules)
+│   ├── assignment-01-tdd/                    # (planned)
+│   └── assignment-02-refactoring/            # (planned)
+├── live-coding/                              # In-class sessions (Gradle modules)
+│   ├── session-01-java-basics/              # (planned)
+│   └── session-03-streams/                  # (planned)
+├── course-schedule.md                        # Updated 14-week schedule
+├── syllabus.md                              # Course syllabus
+├── CLAUDE.md                                # Project context for AI assistance
+└── README.md                                # This file
 ```
 
 ### Quick Links
@@ -64,20 +64,40 @@ software-design-course/
 ### Key Technologies
 
 - **Language:** Java 21 LTS
-- **Testing:** JUnit 5, AssertJ, Mockito, jqwik
-- **Build Tool:** Gradle (multi-module project)
+- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, Mockito, jqwik (planned)
+- **Build Tool:** Gradle 8.14.2 (multi-module project)
 - **IDE:** IntelliJ IDEA
 - **Version Control:** Git/GitHub
-- **CI/CD:** GitHub Actions
+- **CI/CD:** GitHub Actions (planned)
 - **Presentations:** Slidev
 
 ### Course Topics by Week
 
 1. **Weeks 1-3:** Modern Java & Testing Fundamentals
 2. **Weeks 4–6:** Clean Code, SOLID, AI Collaboration
-3. **Weeks 7-10:** Design Patterns
+3. **Weeks 7-10:** SOLID Applied & Design Patterns
 4. **Weeks 11–12:** Paradigm Integration & Concurrency
 5. **Weeks 13–14:** DevOps & Final Projects
+
+### Current Implementation Status
+
+✅ **Completed:**
+- Multi-module Gradle project structure
+- SOLID principles slide presentation (Slidev)
+- SRP examples: Employee, PayrollCalculator, EmployeeRepository
+- OCP examples: Discount strategy pattern implementation
+- Comprehensive test suite demonstrating SOLID principles
+- Updated course schedule with expanded SOLID coverage
+
+🚧 **In Progress:**
+- Course documentation and setup guides
+
+📋 **Planned:**
+- Modern Java examples and exercises
+- Testing fundamentals with JUnit 5, AssertJ, and jqwik
+- Complete design patterns catalog
+- AI collaboration exercises
+- CI/CD pipeline setup
 
 ### Student Resources
 

@@ -35,24 +35,37 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 6. Multiple paradigms (OOP, functional, data-oriented)
 7. CI/CD and DevOps practices
 
+## Completed Tasks
+
+### ✅ High Priority (Completed)
+- [x] Create Gradle multi-module project structure
+- [x] Set up SOLID principles Slidev presentation
+- [x] Implement SOLID examples with comprehensive tests
+- [x] Update course schedule with expanded SOLID coverage
+- [x] Establish edu.trincoll package structure
+- [x] Configure JUnit 5.11.0 and AssertJ 3.26.3 for compatibility
+
 ## Remaining Tasks
 
 ### High Priority
-- [ ] Set up Slidev presentation structure for first 3 weeks
 - [ ] Create GitHub repository with proper structure
+- [ ] Develop Modern Java examples (Weeks 1-2)
 - [ ] Develop JUnit 5 testing curriculum with examples
 - [ ] Design starter code templates for assignments
+- [ ] Complete LSP, ISP, and DIP examples
 
 ### Medium Priority
 - [ ] Create AssertJ fluent assertion examples
 - [ ] Design property-based testing module with jqwik
 - [ ] Develop live coding demo templates
 - [ ] Create grading rubrics for major projects
+- [ ] Set up remaining Slidev presentations
 
 ### Low Priority
 - [ ] Create integrated examples showing all testing approaches
 - [ ] Develop additional practice exercises
 - [ ] Set up Discord/Slack for class communication
+- [ ] Set up CI/CD pipeline with GitHub Actions
 
 ## Multi-Module Structure
 
@@ -103,11 +116,11 @@ live-coding/session-X/       # Gradle submodule
 
 - Every example should have comprehensive tests
 - Show multiple testing approaches:
-  - Traditional unit tests (JUnit 5)
-  - Fluent assertions (AssertJ)
-  - Property-based tests (jqwik)
-- Tests should demonstrate good practices
-- Include both positive and negative test cases
+  - Traditional unit tests (JUnit 5.11.0) ✅ Implemented
+  - Fluent assertions (AssertJ 3.26.3) ✅ Implemented
+  - Property-based tests (jqwik) 📋 Planned
+- Tests should demonstrate good practices ✅ SOLID examples include comprehensive tests
+- Include both positive and negative test cases ✅ Demonstrated in discount strategy tests
 
 ## AI Integration Notes
 
@@ -135,10 +148,11 @@ live-coding/session-X/       # Gradle submodule
 
 ## Important Reminders
 
-1. Always check that Gradle builds work: `./gradlew build`
-2. Verify all tests pass before committing: `./gradlew test`
-3. Each module should focus on single concepts
-4. Use realistic scenarios when possible
+1. Always check that Gradle builds work: `./gradlew build` ✅ Verified working
+2. Verify all tests pass before committing: `./gradlew test` ✅ All SOLID tests passing
+3. Each module should focus on single concepts ✅ design-patterns module contains SOLID examples
+4. Use realistic scenarios when possible ✅ Employee/payroll and discount examples
 5. Remember the audience is undergraduate CS majors
-6. New modules are easy to add to settings.gradle.kts
-7. Common dependencies are inherited from root build.gradle.kts
+6. New modules are easy to add to settings.gradle.kts ✅ Structure established
+7. Common dependencies are inherited from root build.gradle.kts ✅ JUnit/AssertJ configured
+8. Follow GitHub workflow: issue → branch → TDD → PR → merge → cleanup

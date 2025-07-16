@@ -41,7 +41,7 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - [x] Create Gradle multi-module project structure with Java 21 LTS
 - [x] Create GitHub repository with proper structure and MIT License
 - [x] Set up SOLID principles Slidev presentation with comprehensive examples
-- [x] Implement SOLID examples (SRP, OCP) with comprehensive tests
+- [x] Implement complete SOLID examples (SRP, OCP, LSP, ISP, DIP) with comprehensive tests
 - [x] Update course schedule with expanded SOLID coverage (3 sessions)
 - [x] Establish edu.trincoll package structure for all examples
 - [x] Configure JUnit 5.11.0 and AssertJ 3.26.3 for Gradle compatibility
@@ -58,6 +58,11 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - [x] Implement property-based testing with jqwik 1.9.1
 - [x] Create TDD methodology examples with Calculator
 - [x] Add nested test organization and parameterized testing examples
+- [x] Complete remaining SOLID principles: LSP, ISP, DIP examples (Issue #15)
+- [x] Implement LSP with Shape hierarchy and Bird hierarchy examples
+- [x] Implement ISP with Worker and Printer interface segregation examples
+- [x] Implement DIP with MessageService and UserRepository dependency injection examples
+- [x] Create comprehensive test suite for all SOLID principles (57 tests total)
 
 ### ✅ Medium Priority (Completed)
 - [x] Create AssertJ fluent assertion examples (in SOLID and DRY tests)
@@ -74,7 +79,6 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
   - Stream API and collectors
   - Optional and modern error handling
   - Records and pattern matching
-- [ ] Complete remaining SOLID principles: LSP, ISP, DIP examples
 - [ ] Design starter code templates for assignments
 - [ ] Create design patterns examples (Weeks 8-10)
 
@@ -178,13 +182,13 @@ live-coding/session-X/       # Gradle submodule
 ## Important Reminders
 
 1. Always check that Gradle builds work: `./gradlew build` ✅ Verified working
-2. Verify all tests pass before committing: `./gradlew test` ✅ All tests passing (120+/120+ across all modules)
+2. Verify all tests pass before committing: `./gradlew test` ✅ All tests passing (57 tests in design-patterns, 101 tests in testing-fundamentals)
 3. Each module should focus on single concepts ✅ Separate modules for design patterns and testing
 4. Use realistic scenarios when possible ✅ Employee/payroll, discount, validation, Calculator, FizzBuzz examples
 5. Remember the audience is undergraduate CS majors
 6. New modules are easy to add to settings.gradle.kts ✅ Structure established
 7. Common dependencies are inherited from root build.gradle.kts ✅ JUnit/AssertJ/jqwik configured
-8. Follow GitHub workflow: issue → branch → TDD → PR → merge → cleanup ✅ Demonstrated with Issues #1-3, #10
+8. Follow GitHub workflow: issue → branch → TDD → PR → merge → cleanup ✅ Demonstrated with Issues #1-3, #10, #15
 9. Document all implementations with comprehensive slide presentations ✅ SOLID, DRY, and testing fundamentals complete
 10. Use edu.trincoll package structure for all examples ✅ Consistent across all implementations
 11. Maintain JUnit Platform compatibility when adding jqwik ✅ jqwik 1.9.1 works with JUnit Platform 1.11.0

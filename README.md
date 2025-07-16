@@ -29,7 +29,12 @@ software-design-course/
 │   │   └── src/test/java/edu/trincoll/       # Comprehensive test examples
 │   └── design-patterns/                      # SOLID and DRY examples implemented
 │       └── src/main/java/edu/trincoll/       # Package structure
-│           ├── solid/                        # SRP and OCP examples
+│           ├── solid/                        # Complete SOLID examples
+│           │   ├── srp/                     # Single Responsibility Principle
+│           │   ├── ocp/                     # Open/Closed Principle
+│           │   ├── lsp/                     # Liskov Substitution Principle
+│           │   ├── isp/                     # Interface Segregation Principle
+│           │   └── dip/                     # Dependency Inversion Principle
 │           └── dry/                          # DRY principle examples
 ├── assignments/                               # Student assignments (Gradle modules)
 │   ├── assignment-01-tdd/                    # (planned)
@@ -103,7 +108,10 @@ software-design-course/
   - Complete Slidev presentation with interactive examples
   - SRP examples: Employee, PayrollCalculator, EmployeeRepository separation
   - OCP examples: Discount strategy pattern implementation
-  - Comprehensive test suite (19 tests) demonstrating SOLID principles
+  - LSP examples: Shape hierarchy (Rectangle, Square, Circle) and Bird hierarchy (Eagle, Sparrow, Penguin)
+  - ISP examples: Worker interfaces (Workable, Eatable, Sleepable) and Printer interfaces (Printable, Scannable, Faxable)
+  - DIP examples: MessageService abstraction and UserRepository abstraction with dependency injection
+  - Comprehensive test suite (57 tests) demonstrating all SOLID principles
   - Updated course schedule with expanded SOLID coverage
 
 - **DRY Principle:**
@@ -136,7 +144,6 @@ software-design-course/
 
 📋 **Planned:**
 - Modern Java examples and exercises (Weeks 1-2)
-- Remaining SOLID principles: LSP, ISP, DIP examples
 - Complete design patterns catalog (Weeks 8-10)
 - AI collaboration exercises and evaluation methods
 - CI/CD pipeline setup with GitHub Actions

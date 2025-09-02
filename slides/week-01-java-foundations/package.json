@@ -1,0 +1,10 @@
+{
+  "name": "week-01-java-foundations",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}

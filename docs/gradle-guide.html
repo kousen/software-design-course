@@ -1,0 +1,247 @@
+<h1 id="gradle-guide-for-cpsc-310">Gradle Guide for CPSC 310</h1>
+<p>This guide covers essential Gradle tasks for this course. We use
+Gradle as our build tool with the Kotlin DSL for configuration.</p>
+<h2 id="what-is-gradle">What is Gradle?</h2>
+<p>Gradle is a build automation tool that handles: - Compiling Java
+source code - Managing dependencies (JUnit, AssertJ, etc.) - Running
+tests - Creating JAR files - Multi-module project management</p>
+<h2 id="gradle-wrapper">Gradle Wrapper</h2>
+<p>This project uses the <strong>Gradle Wrapper</strong>
+(<code>gradlew</code>), which ensures everyone uses the same Gradle
+version regardless of what’s installed locally.</p>
+<h3 id="key-benefits">Key Benefits</h3>
+<ul>
+<li>✅ No need to install Gradle separately</li>
+<li>✅ Consistent builds across all environments</li>
+<li>✅ Automatically downloads the correct Gradle version</li>
+</ul>
+<h2 id="essential-commands">Essential Commands</h2>
+<p>Always use <code>./gradlew</code> (Linux/Mac) or
+<code>gradlew.bat</code> (Windows) instead of <code>gradle</code>:</p>
+<h3 id="basic-tasks">Basic Tasks</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./gradlew build</code></td>
+<td>Compile code, run tests, create JARs</td>
+</tr>
+<tr>
+<td><code>./gradlew test</code></td>
+<td>Run all tests</td>
+</tr>
+<tr>
+<td><code>./gradlew clean</code></td>
+<td>Delete build outputs</td>
+</tr>
+<tr>
+<td><code>./gradlew assemble</code></td>
+<td>Compile and package (skip tests)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="development-tasks">Development Tasks</h3>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./gradlew test --continuous</code></td>
+<td>Automatically re-run tests when files change</td>
+</tr>
+<tr>
+<td><code>./gradlew build --scan</code></td>
+<td>Generate build scan with detailed info</td>
+</tr>
+<tr>
+<td><code>./gradlew dependencies</code></td>
+<td>Show all project dependencies</td>
+</tr>
+<tr>
+<td><code>./gradlew tasks</code></td>
+<td>List all available tasks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multi-module-commands">Multi-Module Commands</h3>
+<p>Since this is a multi-module project, you can run tasks on specific
+modules:</p>
+<table>
+<colgroup>
+<col style="width: 61%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./gradlew :examples:modern-java:test</code></td>
+<td>Run tests for specific module</td>
+</tr>
+<tr>
+<td><code>./gradlew :assignments:assignment-01-tdd:build</code></td>
+<td>Build specific assignment</td>
+</tr>
+<tr>
+<td><code>./gradlew examples:build</code></td>
+<td>Build all example modules</td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-structure">Project Structure</h2>
+<h3 id="root-files">Root Files</h3>
+<ul>
+<li><code>build.gradle.kts</code> - Root build configuration</li>
+<li><code>settings.gradle.kts</code> - Multi-module setup</li>
+<li><code>gradlew</code> / <code>gradlew.bat</code> - Wrapper
+scripts</li>
+<li><code>gradle/wrapper/</code> - Wrapper configuration</li>
+</ul>
+<h3 id="module-structure">Module Structure</h3>
+<p>Each module (examples, assignments, live-coding) has:</p>
+<pre><code>module-name/
+├── build.gradle.kts    # Module-specific config
+├── src/
+│   ├── main/java/     # Production code
+│   └── test/java/     # Test code
+└── build/             # Generated files (gitignored)</code></pre>
+<h2 id="common-workflows">Common Workflows</h2>
+<h3 id="working-on-an-assignment">Working on an Assignment</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to project root</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> software-design-course</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build everything to ensure setup is correct</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Work on specific assignment</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> assignments/assignment-01-tdd</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Run tests for this module only</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">../../gradlew</span> :assignments:assignment-01-tdd:test</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Or from root directory</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> :assignments:assignment-01-tdd:test</span></code></pre></div>
+<h3 id="continuous-testing">Continuous Testing</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Auto-run tests when files change</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> test <span class="at">--continuous</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or for specific module</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> :examples:modern-java:test <span class="at">--continuous</span></span></code></pre></div>
+<h3 id="checking-your-work">Checking Your Work</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before committing, always run</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This will:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Compile all code</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Run all tests</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Generate build artifacts</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Fail if anything is broken</span></span></code></pre></div>
+<h2 id="build-configuration">Build Configuration</h2>
+<h3 id="root-build.gradle.kts">Root <code>build.gradle.kts</code></h3>
+<ul>
+<li>Configures Java 21 for all modules</li>
+<li>Sets up common dependencies (JUnit 5, AssertJ)</li>
+<li>Defines shared build logic</li>
+</ul>
+<h3 id="module-build.gradle.kts">Module
+<code>build.gradle.kts</code></h3>
+<ul>
+<li>Adds module-specific dependencies</li>
+<li>Can override inherited configuration if needed</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>“Permission denied” on <code>./gradlew</code></strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x gradlew</span></code></pre></div>
+<p><strong>“Could not find or load main class”</strong> - Run
+<code>./gradlew clean build</code> - Check Java version:
+<code>java -version</code> (should be 21)</p>
+<p><strong>Tests not running</strong> - Ensure test files end with
+<code>Test.java</code> - Check they’re in <code>src/test/java/</code>
+directory - Verify test methods are annotated with
+<code>@Test</code></p>
+<p><strong>Dependency not found</strong> - Run
+<code>./gradlew build --refresh-dependencies</code> - Check internet
+connection (Gradle downloads from Maven Central)</p>
+<h3 id="getting-help">Getting Help</h3>
+<p><strong>Verbose output:</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build <span class="at">--info</span>    <span class="co"># More detailed output</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build <span class="at">--debug</span>   <span class="co"># Full debug information</span></span></code></pre></div>
+<p><strong>Build scan:</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build <span class="at">--scan</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Provides web-based build analysis</span></span></code></pre></div>
+<h2 id="intellij-idea-integration">IntelliJ IDEA Integration</h2>
+<h3 id="importing-project">Importing Project</h3>
+<ol type="1">
+<li>Open IntelliJ IDEA</li>
+<li><strong>File → Open</strong> → Select project root folder</li>
+<li>IDEA automatically detects Gradle and imports modules</li>
+<li>Wait for indexing to complete</li>
+</ol>
+<h3 id="running-tasks-in-idea">Running Tasks in IDEA</h3>
+<ul>
+<li><strong>View → Tool Windows → Gradle</strong></li>
+<li>Expand project → Tasks → verification → test</li>
+<li>Double-click to run</li>
+</ul>
+<h3 id="gradle-settings-in-idea">Gradle Settings in IDEA</h3>
+<ul>
+<li><strong>File → Settings → Build → Gradle</strong></li>
+<li><strong>Use Gradle from:</strong> ‘gradle-wrapper.properties’ file
+(recommended)</li>
+<li><strong>Build and run using:</strong> Gradle (recommended)</li>
+</ul>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="always-use-the-wrapper">Always Use the Wrapper</h3>
+<p>✅ <code>./gradlew build</code><br />
+❌ <code>gradle build</code></p>
+<h3 id="run-clean-builds">Run Clean Builds</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> clean build</span></code></pre></div>
+<h3 id="check-before-committing">Check Before Committing</h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> build</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Your message&quot;</span></span></code></pre></div>
+<h3 id="module-specific-work">Module-Specific Work</h3>
+<p>When working on one module, you can run tasks for just that module to
+save time:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./gradlew</span> :examples:modern-java:test</span></code></pre></div>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a
+href="https://docs.gradle.org/current/userguide/userguide.html">Gradle
+User Manual</a></li>
+<li><a
+href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Gradle
+Kotlin DSL</a></li>
+<li><a
+href="https://docs.gradle.org/current/userguide/multi_project_builds.html">Multi-Project
+Builds</a></li>
+</ul>
+<p>Remember: When in doubt, <code>./gradlew tasks</code> shows all
+available tasks for your project!</p>

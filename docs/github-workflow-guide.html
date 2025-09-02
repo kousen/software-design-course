@@ -1,0 +1,363 @@
+<h1>GitHub Workflow Guide for CPSC 310</h1>
+
+<p>This guide explains how to work with GitHub in this course. It covers both the <strong>assignment submission workflow</strong> (fork-and-submit) and the <strong>professional development workflow</strong> (issue-based feature development) that we demonstrate in class.</p>
+
+<h2>Prerequisites</h2>
+
+<p>Before starting, ensure you have:</p>
+<ol>
+<li>A GitHub account (free at <a href="https://github.com">GitHub.com</a>)</li>
+<li>Git installed on your computer (<a href="https://git-scm.com">git-scm.com</a>)</li>
+<li>IntelliJ IDEA configured with Git</li>
+</ol>
+
+<hr>
+
+<h2>Part 1: Assignment Submission Workflow</h2>
+
+<p>This is the workflow you'll use for individual assignments.</p>
+
+<h3>Step 1: Fork the Assignment Repository</h3>
+
+<ol>
+<li>Navigate to the assignment repository link provided in Moodle</li>
+<li>Click the <strong>Fork</strong> button in the top-right corner</li>
+<li>Select your personal GitHub account as the destination</li>
+<li>Wait for the fork to complete (usually takes a few seconds)</li>
+</ol>
+
+<h3>Step 2: Clone Your Fork Locally</h3>
+
+<ol>
+<li>On your forked repository page, click the green <strong>Code</strong> button</li>
+<li>Copy the HTTPS URL (should look like <code>https://github.com/YOUR-USERNAME/assignment-name.git</code>)</li>
+<li>Open IntelliJ IDEA</li>
+<li>Select <strong>File → New → Project from Version Control</strong></li>
+<li>Paste the URL and choose a local directory</li>
+<li>Click <strong>Clone</strong></li>
+</ol>
+
+<p>Alternative: Using the command line</p>
+<pre><code>cd ~/Documents/CPSC310  # Or your preferred directory
+git clone https://github.com/YOUR-USERNAME/assignment-name.git
+cd assignment-name</code></pre>
+
+<h3>Step 2.5: Add Upstream Remote (Important!)</h3>
+
+<p>After cloning your fork, add the original repository as an upstream remote:</p>
+
+<pre><code>git remote add upstream https://github.com/ORIGINAL-REPO/assignment-name.git</code></pre>
+
+<p>This allows you to pull any updates from the original assignment if needed:</p>
+<pre><code>git pull upstream main</code></pre>
+
+<p>Verify your remotes are set correctly:</p>
+<pre><code>git remote -v
+# Should show:
+# origin    https://github.com/YOUR-USERNAME/assignment-name.git (fetch)
+# origin    https://github.com/YOUR-USERNAME/assignment-name.git (push)
+# upstream  https://github.com/ORIGINAL-REPO/assignment-name.git (fetch)
+# upstream  https://github.com/ORIGINAL-REPO/assignment-name.git (push)</code></pre>
+
+<h3>Step 3: Complete the Assignment</h3>
+
+<ol>
+<li>Open the project in IntelliJ IDEA</li>
+<li>Read the assignment README for instructions</li>
+<li>Implement the required functionality</li>
+<li>Run tests frequently with <code>./gradlew test</code> or IntelliJ's test runner</li>
+<li>Commit your changes regularly:
+   <pre><code>git add .
+git commit -m "Implement feature X"</code></pre></li>
+</ol>
+
+<h3>Step 4: Push Your Changes</h3>
+
+<p>After completing the assignment:</p>
+
+<pre><code>git push origin main</code></pre>
+
+<p>Or in IntelliJ:</p>
+<ol>
+<li><strong>VCS → Commit</strong> (Ctrl/Cmd + K)</li>
+<li>Write a commit message</li>
+<li>Click <strong>Commit and Push</strong></li>
+</ol>
+
+<h3>Step 5: Submit to Moodle</h3>
+
+<ol>
+<li>Go to your forked repository on GitHub</li>
+<li>Copy the repository URL from your browser's address bar
+   <ul><li>It should look like: <code>https://github.com/YOUR-USERNAME/assignment-name</code></li></ul></li>
+<li>Go to the assignment in Moodle</li>
+<li>Paste your repository URL in the submission text field</li>
+<li>Click <strong>Submit</strong></li>
+</ol>
+
+<h2>Important Notes</h2>
+
+<h3>Do NOT Create Pull Requests</h3>
+<ul>
+<li>Unlike typical open-source workflows, do NOT create a pull request back to the original repository</li>
+<li>Your fork should remain separate for grading purposes</li>
+</ul>
+
+<h3>Keep Your Repository Public</h3>
+<ul>
+<li>Ensure your forked repository remains <strong>public</strong> so instructors can access it</li>
+<li>Do not delete your fork until after grades are posted</li>
+</ul>
+
+<h3>Collaboration Policy</h3>
+<p>If working with a partner:</p>
+<ol>
+<li>One person forks and adds the other as a collaborator</li>
+<li>Go to <strong>Settings → Manage access → Add people</strong></li>
+<li>Both students submit the same repository URL in Moodle</li>
+<li>Include both names in the README or a CONTRIBUTORS file</li>
+</ol>
+
+<h3>Making Updates After Submission</h3>
+<p>If you need to make changes after submitting:</p>
+<ol>
+<li>Push new commits to your fork</li>
+<li>No need to resubmit in Moodle (we'll grade the latest version)</li>
+<li>Notify the instructor if pushing significant changes after the deadline</li>
+</ol>
+
+<h2>Troubleshooting</h2>
+
+<h3>"Permission denied" when pushing</h3>
+<ul>
+<li>Make sure you're pushing to YOUR fork, not the original repository</li>
+<li>Check the remote URL: <code>git remote -v</code></li>
+<li>Your remote should point to <code>github.com/YOUR-USERNAME/...</code></li>
+</ul>
+
+<h3>Can't find the Fork button</h3>
+<ul>
+<li>Make sure you're logged into GitHub</li>
+<li>You may have already forked it—check your repositories</li>
+</ul>
+
+<h3>Lost local changes</h3>
+<ul>
+<li>Before making changes, always check you're on the right branch: <code>git branch</code></li>
+<li>Commit frequently to avoid losing work</li>
+<li>Use <code>git status</code> to see uncommitted changes</li>
+</ul>
+
+<h3>Merge conflicts</h3>
+<ul>
+<li>These shouldn't occur if you're working in your own fork</li>
+<li>If they do, ask for help during office hours</li>
+</ul>
+
+<h2>Getting Help</h2>
+
+<ul>
+<li><strong>Git issues:</strong> See the instructor during office hours</li>
+<li><strong>Assignment questions:</strong> Post in the course Moodle forum</li>
+<li><strong>GitHub problems:</strong> Check <a href="https://docs.github.com">GitHub's documentation</a></li>
+</ul>
+
+<h2>Quick Command Reference</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clone repository</td>
+<td><code>git clone &lt;url&gt;</code></td>
+</tr>
+<tr>
+<td>Check status</td>
+<td><code>git status</code></td>
+</tr>
+<tr>
+<td>Add all changes</td>
+<td><code>git add .</code></td>
+</tr>
+<tr>
+<td>Commit changes</td>
+<td><code>git commit -m "message"</code></td>
+</tr>
+<tr>
+<td>Push to GitHub</td>
+<td><code>git push origin main</code></td>
+</tr>
+<tr>
+<td>Pull latest changes</td>
+<td><code>git pull origin main</code></td>
+</tr>
+<tr>
+<td>Add upstream remote</td>
+<td><code>git remote add upstream &lt;original-repo-url&gt;</code></td>
+</tr>
+<tr>
+<td>Pull from upstream</td>
+<td><code>git pull upstream main</code></td>
+</tr>
+<tr>
+<td>See commit history</td>
+<td><code>git log --oneline</code></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Remember:</strong> The key is to fork first, work in your fork, and submit your fork's URL to Moodle!</p>
+
+<hr>
+
+<h2>Part 2: Professional Development Workflow</h2>
+
+<p>This is the workflow used for contributing to the main course repository and professional software development. We demonstrate this process when adding new course materials.</p>
+
+<h3>Overview: Issue-Based Feature Development</h3>
+
+<p><strong>1. Create GitHub Issue</strong> → <strong>2. Create Feature Branch</strong> → <strong>3. Implement with TDD</strong> → <strong>4. Create Pull Request</strong> → <strong>5. Code Review & Merge</strong> → <strong>6. Cleanup</strong></p>
+
+<h3>Step 1: Create a GitHub Issue</h3>
+
+<p>Before implementing any feature, create an issue to track the work:</p>
+
+<pre><code>gh issue create --title "Feature Title" --body "Detailed description of what needs to be implemented"</code></pre>
+
+<p>Or manually on GitHub:</p>
+<ol>
+<li>Go to the repository</li>
+<li>Click <strong>Issues</strong> tab</li>
+<li>Click <strong>New Issue</strong></li>
+<li>Write a clear title and detailed description</li>
+<li>Include acceptance criteria and requirements</li>
+</ol>
+
+<h3>Step 2: Create a Feature Branch</h3>
+
+<p>Create a dedicated branch for your work:</p>
+
+<pre><code># Make sure you're on main and it's up to date
+git checkout main
+git pull origin main
+
+# Create and switch to a new feature branch
+git checkout -b feature/issue-description</code></pre>
+
+<p><strong>Branch naming conventions:</strong></p>
+<ul>
+<li><code>feature/add-solid-examples</code></li>
+<li><code>feature/dry-principle-implementation</code></li>
+<li><code>bugfix/fix-validation-error</code></li>
+<li><code>docs/update-setup-guide</code></li>
+</ul>
+
+<h3>Step 3: Implement with Test-Driven Development (TDD)</h3>
+
+<p>Follow the TDD cycle while implementing:</p>
+
+<ol>
+<li><strong>Red</strong>: Write a failing test</li>
+<li><strong>Green</strong>: Write minimal code to make it pass</li>
+<li><strong>Refactor</strong>: Improve the code while keeping tests green</li>
+</ol>
+
+<pre><code># Run tests frequently
+./gradlew test
+
+# Commit regularly with meaningful messages
+git add .
+git commit -m "Add validation tests for email format"
+git commit -m "Implement email validation logic"
+git commit -m "Refactor validation to eliminate duplication"</code></pre>
+
+<h3>Step 4: Create a Pull Request</h3>
+
+<p>Once your feature is complete and all tests pass:</p>
+
+<pre><code># Push your feature branch to GitHub
+git push -u origin feature/your-feature-name
+
+# Create a pull request using GitHub CLI
+gh pr create --title "Implement Feature X" --body "Description of changes"</code></pre>
+
+<p><strong>Pull Request Best Practices:</strong></p>
+<ul>
+<li>Write a clear title and description</li>
+<li>Reference the issue: "Closes #123"</li>
+<li>Include test results</li>
+<li>Explain what was implemented</li>
+<li>Add screenshots for UI changes</li>
+</ul>
+
+<h3>Step 5: Code Review and Merge</h3>
+
+<p>After creating the PR:</p>
+<ol>
+<li><strong>Code Review</strong>: Team members review the changes</li>
+<li><strong>Address Feedback</strong>: Make requested changes if needed</li>
+<li><strong>Merge</strong>: Once approved, merge the PR</li>
+<li><strong>Close Issue</strong>: GitHub automatically closes linked issues</li>
+</ol>
+
+<pre><code># Merge and cleanup (done by reviewer/maintainer)
+gh pr merge 123 --squash --delete-branch</code></pre>
+
+<h3>Step 6: Cleanup and Sync</h3>
+
+<p>After the PR is merged:</p>
+
+<pre><code># Switch back to main
+git checkout main
+
+# Pull the latest changes (including your merged feature)
+git pull origin main
+
+# Your feature branch is automatically deleted on GitHub
+# Delete it locally too
+git branch -d feature/your-feature-name</code></pre>
+
+<h3>Benefits of This Workflow</h3>
+
+<ul>
+<li><strong>Traceability</strong>: Every change is linked to an issue</li>
+<li><strong>Code Quality</strong>: TDD ensures comprehensive testing</li>
+<li><strong>Collaboration</strong>: Pull requests enable code review</li>
+<li><strong>Documentation</strong>: Issues and PRs provide project history</li>
+<li><strong>Safety</strong>: Feature branches prevent breaking main branch</li>
+</ul>
+
+<h3>Example: Adding DRY Principle Examples</h3>
+
+<p>Here's how we implemented DRY examples using this workflow:</p>
+
+<ol>
+<li><strong>Issue #2</strong>: "Implement DRY (Don't Repeat Yourself) Principle Examples"</li>
+<li><strong>Branch</strong>: <code>feature/dry-principle-examples</code></li>
+<li><strong>TDD</strong>: Wrote tests first, then implementation</li>
+<li><strong>PR #3</strong>: Comprehensive description with test results</li>
+<li><strong>Merge</strong>: Squashed commits and merged to main</li>
+<li><strong>Cleanup</strong>: Feature branch automatically deleted</li>
+</ol>
+
+<h3>When to Use Each Workflow</h3>
+
+<p><strong>Assignment Workflow (Fork-and-Submit):</strong></p>
+<ul>
+<li>Individual assignments</li>
+<li>Student submissions</li>
+<li>When you need a separate copy for grading</li>
+</ul>
+
+<p><strong>Professional Workflow (Issue-Branch-PR):</strong></p>
+<ul>
+<li>Contributing to shared repositories</li>
+<li>Team projects</li>
+<li>Adding features to the course materials</li>
+<li>Professional software development</li>
+</ul>

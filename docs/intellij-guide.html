@@ -1,0 +1,463 @@
+<h1 id="intellij-idea-guide-for-cpsc-310">IntelliJ IDEA Guide for CPSC
+310</h1>
+<p>This guide covers IntelliJ IDEA basics for students new to the IDE.
+IDEA is a powerful Java development environment that will make your
+coding much more efficient.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installation">Installation</h3>
+<ol type="1">
+<li>Go to <a
+href="https://www.jetbrains.com/academy/student-pack/">JetBrains Student
+Pack</a></li>
+<li>Apply for the student pack with your Trinity College email</li>
+<li>Download <strong>IntelliJ IDEA Ultimate</strong> (not Community -
+Ultimate has more features)</li>
+<li>Install and activate with your student license</li>
+</ol>
+<h3 id="first-launch">First Launch</h3>
+<ol type="1">
+<li><strong>Import Settings:</strong> Choose “Do not import settings”
+for first time</li>
+<li><strong>UI Theme:</strong> Choose Light or Dark (preference)</li>
+<li><strong>Featured Plugins:</strong> Accept defaults for now</li>
+<li><strong>Project:</strong> Select “Open” to open our course
+repository</li>
+</ol>
+<h2 id="opening-the-course-project">Opening the Course Project</h2>
+<h3 id="method-1-from-welcome-screen">Method 1: From Welcome Screen</h3>
+<ol type="1">
+<li>Click <strong>Open</strong></li>
+<li>Navigate to your cloned repository folder</li>
+<li>Select the root folder (contains <code>build.gradle.kts</code>)</li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<h3 id="method-2-from-menu">Method 2: From Menu</h3>
+<ol type="1">
+<li><strong>File → Open</strong></li>
+<li>Select project root folder</li>
+<li><strong>Open as Project</strong></li>
+</ol>
+<h3 id="initial-setup">Initial Setup</h3>
+<ul>
+<li>IDEA will detect Gradle and start importing</li>
+<li><strong>Trust the Project</strong> when prompted</li>
+<li>Wait for indexing to complete (progress bar at bottom)</li>
+<li>Ensure <strong>Project SDK</strong> is set to Java 21</li>
+</ul>
+<h2 id="essential-interface-elements">Essential Interface Elements</h2>
+<h3 id="project-tool-window-left-side">Project Tool Window (Left
+Side)</h3>
+<ul>
+<li><strong>Project View:</strong> Shows all files in a tree
+structure</li>
+<li><strong>Packages View:</strong> Organizes by Java packages</li>
+<li>Right-click files/folders for context menus</li>
+</ul>
+<h3 id="editor-center">Editor (Center)</h3>
+<ul>
+<li>Tabbed interface for open files</li>
+<li>Syntax highlighting and error detection</li>
+<li>Line numbers on the left</li>
+</ul>
+<h3 id="tool-windows-bottomsides">Tool Windows (Bottom/Sides)</h3>
+<ul>
+<li><strong>Terminal:</strong> Built-in command line</li>
+<li><strong>Version Control:</strong> Git operations</li>
+<li><strong>Gradle:</strong> Build tasks and dependencies</li>
+<li><strong>Run/Debug:</strong> Output from running programs</li>
+</ul>
+<h2 id="basic-navigation">Basic Navigation</h2>
+<h3 id="opening-files">Opening Files</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open any file quickly</td>
+<td><code>Ctrl+Shift+N</code> (Cmd+Shift+O on Mac)</td>
+</tr>
+<tr>
+<td>Open any class</td>
+<td><code>Ctrl+N</code> (Cmd+O on Mac)</td>
+</tr>
+<tr>
+<td>Recent files</td>
+<td><code>Ctrl+E</code> (Cmd+E on Mac)</td>
+</tr>
+<tr>
+<td>Switch between tabs</td>
+<td><code>Ctrl+Tab</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="code-navigation">Code Navigation</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go to declaration</td>
+<td><code>Ctrl+B</code> (Cmd+B on Mac)</td>
+</tr>
+<tr>
+<td>Go to implementation</td>
+<td><code>Ctrl+Alt+B</code> (Cmd+Alt+B on Mac)</td>
+</tr>
+<tr>
+<td>Find usages</td>
+<td><code>Alt+F7</code></td>
+</tr>
+<tr>
+<td>Back/Forward</td>
+<td><code>Ctrl+Alt+Left/Right</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="writing-code">Writing Code</h2>
+<h3 id="code-completion">Code Completion</h3>
+<ul>
+<li>Type and IDEA suggests completions</li>
+<li>Press <code>Tab</code> or <code>Enter</code> to accept</li>
+<li><code>Ctrl+Space</code> for manual completion</li>
+<li><code>Ctrl+Shift+Space</code> for smart completion</li>
+</ul>
+<h3 id="live-templates">Live Templates</h3>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Expands to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>psvm</code></td>
+<td><code>public static void main(String[] args)</code></td>
+</tr>
+<tr>
+<td><code>sout</code></td>
+<td><code>System.out.println()</code></td>
+</tr>
+<tr>
+<td><code>fori</code></td>
+<td>for loop with index</td>
+</tr>
+<tr>
+<td><code>iter</code></td>
+<td>enhanced for loop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="code-generation">Code Generation</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generate code</td>
+<td><code>Alt+Insert</code></td>
+</tr>
+<tr>
+<td>Override methods</td>
+<td>Select from generate menu</td>
+</tr>
+<tr>
+<td>Getters/Setters</td>
+<td>Select from generate menu</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Select from generate menu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="refactoring">Refactoring</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rename</td>
+<td><code>Shift+F6</code></td>
+</tr>
+<tr>
+<td>Extract method</td>
+<td><code>Ctrl+Alt+M</code></td>
+</tr>
+<tr>
+<td>Extract variable</td>
+<td><code>Ctrl+Alt+V</code></td>
+</tr>
+<tr>
+<td>Refactor this</td>
+<td><code>Ctrl+Alt+Shift+T</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="running-and-testing">Running and Testing</h2>
+<h3 id="running-code">Running Code</h3>
+<ol type="1">
+<li><strong>Run main method:</strong> Click green arrow next to
+<code>main()</code> method</li>
+<li><strong>Run class:</strong> Right-click class file → Run</li>
+<li><strong>Run configuration:</strong> Top toolbar dropdown</li>
+</ol>
+<h3 id="running-tests">Running Tests</h3>
+<ol type="1">
+<li><strong>Single test:</strong> Click green arrow next to
+<code>@Test</code> method</li>
+<li><strong>Test class:</strong> Click green arrow next to class
+name</li>
+<li><strong>All tests:</strong> Right-click <code>test</code> folder →
+Run All Tests</li>
+<li><strong>Gradle tests:</strong> Use Gradle tool window</li>
+</ol>
+<h3 id="debugging">Debugging</h3>
+<ol type="1">
+<li>Set breakpoints by clicking in the gutter (left of line
+numbers)</li>
+<li><strong>Debug instead of Run:</strong> Click debug icon (bug
+symbol)</li>
+<li><strong>Debug controls:</strong> Step over, step into, step out</li>
+<li><strong>Variables view:</strong> See current values</li>
+</ol>
+<h2 id="git-integration">Git Integration</h2>
+<h3 id="version-control-tool-window">Version Control Tool Window</h3>
+<ul>
+<li><strong>Local Changes:</strong> See modified files</li>
+<li><strong>Log:</strong> View commit history</li>
+<li><strong>Branches:</strong> Switch branches</li>
+</ul>
+<h3 id="common-git-operations">Common Git Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>How to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commit changes</td>
+<td><code>Ctrl+K</code> (Cmd+K on Mac)</td>
+</tr>
+<tr>
+<td>Update project</td>
+<td><code>Ctrl+T</code> (Cmd+T on Mac)</td>
+</tr>
+<tr>
+<td>Push commits</td>
+<td><code>Ctrl+Shift+K</code> (Cmd+Shift+K on Mac)</td>
+</tr>
+<tr>
+<td>View diff</td>
+<td>Right-click file → Git → Compare with…</td>
+</tr>
+</tbody>
+</table>
+<h3 id="github-integration">GitHub Integration</h3>
+<ol type="1">
+<li><strong>File → Settings → Version Control → GitHub</strong></li>
+<li>Add your GitHub account</li>
+<li>Enables easy clone/push operations</li>
+</ol>
+<h2 id="working-with-our-course-project">Working with Our Course
+Project</h2>
+<h3 id="multi-module-navigation">Multi-Module Navigation</h3>
+<ul>
+<li>Expand modules in Project view: <code>examples</code>,
+<code>assignments</code>, <code>live-coding</code></li>
+<li>Each module has its own <code>src/main/java</code> and
+<code>src/test/java</code></li>
+</ul>
+<h3 id="running-gradle-tasks">Running Gradle Tasks</h3>
+<ol type="1">
+<li>Open <strong>Gradle</strong> tool window (right side)</li>
+<li>Expand project → Tasks → verification</li>
+<li>Double-click <code>test</code> to run all tests</li>
+<li>Or use terminal: <code>./gradlew test</code></li>
+</ol>
+<h3 id="working-on-assignments">Working on Assignments</h3>
+<ol type="1">
+<li>Navigate to <code>assignments/assignment-XX</code></li>
+<li>Open relevant files in <code>src/main/java</code></li>
+<li>Implement required methods</li>
+<li>Run tests to verify: right-click test class → Run</li>
+</ol>
+<h2 id="essential-settings">Essential Settings</h2>
+<h3 id="code-style">Code Style</h3>
+<ul>
+<li><strong>File → Settings → Editor → Code Style → Java</strong></li>
+<li>Accept defaults (follows Java conventions)</li>
+</ul>
+<h3 id="auto-import">Auto Import</h3>
+<ul>
+<li><strong>File → Settings → Editor → General → Auto
+Import</strong></li>
+<li>Check “Add unambiguous imports on the fly”</li>
+<li>Check “Optimize imports on the fly”</li>
+</ul>
+<h3 id="line-numbers">Line Numbers</h3>
+<ul>
+<li><strong>File → Settings → Editor → General →
+Appearance</strong></li>
+<li>Check “Show line numbers”</li>
+</ul>
+<h2 id="useful-features-for-this-course">Useful Features for This
+Course</h2>
+<h3 id="todo-comments">TODO Comments</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: Implement this method</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">someMethod</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">UnsupportedOperationException</span><span class="op">(</span><span class="st">&quot;Not implemented yet&quot;</span><span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>View all TODOs: <strong>View → Tool Windows → TODO</strong></li>
+</ul>
+<h3 id="code-analysis">Code Analysis</h3>
+<ul>
+<li>Red squiggles: Syntax errors</li>
+<li>Yellow squiggles: Warnings</li>
+<li>Hover over them for details</li>
+<li><code>Alt+Enter</code> for quick fixes</li>
+</ul>
+<h3 id="testing-features">Testing Features</h3>
+<ul>
+<li>Green/red indicators show test pass/fail</li>
+<li>Click failed tests to jump to assertion</li>
+<li>Coverage: Run with Coverage to see which lines are tested</li>
+</ul>
+<h2 id="keyboard-shortcuts-summary">Keyboard Shortcuts Summary</h2>
+<h3 id="most-important">Most Important</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Windows/Linux</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Find anything</td>
+<td><code>Shift+Shift</code></td>
+<td><code>Shift+Shift</code></td>
+</tr>
+<tr>
+<td>Run</td>
+<td><code>Shift+F10</code></td>
+<td><code>Ctrl+R</code></td>
+</tr>
+<tr>
+<td>Debug</td>
+<td><code>Shift+F9</code></td>
+<td><code>Ctrl+D</code></td>
+</tr>
+<tr>
+<td>Find in file</td>
+<td><code>Ctrl+F</code></td>
+<td><code>Cmd+F</code></td>
+</tr>
+<tr>
+<td>Replace</td>
+<td><code>Ctrl+R</code></td>
+<td><code>Cmd+R</code></td>
+</tr>
+<tr>
+<td>Comment/uncomment</td>
+<td><code>Ctrl+/</code></td>
+<td><code>Cmd+/</code></td>
+</tr>
+<tr>
+<td>Format code</td>
+<td><code>Ctrl+Alt+L</code></td>
+<td><code>Cmd+Alt+L</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="learning-more">Learning More</h3>
+<ul>
+<li><strong>Help → Keymap Reference</strong> for complete shortcut
+list</li>
+<li><strong>Help → Productivity Guide</strong> shows your usage
+stats</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="project-wont-import">Project Won’t Import</h3>
+<ol type="1">
+<li><strong>File → Invalidate Caches and Restart</strong></li>
+<li>Check Java SDK: <strong>File → Project Structure →
+Project</strong></li>
+<li>Ensure Gradle wrapper is executable:
+<code>chmod +x gradlew</code></li>
+</ol>
+<h3 id="tests-wont-run">Tests Won’t Run</h3>
+<ol type="1">
+<li>Check module structure: <code>src/test/java</code> exists</li>
+<li>Test classes end with <code>Test.java</code></li>
+<li>Methods annotated with <code>@Test</code></li>
+<li>JUnit 5 dependency in <code>build.gradle.kts</code></li>
+</ol>
+<h3 id="code-completion-not-working">Code Completion Not Working</h3>
+<ol type="1">
+<li>Wait for indexing to complete</li>
+<li><strong>File → Invalidate Caches and Restart</strong></li>
+<li>Check Project SDK settings</li>
+</ol>
+<h3 id="git-not-working">Git Not Working</h3>
+<ol type="1">
+<li><strong>File → Settings → Version Control → Git</strong></li>
+<li>Test Git executable path</li>
+<li>Ensure repository is properly cloned</li>
+</ol>
+<h2 id="tips-for-success">Tips for Success</h2>
+<h3 id="organization">Organization</h3>
+<ul>
+<li>Use the <strong>Favorites</strong> feature for frequently accessed
+files</li>
+<li>Pin important tabs to keep them open</li>
+<li>Use <strong>Bookmarks</strong> (<code>F11</code>) to mark important
+lines</li>
+</ul>
+<h3 id="productivity">Productivity</h3>
+<ul>
+<li>Learn a few shortcuts each week</li>
+<li>Use <strong>Find Action</strong> (<code>Ctrl+Shift+A</code>) when
+you don’t know a shortcut</li>
+<li>Enable <strong>IdeaVim</strong> plugin if you’re familiar with
+Vim</li>
+</ul>
+<h3 id="code-quality">Code Quality</h3>
+<ul>
+<li>Pay attention to yellow/red squiggles</li>
+<li>Use <strong>Code → Reformat Code</strong> before committing</li>
+<li>Run <strong>Code → Inspect Code</strong> to find potential
+issues</li>
+</ul>
+<h2 id="getting-help">Getting Help</h2>
+<ul>
+<li><strong>Help → Find Action</strong>—Search for any IDE function</li>
+<li><strong>Help → IntelliJ IDEA Help</strong>—Complete
+documentation</li>
+<li><strong>View → Quick Documentation</strong> (<code>Ctrl+Q</code>)
+for Java API docs</li>
+<li>Ask in office hours for IDEA-specific questions</li>
+</ul>
+<p>Remember: IntelliJ IDEA is powerful but has a learning curve. Start
+with basics and gradually learn more features as you need them!</p>

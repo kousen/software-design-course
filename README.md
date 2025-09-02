@@ -5,12 +5,13 @@ This repository contains course materials for CPSC 310: Software Design, taught 
 
 ### Course Overview
 
-This course teaches modern software design principles using Java, with emphasis on:
-- Test-Driven Development (TDD)
+This course teaches software design principles in the context of AI-assisted development. Students work in teams from day one, building production-ready Spring Boot applications while mastering:
 - SOLID principles and design patterns
-- Modern Java features (Java 8+)
-- AI-assisted development practices
-- Clean architecture and code quality
+- Test-Driven Development (TDD)
+- Modern Java features (Java 21)
+- Spring Boot REST API development
+- AI collaboration with critical evaluation
+- Professional Git/GitHub workflows
 
 ### Repository Structure
 
@@ -18,7 +19,9 @@ This course teaches modern software design principles using Java, with emphasis 
 software-design-course/
 ├── build.gradle.kts                           # Root Gradle build file
 ├── settings.gradle.kts                        # Multi-module configuration
+├── DEMO-CHECKLIST.md                         # Live coding demo guide
 ├── slides/                                    # Slidev presentations
+│   ├── week-01-java-foundations/             # Week 1 complete slides (37 slides)
 │   ├── solid-principles.md                   # SOLID principles presentation
 │   ├── dry-principle.md                      # DRY principle presentation
 │   └── testing-fundamentals.md               # Testing fundamentals presentation
@@ -37,16 +40,13 @@ software-design-course/
 │           │   └── dip/                     # Dependency Inversion Principle
 │           └── dry/                          # DRY principle examples
 ├── assignments/                               # Student assignments (Gradle modules)
-│   ├── assignment-01-tdd/                    # (planned)
-│   └── assignment-02-refactoring/            # (planned)
+│   └── assignment-1-task-tracker/            # First assignment starter code
 ├── live-coding/                              # In-class sessions (Gradle modules)
 │   ├── session-01-java-basics/              # (planned)
 │   └── session-03-streams/                  # (planned)
 ├── docs/                                     # Documentation and guides
-│   ├── github-workflow-guide.md             # Git/GitHub workflow for students
-│   ├── gradle-guide.md                      # Gradle build tool guide
-│   ├── intellij-guide.md                    # IntelliJ IDEA setup guide
-│   └── moodle-submission-template.md        # Assignment submission template
+│   ├── *.md                                 # Markdown versions
+│   └── *.html                               # HTML versions for Moodle upload
 ├── course-schedule.md                        # Updated 14-week schedule
 ├── syllabus.md                              # Course syllabus
 ├── CLAUDE.md                                # Project context for AI assistance
@@ -80,20 +80,40 @@ software-design-course/
 ### Key Technologies
 
 - **Language:** Java 21 LTS
-- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, jqwik 1.9.1, Mockito
-- **Build Tool:** Gradle 8.14.2 (multi-module project)
-- **IDE:** IntelliJ IDEA
-- **Version Control:** Git/GitHub
-- **CI/CD:** GitHub Actions (planned)
+- **Framework:** Spring Boot 3.5.5
+- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, jqwik 1.9.1
+- **Build Tool:** Gradle 8.11.1 (multi-module project)
+- **Code Quality:** SonarCloud integration
+- **IDE:** IntelliJ IDEA Ultimate (free with student license)
+- **Version Control:** Git/GitHub with team collaboration
+- **CI/CD:** GitHub Actions
 - **Presentations:** Slidev
+- **AI Tools:** GitHub Copilot, Claude, ChatGPT, Gemini (required)
+
+### Course Structure
+
+**Grading:**
+- 40% Progressive Team Project (4 milestones)
+- 30% Repository Analysis (individual)
+- 20% Code Reviews & Peer Assessment
+- 10% Process & Participation
+
+**Teams:** 8 teams of 3 students (one may have 4)
+**Coordination:** Integrated with CPSC 415 (Cloud Computing)
 
 ### Course Topics by Week
 
-1. **Weeks 1-3:** Modern Java & Testing Fundamentals
-2. **Weeks 4–6:** Clean Code, SOLID, AI Collaboration
-3. **Weeks 7-10:** SOLID Applied & Design Patterns
-4. **Weeks 11–12:** Paradigm Integration & Concurrency
-5. **Weeks 13–14:** DevOps & Final Projects
+1. **Week 1:** Java Foundations & Team Formation
+2. **Week 2:** Object-Oriented Programming in Java
+3. **Week 3:** Spring Boot & REST APIs
+4. **Week 4:** Testing Fundamentals & TDD
+5. **Week 5:** Data Layer & AI Collaboration
+6. **Weeks 6-7:** SOLID Principles & Application
+7. **Weeks 8-10:** Design Patterns (Creational, Structural, Behavioral)
+8. **Week 11:** Security & Production Concerns
+9. **Week 12:** Advanced Spring & Performance
+10. **Week 13:** DevOps & Deployment
+11. **Week 14:** Project Presentations
 
 ### Current Implementation Status
 
@@ -138,15 +158,17 @@ software-design-course/
   - IntelliJ IDEA configuration guide
   - Professional development process documentation
 
-🚧 **In Progress:**
-- Course materials development following established workflow
-- Additional design principle examples
+✅ **Ready for Day 1:**
+- Complete Week 1 slides with Java basics for Python developers
+- Live coding demo checklist for Spring Boot API
+- Assignment 1 starter template on GitHub
+- Moodle fully configured with team submission
+- All documentation converted to HTML
 
-📋 **Planned:**
-- Modern Java examples and exercises (Weeks 1-2)
-- Complete design patterns catalog (Weeks 8-10)
-- AI collaboration exercises and evaluation methods
-- CI/CD pipeline setup with GitHub Actions
+📋 **Next Steps:**
+- Week 2 OOP materials
+- Additional design pattern examples
+- Repository analysis assignment templates
 
 ### Student Resources
 
@@ -162,20 +184,24 @@ software-design-course/
 - [AssertJ Documentation](https://assertj.github.io/doc/)
 - [jqwik User Guide](https://jqwik.net/docs/current/user-guide.html)
 
-### Assignment Submission
+### For Students
 
-All assignments follow the fork-and-submit workflow:
-1. Fork the assignment repository from GitHub
-2. Clone your fork locally and complete the work
-3. Push your solution to your forked repository
-4. Submit your repository URL to Moodle
+**Assignment 1 Starter:** https://github.com/kousen/assignment-1-starter
 
-See [GitHub Workflow Guide](docs/github-workflow-guide.md) for detailed instructions.
+#### Getting Started:
+1. One team member: Click "Use this template" (not Fork!)
+2. Name it: `team-X-domain` (e.g., `team-3-bookmarks`)
+3. Add teammates as collaborators
+4. Clone YOUR NEW team repository
+5. Run `./gradlew test` to see failing tests
+6. Implement functionality to make tests pass
+7. Submit repository URL to Moodle
 
-For pair programming:
-- One person forks and adds partner as collaborator
-- Both students submit the same repository URL
-- Include both names in README or CONTRIBUTORS file
+#### Team Workflow:
+- All team members must contribute via GitHub
+- Use issues, branches, and pull requests
+- Document AI assistance in code comments
+- Maintain 80% test coverage (verified by SonarCloud)
 
 ### AI Tool Guidelines
 

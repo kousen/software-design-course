@@ -15,16 +15,20 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 ### Technology Stack
 - **Primary Language:** Java 21 LTS (not Kotlin as in previous years)
   - Java 25 LTS releases September 2025, but course maintains Java 21 compatibility
+- **Framework:** Spring Boot 3.5.5 (introduced Week 3)
 - **Testing Framework:** JUnit 5.11.0 with AssertJ 3.26.3 and jqwik 1.9.1
-- **Build Tool:** Gradle 8.14.2 (multi-module project with Kotlin DSL)
+- **Build Tool:** Gradle 8.11.1 (multi-module project with Kotlin DSL)
 - **Presentation Tool:** Slidev
 - **Version Control:** Git/GitHub
+- **AI Tools:** GitHub Copilot, Claude, ChatGPT, Gemini (required)
 
 ### Course Structure
 - 14 weeks, 28 sessions total
 - Tuesdays & Thursdays, 10:50 AM - 12:05 PM
 - No classes: October 14, November 27
 - Office hours: Wednesdays 1:30-3:00 PM
+- 8 teams of 3 students (one may have 4)
+- Coordinated with CPSC 415 (Cloud Computing)
 
 ### Core Topics Progression
 1. Modern Java features (lambdas, streams, Optional, records)
@@ -36,6 +40,18 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 7. CI/CD and DevOps practices
 
 ## Completed Tasks
+
+### ✅ Day 1 Preparation (Completed - January 2025)
+- [x] Redesign grading structure to team-based approach (40% project, 30% analysis, 20% reviews, 10% participation)
+- [x] Update syllabus and course schedule for Fall 2025
+- [x] Create Assignment 1 starter template with Spring Boot REST API
+- [x] Implement 15 comprehensive tests for Assignment 1 using @WebMvcTest
+- [x] Convert all documentation to HTML for Moodle upload
+- [x] Create Week 1 Slidev presentation (37 slides) covering Java foundations
+- [x] Develop live coding demo checklist for Spring Boot API
+- [x] Set up Moodle with 8 team groups and groupings
+- [x] Configure GitHub template repository for assignment distribution
+- [x] Create course welcome message emphasizing practical approach
 
 ### ✅ High Priority (Completed)
 - [x] Create Gradle multi-module project structure with Java 21 LTS
@@ -74,16 +90,18 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 ## Remaining Tasks
 
 ### High Priority
-- [ ] Develop Modern Java examples (Weeks 1-2)
+- [ ] Create Week 2 OOP materials and slides
+- [ ] Develop Modern Java examples (Week 2)
   - Lambda expressions and method references
   - Stream API and collectors
   - Optional and modern error handling
   - Records and pattern matching
-- [ ] Design starter code templates for assignments
+- [ ] Design starter code templates for remaining assignments
 - [ ] Create design patterns examples (Weeks 8-10)
 
 ### Medium Priority
-- [ ] Develop live coding demo templates for each session
+- [ ] Create repository analysis assignment templates (individual work)
+- [ ] Develop live coding demo templates for remaining sessions
 - [ ] Create grading rubrics for major projects
 - [ ] Set up remaining Slidev presentations for each week
 - [ ] Develop AI collaboration exercises and evaluation methods
@@ -179,6 +197,23 @@ live-coding/session-X/       # Gradle submodule
 - Include AI collaboration components
 - Clear rubrics with specific criteria
 
+## Day 1 Ready Status
+
+### What's Ready
+- Complete Week 1 slides (37 slides) with Java basics for Python developers
+- Live coding demo checklist for Spring Boot API demonstration
+- Assignment 1 starter template on GitHub (https://github.com/kousen/assignment-1-starter)
+- Moodle fully configured with team submission and all documentation uploaded
+- 8 teams created (Teams 1-8) in Moodle grouping
+- All documentation converted to HTML for Moodle compatibility
+
+### Key Teaching Points for Demo
+- Use @WebMvcTest for slice testing (not @SpringBootTest)
+- Use Java records for DTOs and entities
+- Use text blocks for JSON in tests
+- Show AI assistance but emphasize critical evaluation
+- Intentionally let AI make mistakes to demonstrate testing importance
+
 ## Important Reminders
 
 1. Always check that Gradle builds work: `./gradlew build` ✅ Verified working
@@ -192,3 +227,5 @@ live-coding/session-X/       # Gradle submodule
 9. Document all implementations with comprehensive slide presentations ✅ SOLID, DRY, and testing fundamentals complete
 10. Use edu.trincoll package structure for all examples ✅ Consistent across all implementations
 11. Maintain JUnit Platform compatibility when adding jqwik ✅ jqwik 1.9.1 works with JUnit Platform 1.11.0
+12. Use @WebMvcTest for controller testing instead of @SpringBootTest ✅ Demonstrated in demo checklist
+13. Use text blocks for JSON content in tests ✅ Modern Java feature emphasis

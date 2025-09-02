@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 
 /**
  * Base entity class for your domain object.
- * 
+ * <p>
  * TODO: Rename this class to match your chosen domain
  * Examples: Bookmark, Quote, Habit, Recipe, Movie
- * 
+ * <p>
  * TODO: Add at least 3 meaningful fields beyond 'id'
  * Examples for different domains:
  * - Bookmark: url, title, category, tags

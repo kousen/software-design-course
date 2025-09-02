@@ -162,7 +162,6 @@ git push origin feature/implement-create-endpoint
 
 ## Questions?
 
-- Post in Discord/Slack for quick help
 - Office hours: Wednesdays 1:30-3:00 PM
 - Email: kkousen@trincoll.edu
 
@@ -170,7 +169,6 @@ git push origin feature/implement-create-endpoint
 
 - This is a TEAM assignment
 - You may help other teams with concepts
-- Do NOT share code between teams
 - AI use is encouraged but must be documented
 
 Good luck! Remember: the tests are your specification. Make them pass, and you succeed!

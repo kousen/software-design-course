@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Main Spring Boot application class.
- * 
+ * <p>
  * TODO: Rename this class to match your domain
  * Examples: BookmarkApplication, QuoteKeeperApplication, HabitTrackerApplication
  */

@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * Test suite for the Item API.
- * 
+ * <p>
  * ALL TESTS MUST PASS for full credit.
  * Do not modify these tests - modify your code to make them pass.
  */

@@ -23,7 +23,7 @@ public class ItemController {
     /**
      * GET /api/items
      * Returns all items in the system
-     * 
+     * <p>
      * TODO: Implement this endpoint
      * Hint: Return a List of your domain objects
      */
@@ -31,7 +31,7 @@ public class ItemController {
     /**
      * GET /api/items/{id}
      * Returns a specific item by ID
-     * 
+     * <p>
      * TODO: Implement this endpoint
      * Hint: Return 404 if item doesn't exist
      */
@@ -39,7 +39,7 @@ public class ItemController {
     /**
      * POST /api/items
      * Creates a new item
-     * 
+     * <p>
      * TODO: Implement this endpoint
      * Hint: Validate required fields, return 400 for bad requests
      */
@@ -47,7 +47,7 @@ public class ItemController {
     /**
      * PUT /api/items/{id}
      * Updates an existing item
-     * 
+     * <p>
      * TODO: Implement this endpoint
      * Hint: Return 404 if item doesn't exist
      */
@@ -55,7 +55,7 @@ public class ItemController {
     /**
      * DELETE /api/items/{id}
      * Deletes an item
-     * 
+     * <p>
      * TODO: Implement this endpoint
      * Hint: Return 204 No Content on successful delete
      */
@@ -63,7 +63,7 @@ public class ItemController {
     /**
      * GET /api/items/search?field=value
      * Searches items by a specific field
-     * 
+     * <p>
      * TODO: Implement this endpoint (BONUS)
      * Hint: Use @RequestParam to get query parameters
      */

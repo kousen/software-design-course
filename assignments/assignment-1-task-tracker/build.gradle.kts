@@ -1,0 +1,58 @@
+plugins {
+    java
+    id("org.springframework.boot") version "3.4.0"
+    id("io.spring.dependency-management") version "1.1.6"
+}
+
+group = "edu.trincoll"
+version = "0.0.1-SNAPSHOT"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    
+    // Development tools
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    
+    // Testing
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.assertj:assertj-core:3.26.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+    
+    // Show test output
+    testLogging {
+        events("passed", "skipped", "failed")
+        showStandardStreams = false
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.SHORT
+    }
+    
+    // Generate test report
+    reports {
+        html.required.set(true)
+    }
+}
+
+tasks.register("testReport") {
+    dependsOn(tasks.test)
+    doLast {
+        println("\n=== TEST RESULTS ===")
+        val testResults = tasks.test.get()
+        println("Tests run: ${testResults.testLogging}")
+        println("Test report: file://${layout.buildDirectory.get()}/reports/tests/test/index.html")
+    }
+}

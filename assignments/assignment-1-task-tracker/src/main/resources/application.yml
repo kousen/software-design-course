@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: task-tracker
+    
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+    
+logging:
+  level:
+    edu.trincoll: DEBUG
+    org.springframework.web: INFO

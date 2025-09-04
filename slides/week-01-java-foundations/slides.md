@@ -558,7 +558,6 @@ Task myTask = new Task("Learn Java");
 
 ```java
 public class Student {
-    // Instance variables (fields)
     private String name;        // Only this class can access
     private int age;
     
@@ -580,15 +579,7 @@ public class Student {
 }
 ```
 
-<div class="mt-4">
-
-**Access Modifiers:**
-- `public` - accessible everywhere
-- `private` - only within the class
-- `protected` - within package and subclasses
-- (default) - within package only
-
-</div>
+**Access Modifiers:** `public` (everywhere) • `private` (this class only) • `protected` (package + subclasses) • default (package only)
 
 ---
 

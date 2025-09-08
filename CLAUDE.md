@@ -87,11 +87,24 @@ This is a course development project for CPSC 310: Software Design at Trinity Co
 - [x] Create student setup guides (GitHub, Gradle, IntelliJ)
 - [x] Design property-based testing module with jqwik (Issue #10)
 
+### ✅ Week 2 (Completed - January 2025)
+- [x] Create Week 2 OOP materials and slides (70 slides covering inheritance, polymorphism, interfaces, collections)
+- [x] Split long slides into shorter, focused slides for better presentation
+- [x] Create week2-oop module with comprehensive examples:
+  - Inheritance hierarchy (Employee/Manager/Developer/Executive)
+  - Abstract classes and template method pattern (PaymentProcessor)
+  - Interfaces and repository pattern (Repository/TaskRepository)
+  - Collections framework demonstrations
+- [x] Create Assignment 2: Service Layer Architecture
+  - 40 tests (29 passing, 11 failing for students to fix)
+  - Repository pattern with generic interface
+  - Service layer with abstract base class
+  - 80% test coverage requirement
+
 ## Remaining Tasks
 
 ### High Priority
-- [ ] Create Week 2 OOP materials and slides
-- [ ] Develop Modern Java examples (Week 2)
+- [ ] Develop Modern Java examples (Week 3-4)
   - Lambda expressions and method references
   - Stream API and collectors
   - Optional and modern error handling
@@ -196,6 +209,27 @@ live-coding/session-X/       # Gradle submodule
 - Encourage pair programming
 - Include AI collaboration components
 - Clear rubrics with specific criteria
+
+### Assignment Distribution Strategy
+
+**Approach: Fork + Solutions Package**
+- Students fork the assignment repository (not use as template)
+- Solutions are later distributed via non-conflicting `solutions` package
+- Students can pull upstream changes to get solutions without merge conflicts
+- This allows easy distribution of reference implementations after deadlines
+
+**Implementation:**
+1. Create assignment repository with starter code
+2. Students fork the repository to their own GitHub account
+3. After assignment deadline, add solutions in `edu.trincoll.solutions` package
+4. Students pull upstream changes: `git pull upstream main`
+5. Solutions appear in separate package, preserving student work
+
+**Benefits:**
+- Simple distribution mechanism
+- No merge conflicts (different package)
+- Students retain their original implementations
+- Easy to compare their solution with reference solution
 
 ## Day 1 Ready Status
 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Nested;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.within;
 
 class PaymentProcessorTest {
     
@@ -62,9 +61,9 @@ class PaymentProcessorTest {
         void testSuccessfulPayment() {
             PaymentProcessor.PaymentResult result = processor.makePayment(100);
             
-            assertThat(result.isSuccess()).isTrue();
-            assertThat(result.getMessage()).contains("success");
-            assertThat(result.getTransactionId()).isNotNull();
+            assertThat(result.success()).isTrue();
+            assertThat(result.message()).contains("success");
+            assertThat(result.transactionId()).isNotNull();
         }
         
         @Test
@@ -119,14 +118,14 @@ class PaymentProcessorTest {
             assertThat(processor.getAccountBalance()).isEqualTo(6000);
             
             PaymentProcessor.PaymentResult result = processor.makePayment(100);
-            assertThat(result.isSuccess()).isTrue();
+            assertThat(result.success()).isTrue();
         }
         
         @Test
         @DisplayName("Should reject payment when insufficient balance")
         void testInsufficientBalance() {
             PaymentProcessor.PaymentResult result = processor.makePayment(10000);
-            assertThat(result.isSuccess()).isFalse();
+            assertThat(result.success()).isFalse();
         }
     }
     
@@ -152,8 +151,8 @@ class PaymentProcessorTest {
             PaymentProcessor.PaymentResult ccResult = creditCard.makePayment(50);
             PaymentProcessor.PaymentResult ppResult = paypal.makePayment(50);
             
-            assertThat(ccResult.isSuccess()).isTrue();
-            assertThat(ppResult.isSuccess()).isTrue();
+            assertThat(ccResult.success()).isTrue();
+            assertThat(ppResult.success()).isTrue();
             
             assertThat(creditCard.getTransactionLog()).isNotEmpty();
             assertThat(paypal.getTransactionLog()).isNotEmpty();

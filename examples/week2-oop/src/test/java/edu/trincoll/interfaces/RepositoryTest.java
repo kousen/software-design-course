@@ -129,7 +129,7 @@ class RepositoryTest {
         void testFindByStatus() {
             List<Task> todoTasks = repository.findByStatus(Task.TaskStatus.TODO);
             assertThat(todoTasks).hasSize(1);
-            assertThat(todoTasks.get(0).getTitle()).isEqualTo("Todo Task");
+            assertThat(todoTasks.getFirst().getTitle()).isEqualTo("Todo Task");
             
             List<Task> doneTasks = repository.findByStatus(Task.TaskStatus.DONE);
             assertThat(doneTasks).hasSize(1);
@@ -140,7 +140,7 @@ class RepositoryTest {
         void testFindByPriority() {
             List<Task> highPriority = repository.findByPriority(Task.TaskPriority.HIGH);
             assertThat(highPriority).hasSize(1);
-            assertThat(highPriority.get(0).getTitle()).isEqualTo("Todo Task");
+            assertThat(highPriority.getFirst().getTitle()).isEqualTo("Todo Task");
         }
         
         @Test
@@ -158,7 +158,7 @@ class RepositoryTest {
         void testFindByTitleContaining() {
             List<Task> tasksWithProgress = repository.findByTitleContaining("Progress");
             assertThat(tasksWithProgress).hasSize(1);
-            assertThat(tasksWithProgress.get(0).getTitle()).contains("Progress");
+            assertThat(tasksWithProgress.getFirst().getTitle()).contains("Progress");
         }
         
         @Test
@@ -207,7 +207,7 @@ class RepositoryTest {
             List<Task> overdueTasks = repository.findOverdueTasks();
             
             assertThat(overdueTasks).hasSize(1);
-            assertThat(overdueTasks.get(0).getTitle()).isEqualTo("Overdue Task");
+            assertThat(overdueTasks.getFirst().getTitle()).isEqualTo("Overdue Task");
         }
         
         @Test

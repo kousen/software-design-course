@@ -10,10 +10,10 @@ public class Task {
     private String description;
     private TaskStatus status;
     private TaskPriority priority;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime dueDate;
-    private Set<String> tags;
+    private final Set<String> tags;
     
     public Task(String title, String description) {
         this.title = title;

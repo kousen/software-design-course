@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Developer extends Employee {
-    private Set<String> programmingLanguages;
+    private final Set<String> programmingLanguages;
     private String primaryLanguage;
     private int linesOfCodeWritten;
     private boolean hasOnCallDuty;

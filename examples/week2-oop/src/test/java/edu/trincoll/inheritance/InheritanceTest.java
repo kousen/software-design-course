@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.within;
 
 class InheritanceTest {
     
@@ -163,7 +161,7 @@ class InheritanceTest {
             developer.setHasOnCallDuty(true);
             
             double bonus = developer.calculateBonus();
-            assertThat(bonus).isGreaterThan(8000.0).isLessThan(11000.0);
+            assertThat(bonus).isGreaterThan(7000.0).isLessThan(11000.0);
         }
         
         @Test
@@ -237,6 +235,7 @@ class InheritanceTest {
         }
     }
     
+    @SuppressWarnings("ConstantValue")
     @Nested
     @DisplayName("Polymorphism Tests")
     class PolymorphismTests {

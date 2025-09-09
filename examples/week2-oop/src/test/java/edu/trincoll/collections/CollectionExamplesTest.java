@@ -90,7 +90,7 @@ class CollectionExamplesTest {
             Set<Integer> result = setExamples.demonstrateTreeSet();
             
             assertThat(result)
-                    .hasSize(4)
+                    .hasSize(5)
                     .containsExactly(78, 85, 88, 92, 95);
         }
         

@@ -19,7 +19,7 @@ public class CollectionExamples {
             
             languages.add(2, "Go");
             
-            languages.remove(languages.size() - 1);
+            languages.removeLast();
             
             return languages;
         }
@@ -67,9 +67,8 @@ public class CollectionExamples {
         }
         
         public Set<Integer> demonstrateTreeSet() {
-            Set<Integer> sortedScores = new TreeSet<>();
-            
-            sortedScores.addAll(Arrays.asList(85, 92, 78, 92, 88, 95));
+
+            Set<Integer> sortedScores = new TreeSet<>(Arrays.asList(85, 92, 78, 92, 88, 95));
             
             return sortedScores;
         }
@@ -104,7 +103,7 @@ public class CollectionExamples {
             
             wordCount.compute("java", (k, v) -> v == null ? 1 : v + 1);
             
-            wordCount.computeIfAbsent("spring", k -> 0);
+            wordCount.putIfAbsent("spring", 0);
             wordCount.computeIfPresent("spring", (k, v) -> v + 1);
             
             return wordCount;
@@ -183,11 +182,13 @@ public class CollectionExamples {
     
     public static class CollectionUtilities {
         
-        public <T> List<T> getImmutableList(T... elements) {
+        @SafeVarargs
+        public final <T> List<T> getImmutableList(T... elements) {
             return List.of(elements);
         }
         
-        public <T> Set<T> getImmutableSet(T... elements) {
+        @SafeVarargs
+        public final <T> Set<T> getImmutableSet(T... elements) {
             return Set.of(elements);
         }
         

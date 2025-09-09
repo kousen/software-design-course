@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gradle:*)",
+      "Bash(/Users/kennethkousen/.sdkman/candidates/gradle/current/bin/gradle wrapper --gradle-version=8.11.1)",
+      "Read(//Users/kennethkousen/Documents/Trinity/CPSC310-Software-Design/Fall_2025/**)",
+      "Bash(../../gradlew:*)",
+      "Bash(./gradlew:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

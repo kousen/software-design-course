@@ -8,7 +8,7 @@ public abstract class PaymentProcessor {
     protected double amount;
     protected String currency;
     protected LocalDateTime transactionTime;
-    protected List<String> transactionLog;
+    protected final List<String> transactionLog;
     protected boolean isProcessing;
     
     public PaymentProcessor() {
@@ -92,28 +92,7 @@ public abstract class PaymentProcessor {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-    
-    public static class PaymentResult {
-        private final boolean success;
-        private final String message;
-        private final String transactionId;
-        
-        public PaymentResult(boolean success, String message, String transactionId) {
-            this.success = success;
-            this.message = message;
-            this.transactionId = transactionId;
-        }
-        
-        public boolean isSuccess() {
-            return success;
-        }
-        
-        public String getMessage() {
-            return message;
-        }
-        
-        public String getTransactionId() {
-            return transactionId;
-        }
+
+    public record PaymentResult(boolean success, String message, String transactionId) {
     }
 }

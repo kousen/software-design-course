@@ -6,7 +6,7 @@ import java.util.List;
 public class Executive extends Manager {
     private double stockOptions;
     private boolean hasCompanyCar;
-    private List<String> boardMemberships;
+    private final List<String> boardMemberships;
     
     public Executive(String name, String email, double salary, double bonusPercentage, 
                      String department, double stockOptions) {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Manager extends Employee {
     private double bonusPercentage;
-    private List<Employee> teamMembers;
+    private final List<Employee> teamMembers;
     private String department;
     
     public Manager(String name, String email, double salary, double bonusPercentage, String department) {

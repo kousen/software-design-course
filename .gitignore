@@ -87,7 +87,8 @@ coverage/
 .env.local
 
 # Claude IDE settings
-.claude/settings.local.json
+.claude/
+**/.claude/
 
 # NPM/Yarn (for Slidev)
 npm-debug.log*
@@ -99,3 +100,6 @@ pnpm-lock.yaml
 
 # jqwik database
 **/.jqwik-database
+
+# Student team directories
+students/

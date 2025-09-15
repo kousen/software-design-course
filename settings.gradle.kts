@@ -5,6 +5,7 @@ include("examples:modern-java")
 include("examples:testing-fundamentals")
 include("examples:design-patterns")
 include("examples:week2-oop")
+include("examples:week3-spring-boot")
 
 // Assignment modules
 include("assignments:assignment-01-tdd")

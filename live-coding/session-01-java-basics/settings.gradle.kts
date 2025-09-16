@@ -1,0 +1,1 @@
+rootProject.name = "session-01-java-basics"

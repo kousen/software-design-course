@@ -44,7 +44,7 @@ npx slidev export slides.md
 
 ## Related Resources
 
-- Assignment 4: Game of Life Functional Programming Exercise
+- Assignment 3: Game of Life Functional Programming Exercise
 - Game of Life repository: `~/Documents/java/gameoflife`
 - [Java Stream API Documentation](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html)
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
@@ -94,7 +94,7 @@ npx slidev export slides.md
 
 ## Homework
 
-See Assignment 4 for detailed exercises on:
+See Assignment 3 for detailed exercises on:
 - Pattern detection algorithms
 - Functional grid operations
 - Game variants implementation

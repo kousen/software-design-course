@@ -1,4 +1,4 @@
-# Assignment 4: Game of Life - Functional Programming & TDD
+# Assignment 3: Game of Life - Functional Programming & TDD
 
 ## Overview
 

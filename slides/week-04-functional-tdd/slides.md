@@ -224,21 +224,21 @@ Java provides many built-in functional interfaces:
 
 ```java
 @Test
-void testCellFiltering() {
-    List<Cell> cells = List.of(
-        new Cell(0, 0, CellState.ALIVE),
-        new Cell(0, 1, CellState.DEAD),
-        new Cell(1, 0, CellState.ALIVE)
-    );
+void testLiveCellFiltering() {
+    Grid grid = new Grid("""
+        *..
+        .*.
+        *.*
+        """);
 
-    // Lambda as predicate
-    Predicate<Cell> isAlive = cell -> cell.isAlive();
+    // Get all cells and filter for live ones
+    Predicate<Cell> isAlive = cell -> grid.getCellState(cell).isAlive();
 
-    long livingCells = cells.stream()
+    long livingCells = grid.getAllCells().stream()
         .filter(isAlive)
         .count();
 
-    assertEquals(2, livingCells);
+    assertEquals(4, livingCells);
 }
 ```
 

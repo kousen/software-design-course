@@ -1,0 +1,9 @@
+{
+  "name": "week-05-data-ai-slides",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  }
+}

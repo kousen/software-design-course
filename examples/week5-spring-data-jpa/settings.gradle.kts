@@ -1,0 +1,1 @@
+rootProject.name = "week5-spring-data-jpa"

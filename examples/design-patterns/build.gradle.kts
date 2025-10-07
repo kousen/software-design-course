@@ -1,5 +1,4 @@
 // This module demonstrates design pattern implementations
-// Used in Weeks 8-10 of the course
 
 plugins {
     id("java")
@@ -20,7 +19,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.5.13")
 
     // Testing dependencies
-    testImplementation(platform("org.junit:junit-bom:5.11.0"))
+    testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.26.3")
 }

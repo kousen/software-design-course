@@ -914,7 +914,7 @@ graph LR
 
 # DIP Violation: Direct Dependencies
 
-```java {all|2-7|9-14}
+```java
 public class EmailService {
     private SmtpServer smtpServer;
 
@@ -932,15 +932,20 @@ public class EmailService {
 }
 ```
 
-<v-click>
+---
 
-## Problems:
+# DIP Violation: Problems
+
+## Why This is Bad:
+
+<v-clicks>
+
 - **Tightly coupled** to SMTP implementation
 - Hard to **test** (requires real SMTP server)
 - Can't **switch** to different email provider
-- **Violates** DIP
+- **Violates** DIP - depends on concretion, not abstraction
 
-</v-click>
+</v-clicks>
 
 ---
 
@@ -1064,7 +1069,13 @@ public class StripePaymentGateway implements PaymentGateway {
         // Stripe API calls
     }
 }
+```
 
+---
+
+# DIP in Spring Boot (continued)
+
+```java
 // Service depends on abstraction
 @Service
 public class OrderService {
@@ -1082,6 +1093,356 @@ public class OrderService {
     }
 }
 ```
+
+---
+layout: section
+---
+
+# DRY Principle
+
+> Don't Repeat Yourself
+
+---
+
+# What is DRY?
+
+<v-clicks>
+
+- **Don't Repeat Yourself** - fundamental software principle
+- Every piece of knowledge should have a **single representation**
+- Duplication is the root of many maintenance problems
+- Coined by Andy Hunt and Dave Thomas in "The Pragmatic Programmer"
+- Applies to code, data, configuration, and documentation
+
+</v-clicks>
+
+<div v-click class="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded">
+
+💡 **Key Insight**: When you find yourself copying code, ask "How can I extract this?"
+
+</div>
+
+---
+
+# Why DRY Matters
+
+<v-clicks>
+
+## When Code is Duplicated:
+- Changes must be made in **multiple places**
+- Easy to **miss** one location when fixing bugs
+- **Inconsistencies** creep in over time
+- More code to **test** and **maintain**
+- Higher chance of **errors**
+
+## DRY Code:
+- **Single source of truth**
+- Changes in **one place**
+- **Consistent** behavior
+- Easier to **understand** and **maintain**
+
+</v-clicks>
+
+---
+
+# DRY Violation: Duplicated Validation
+
+```java
+public class UserValidator {
+    public static boolean validateUser(User user) {
+        // Email validation
+        if (user.email() == null || user.email().trim().isEmpty()) {
+            throw new ValidationException("Invalid email format");
+        }
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        if (!emailPattern.matcher(user.email()).matches()) {
+            throw new ValidationException("Invalid email format");
+        }
+
+        // Name validation
+        if (user.name() == null || user.name().trim().isEmpty()) {
+            throw new ValidationException("Name cannot be empty");
+        }
+        return true;
+    }
+}
+```
+
+---
+
+# DRY Violation: More Duplication
+
+```java
+public class CustomerValidator {
+    public static boolean validateCustomer(Customer customer) {
+        // DUPLICATE: Same email validation as UserValidator
+        if (customer.email() == null || customer.email().trim().isEmpty()) {
+            throw new ValidationException("Invalid email format");
+        }
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern emailPattern = Pattern.compile(emailRegex);
+        if (!emailPattern.matcher(customer.email()).matches()) {
+            throw new ValidationException("Invalid email format");
+        }
+
+        // DUPLICATE: Same name validation
+        if (customer.name() == null || customer.name().trim().isEmpty()) {
+            throw new ValidationException("Name cannot be empty");
+        }
+        // ... more validation
+    }
+}
+```
+
+<div class="mt-4 text-red-500">❌ Validation logic duplicated across validators!</div>
+
+---
+
+# DRY Solution: Extract Common Logic
+
+```java
+public class ValidationUtils {
+    private static final String EMAIL_REGEX =
+        "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+    public static boolean isValidEmail(String email) {
+        return email != null &&
+               !email.trim().isEmpty() &&
+               EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    public static boolean isValidName(String name) {
+        return name != null && !name.trim().isEmpty();
+    }
+
+    public static void validateEmail(String email, String fieldName) {
+        if (!isValidEmail(email)) {
+            throw new ValidationException("Invalid " + fieldName + " format");
+        }
+    }
+}
+```
+
+---
+
+# DRY Solution: Using Utilities
+
+```java
+// Now validators are simple and DRY
+public class UserValidator {
+    public static boolean validateUser(User user) {
+        ValidationUtils.validateEmail(user.email(), "email");
+        ValidationUtils.validateName(user.name(), "name");
+        return true;
+    }
+}
+
+public class CustomerValidator {
+    public static boolean validateCustomer(Customer customer) {
+        ValidationUtils.validateEmail(customer.email(), "email");
+        ValidationUtils.validateName(customer.name(), "name");
+        ValidationUtils.validatePhone(customer.phone(), "phone");
+        return true;
+    }
+}
+```
+
+<div class="mt-4 text-green-500">✅ Single source of truth for validation logic</div>
+
+---
+
+# DRY Example: Report Formatting
+
+See `examples/design-patterns/src/main/java/edu/trincoll/dry/`
+
+```java
+// BEFORE: Duplicated formatting in each report method
+public static String generateUserReport(User user) {
+    StringBuilder report = new StringBuilder();
+    report.append("=================================\n");
+    report.append("         USER REPORT            \n");
+    report.append("=================================\n\n");
+    report.append("Name: ").append(user.name()).append("\n");
+    report.append("Email: ").append(user.email()).append("\n\n");
+
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    report.append("Generated on: ").append(now.format(formatter));
+    return report.toString();
+}
+```
+
+---
+
+# DRY Solution: Extract Formatting
+
+```java
+public class ReportUtils {
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public static String formatHeader(String title) {
+        int totalWidth = 33;
+        String border = "=".repeat(totalWidth);
+        int padding = (totalWidth - title.length()) / 2;
+        String centeredTitle = " ".repeat(padding) + title;
+        return border + "\n" + centeredTitle + "\n" + border + "\n\n";
+    }
+
+    public static String formatField(String label, String value) {
+        return label + ": " + value;
+    }
+
+    public static String formatTimestamp() {
+        LocalDateTime now = LocalDateTime.now();
+        return "Generated on: " + now.format(TIMESTAMP_FORMATTER);
+    }
+}
+```
+
+---
+
+# DRY Solution: Simple Report Generation
+
+```java
+public static String generateUserReport(User user) {
+    return ReportUtils.buildReport("USER REPORT",
+        ReportUtils.formatField("Name", user.name()),
+        ReportUtils.formatField("Email", user.email())
+    );
+}
+
+public static String generateCustomerReport(Customer customer) {
+    return ReportUtils.buildReport("CUSTOMER REPORT",
+        ReportUtils.formatField("Name", customer.name()),
+        ReportUtils.formatField("Email", customer.email()),
+        ReportUtils.formatField("Phone", customer.phone())
+    );
+}
+```
+
+<div class="mt-4 text-green-500">✅ Formatting logic centralized in ReportUtils</div>
+
+---
+
+# DRY Benefits
+
+<v-clicks>
+
+## Easier Maintenance
+- Fix bugs in **one place**
+- Update logic **once**
+- No hunting for duplicates
+
+## Better Consistency
+- Same behavior everywhere
+- Impossible to have divergent implementations
+- Reduced cognitive load
+
+</v-clicks>
+
+---
+
+# DRY Benefits (continued)
+
+<v-clicks>
+
+## Improved Testability
+- Test shared logic **once**
+- Comprehensive test coverage easier to achieve
+- Mock/stub dependencies in one place
+
+## Enhanced Readability
+- Descriptive utility method names
+- Clear intent
+- Less visual clutter
+
+</v-clicks>
+
+---
+
+# DRY vs WET Code
+
+**WET** = Write Everything Twice (or "We Enjoy Typing")
+
+<div class="grid grid-cols-2 gap-6 mt-8">
+<div>
+
+## ❌ WET Code
+```java
+// In multiple places
+if (email == null ||
+    email.trim().isEmpty()) {
+    throw new Exception(...);
+}
+String regex = "^[A-Z...";
+Pattern p = Pattern.compile(regex);
+if (!p.matcher(email).matches()) {
+    throw new Exception(...);
+}
+```
+
+</div>
+<div>
+
+## ✅ DRY Code
+```java
+// Single location
+ValidationUtils
+    .validateEmail(email, "email");
+
+
+
+
+// Simple and clear
+```
+
+</div>
+</div>
+
+---
+
+# When to Apply DRY
+
+<v-clicks>
+
+## Good Candidates for DRY:
+- **Validation logic** - email, phone, format checks
+- **Formatting** - dates, currency, reports
+- **Calculations** - business rules, algorithms
+- **Data transformations** - parsing, mapping
+- **Configuration** - constants, patterns
+
+## Be Careful:
+- **Coincidental duplication** - looks similar but serves different purposes
+- **Over-abstraction** - don't DRY too early
+- **Different rates of change** - if logic evolves independently, keep separate
+
+</v-clicks>
+
+---
+
+# DRY and SOLID
+
+DRY complements SOLID principles:
+
+<v-clicks>
+
+- **SRP**: Utility classes have single responsibility
+- **OCP**: Extend utilities without modifying clients
+- **DIP**: Depend on utility abstractions
+- **DRY eliminates duplication** across all SOLID implementations
+
+</v-clicks>
+
+<div v-click class="mt-8 p-4 bg-purple-50 dark:bg-purple-900 rounded">
+
+💡 **Remember**: DRY is about knowledge duplication, not just code duplication
+
+</div>
 
 ---
 
@@ -1192,7 +1553,7 @@ When reviewing AI code, check for:
 
 # SOLID Violations in the Wild
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-cols-2 gap-6">
 <div>
 
 ## God Classes
@@ -1202,12 +1563,9 @@ class UserManager {
     void sendEmail() {}
     void logActivity() {}
     void generateReport() {}
-    void processPayment() {}
 }
 ```
 Violates **SRP**
-
-<v-click>
 
 ## Rigid Hierarchies
 ```java
@@ -1223,12 +1581,8 @@ class Shape {
 ```
 Violates **OCP**
 
-</v-click>
-
 </div>
 <div>
-
-<v-click>
 
 ## Concrete Dependencies
 ```java
@@ -1242,22 +1596,15 @@ class OrderService {
 ```
 Violates **DIP**
 
-</v-click>
-
-<v-click>
-
 ## Fat Interfaces
 ```java
 interface Vehicle {
     void drive();
     void fly();
     void sail();
-    void hover();
 }
 ```
 Violates **ISP**
-
-</v-click>
 
 </div>
 </div>

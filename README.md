@@ -1,233 +1,286 @@
 # CPSC 310: Software Design
-## Trinity College—Fall 2025
+## Trinity College — Fall 2025
 
-This repository contains course materials for CPSC 310: Software Design, taught at Trinity College by Ken Kousen.
+**A Modern Approach to Software Design with AI Collaboration**
 
-### Course Overview
+This repository contains comprehensive course materials for CPSC 310: Software Design, taught at Trinity College by Ken Kousen. The course emphasizes practical software design principles, test-driven development, and critical evaluation of AI-assisted coding.
 
-This course teaches software design principles in the context of AI-assisted development. Students work in teams from day one, building production-ready Spring Boot applications while mastering:
-- SOLID principles and design patterns
-- Test-Driven Development (TDD)
-- Modern Java features (Java 21)
-- Spring Boot REST API development
-- AI collaboration with critical evaluation
-- Professional Git/GitHub workflows
+---
 
-### Repository Structure
+## 🎯 Course Philosophy
+
+This course teaches students to be **software architects and designers**, not just coders. We embrace modern AI tools while maintaining critical thinking and emphasizing testing as the primary validation method for all code—especially AI-generated code.
+
+### What Makes This Course Different
+
+- **AI-Integrated Learning**: Students use GitHub Copilot, Claude, ChatGPT, and Gemini throughout the course
+- **Team-First Approach**: All major work done in teams from day one
+- **Test-Driven Development**: Testing is not an afterthought—it's the foundation
+- **Modern Java**: Focus on Java 21 LTS features and idioms
+- **Production-Ready Skills**: Build real Spring Boot applications with professional workflows
+
+---
+
+## 📚 Repository Structure
 
 ```
 software-design-course/
-├── build.gradle.kts                           # Root Gradle build file
-├── settings.gradle.kts                        # Multi-module configuration
-├── DEMO-CHECKLIST.md                         # Live coding demo guide
-├── slides/                                    # Slidev presentations
-│   ├── week-01-java-foundations/             # Week 1 complete slides (37 slides)
-│   ├── solid-principles.md                   # SOLID principles presentation
-│   ├── dry-principle.md                      # DRY principle presentation
-│   └── testing-fundamentals.md               # Testing fundamentals presentation
+├── slides/                                    # Weekly Slidev presentations
+│   ├── week-01-java-foundations/             # Java basics (37 slides)
+│   ├── week-02-oop-java/                     # OOP in Java (70 slides)
+│   ├── week-03-spring-boot-rest/             # Spring Boot & REST APIs
+│   ├── week-04-functional-tdd/               # Functional programming & TDD
+│   ├── week-05-data-ai/                      # Data layer & AI collaboration
+│   └── week-06-solid-principles/             # SOLID & DRY principles
+│
 ├── examples/                                  # Code examples (Gradle modules)
-│   ├── modern-java/                          # (planned)
-│   ├── testing-fundamentals/                 # JUnit 5, AssertJ, jqwik examples
-│   │   └── src/main/java/edu/trincoll/       # Test subjects and utilities
-│   │   └── src/test/java/edu/trincoll/       # Comprehensive test examples
-│   └── design-patterns/                      # SOLID and DRY examples implemented
-│       └── src/main/java/edu/trincoll/       # Package structure
-│           ├── solid/                        # Complete SOLID examples
-│           │   ├── srp/                     # Single Responsibility Principle
-│           │   ├── ocp/                     # Open/Closed Principle
-│           │   ├── lsp/                     # Liskov Substitution Principle
-│           │   ├── isp/                     # Interface Segregation Principle
-│           │   └── dip/                     # Dependency Inversion Principle
-│           └── dry/                          # DRY principle examples
-├── assignments/                               # Student assignments (Gradle modules)
-│   └── assignment-1-task-tracker/            # First assignment starter code
-├── live-coding/                              # In-class sessions (Gradle modules)
-│   ├── session-01-java-basics/              # (planned)
-│   └── session-03-streams/                  # (planned)
-├── docs/                                     # Documentation and guides
-│   ├── *.md                                 # Markdown versions
-│   └── *.html                               # HTML versions for Moodle upload
-├── course-schedule.md                        # Updated 14-week schedule
+│   ├── design-patterns/                      # SOLID & DRY implementations
+│   │   └── src/main/java/edu/trincoll/
+│   │       ├── solid/                        # All 5 SOLID principles
+│   │       │   ├── srp/                      # Single Responsibility
+│   │       │   ├── ocp/                      # Open-Closed
+│   │       │   ├── lsp/                      # Liskov Substitution
+│   │       │   ├── isp/                      # Interface Segregation
+│   │       │   └── dip/                      # Dependency Inversion
+│   │       └── dry/                          # DRY principle examples
+│   ├── testing-fundamentals/                 # JUnit 5, AssertJ, jqwik
+│   └── week2-oop/                           # OOP examples
+│
+├── assignments/                               # Student assignments
+│   ├── assignment-1-task-tracker/            # REST API starter
+│   └── assignment-2-service-layer/           # Service architecture
+│
+├── docs/                                      # Documentation & guides
+│   ├── github-workflow-guide.md              # Git/GitHub best practices
+│   ├── gradle-guide.md                       # Gradle setup
+│   └── intellij-guide.md                     # IntelliJ IDEA setup
+│
+├── build.gradle.kts                          # Root Gradle configuration
+├── settings.gradle.kts                       # Multi-module setup
+├── course-schedule.md                        # 14-week schedule
 ├── syllabus.md                              # Course syllabus
-├── CLAUDE.md                                # Project context for AI assistance
-└── README.md                                # This file
+└── DEMO-CHECKLIST.md                        # Live coding guides
 ```
 
-### Quick Links
+---
 
-- [Course Schedule](course-schedule.md)
-- [Syllabus](syllabus.md)
-- [GitHub Workflow Guide](docs/github-workflow-guide.md)
-- [Gradle Guide](docs/gradle-guide.md)
-- [IntelliJ IDEA Guide](docs/intellij-guide.md)
-- [Student Resources](#student-resources)
+## 🚀 Quick Start
 
-### Getting Started
+### Prerequisites
 
-#### Prerequisites
-- Java 21 LTS (required)
-- IntelliJ IDEA (Ultimate Edition with student license)
-- Git
-- Gradle (included via wrapper)
+- **Java 21 LTS** (required)
+- **IntelliJ IDEA Ultimate** (free with [student license](https://www.jetbrains.com/student/))
+- **Git** (2.30 or later)
+- **Gradle** (included via wrapper)
 
-#### Setup Instructions
-1. Clone this repository
-2. Open in IntelliJ IDEA (it will auto-detect the Gradle multi-module structure)
-3. Ensure Java 21 is configured as Project SDK
-4. Run `./gradlew build` to build all modules
-5. Run `./gradlew test` to run all tests across modules
+### Setup
 
-### Key Technologies
+```bash
+# Clone the repository
+git clone https://github.com/kousen/software-design-course.git
+cd software-design-course
 
-- **Language:** Java 21 LTS
-- **Framework:** Spring Boot 3.5.5
-- **Testing:** JUnit 5.11.0, AssertJ 3.26.3, jqwik 1.9.1
-- **Build Tool:** Gradle 8.11.1 (multi-module project)
-- **Code Quality:** SonarCloud integration
-- **IDE:** IntelliJ IDEA Ultimate (free with student license)
-- **Version Control:** Git/GitHub with team collaboration
-- **CI/CD:** GitHub Actions
-- **Presentations:** Slidev
-- **AI Tools:** GitHub Copilot, Claude, ChatGPT, Gemini (required)
+# Build all modules
+./gradlew build
 
-### Course Structure
+# Run all tests
+./gradlew test
+```
 
-**Grading:**
-- 40% Progressive Team Project (4 milestones)
-- 30% Repository Analysis (individual)
-- 20% Code Reviews & Peer Assessment
-- 10% Process & Participation
+IntelliJ IDEA will automatically detect the multi-module Gradle structure when you open the project.
 
-**Teams:** 8 teams of 3 students (one may have 4)
-**Coordination:** Integrated with CPSC 415 (Cloud Computing)
+---
 
-### Course Topics by Week
+## 🛠️ Technology Stack
 
-1. **Week 1:** Java Foundations & Team Formation
-2. **Week 2:** Object-Oriented Programming in Java
-3. **Week 3:** Spring Boot & REST APIs
-4. **Week 4:** Testing Fundamentals & TDD
-5. **Week 5:** Data Layer & AI Collaboration
-6. **Weeks 6-7:** SOLID Principles & Application
-7. **Weeks 8-10:** Design Patterns (Creational, Structural, Behavioral)
-8. **Week 11:** Security & Production Concerns
-9. **Week 12:** Advanced Spring & Performance
-10. **Week 13:** DevOps & Deployment
-11. **Week 14:** Project Presentations
+| Category | Technology | Version |
+|----------|-----------|---------|
+| **Language** | Java | 21 LTS |
+| **Framework** | Spring Boot | 3.5.5 |
+| **Testing** | JUnit 5 | 5.11.0 |
+| | AssertJ | 3.26.3 |
+| | jqwik | 1.9.1 |
+| **Build Tool** | Gradle | 8.11.1 |
+| **Code Quality** | SonarCloud | Latest |
+| **Presentations** | Slidev | Latest |
+| **AI Tools** | GitHub Copilot, Claude, ChatGPT, Gemini | - |
 
-### Current Implementation Status
+---
 
-✅ **Completed:**
-- **Project Infrastructure:**
-  - Multi-module Gradle project structure with Java 21 LTS
-  - MIT License for open educational use
-  - Organized documentation in `docs/` folder
-  - GitHub workflow with issues, feature branches, and pull requests
+## 📖 Course Structure
 
-- **SOLID Principles (Week 6-7):**
-  - Complete Slidev presentation with interactive examples
-  - SRP examples: Employee, PayrollCalculator, EmployeeRepository separation
-  - OCP examples: Discount strategy pattern implementation
-  - LSP examples: Shape hierarchy (Rectangle, Square, Circle) and Bird hierarchy (Eagle, Sparrow, Penguin)
-  - ISP examples: Worker interfaces (Workable, Eatable, Sleepable) and Printer interfaces (Printable, Scannable, Faxable)
-  - DIP examples: MessageService abstraction and UserRepository abstraction with dependency injection
-  - Comprehensive test suite (57 tests) demonstrating all SOLID principles
-  - Updated course schedule with expanded SOLID coverage
+### Grading Breakdown
 
-- **DRY Principle:**
-  - Complete Slidev presentation covering duplication elimination
-  - Before/after validation examples showing refactoring process
-  - String formatting examples with extracted utilities
-  - ValidationUtils and ReportUtils as DRY solutions
-  - TDD implementation with comprehensive test coverage
+- **40%** Progressive Team Project (4 milestones)
+- **30%** Repository Analysis (individual)
+- **20%** Code Reviews & Peer Assessment
+- **10%** Process & Participation
 
-- **Testing Fundamentals (Week 3-4):**
-  - Complete Slidev presentation (44 slides) covering JUnit 5, AssertJ, and modern testing
-  - Comprehensive code examples module with 101 passing tests
-  - JUnit 5 basics, lifecycle management, and advanced features
-  - AssertJ fluent assertions for better test readability
-  - Extensive parameterized testing (value, method, CSV, enum sources)
-  - Property-based testing with jqwik 1.9.1 (compatible with JUnit Platform 1.11.0)
-  - TDD methodology with Calculator examples using Arrange-Act-Assert pattern
-  - Nested test organization for hierarchical test structure
-  - Complete documentation with teaching objectives and progressive learning path
+### Weekly Schedule
 
-- **Student Resources:**
-  - GitHub workflow guide (assignment + professional workflows)
-  - Gradle build tool setup guide
-  - IntelliJ IDEA configuration guide
-  - Professional development process documentation
+1. **Week 1**: Java Foundations & Team Formation
+2. **Week 2**: Object-Oriented Programming in Java
+3. **Week 3**: Spring Boot & REST APIs
+4. **Week 4**: Functional Programming & Test-Driven Development
+5. **Week 5**: Data Layer with JPA & AI Code Evaluation
+6. **Week 6**: SOLID Principles & DRY Principle
+7. **Week 7**: Advanced Design Principles
+8. **Week 8**: Creational Design Patterns
+9. **Week 9**: Structural Design Patterns
+10. **Week 10**: Behavioral Design Patterns
+11. **Week 11**: Security & Production Concerns
+12. **Week 12**: Advanced Spring & Performance
+13. **Week 13**: DevOps & Deployment
+14. **Week 14**: Project Presentations
 
-✅ **Ready for Day 1:**
-- Complete Week 1 slides with Java basics for Python developers
-- Live coding demo checklist for Spring Boot API
-- Assignment 1 starter template on GitHub
-- Moodle fully configured with team submission
-- All documentation converted to HTML
+**No classes**: October 14 (Fall Break), November 27 (Thanksgiving)
 
-📋 **Next Steps:**
-- Week 2 OOP materials
-- Additional design pattern examples
-- Repository analysis assignment templates
+---
 
-### Student Resources
+## 📝 For Students
 
-#### Recommended Reading
-- *Head First Java* (3rd Edition)—Course textbook
-- *Effective Java* by Joshua Bloch
-- *Design Patterns* by Gamma, Helm, Johnson, and Vlissides
+### Getting Started with Assignments
 
-#### Online Resources
-- [Java Documentation](https://docs.oracle.com/en/java/)
-- [Baeldung Java Tutorials](https://www.baeldung.com/)
-- [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
-- [AssertJ Documentation](https://assertj.github.io/doc/)
-- [jqwik User Guide](https://jqwik.net/docs/current/user-guide.html)
+**Assignment repositories are distributed via GitHub template:**
 
-### For Students
+1. **One team member**: Click "Use this template" on the assignment repo
+2. **Name it**: `team-X-domain` (e.g., `team-3-bookmarks`)
+3. **Add teammates**: Settings → Collaborators
+4. **Everyone clones**: `git clone <your-team-repo-url>`
+5. **Run tests**: `./gradlew test` (many will fail initially!)
+6. **Implement features**: Make those tests pass!
+7. **Submit**: Repository URL to Moodle (team submission)
 
-**Assignment 1 Starter:** https://github.com/kousen/assignment-1-starter
+### Team Workflow Requirements
 
-#### Getting Started:
-1. One team member: Click "Use this template" (not Fork!)
-2. Name it: `team-X-domain` (e.g., `team-3-bookmarks`)
-3. Add teammates as collaborators
-4. Clone YOUR NEW team repository
-5. Run `./gradlew test` to see failing tests
-6. Implement functionality to make tests pass
-7. Submit repository URL to Moodle
-
-#### Team Workflow:
-- All team members must contribute via GitHub
-- Use issues, branches, and pull requests
-- Document AI assistance in code comments
-- Maintain 80% test coverage (verified by SonarCloud)
+- ✅ All team members must contribute via GitHub
+- ✅ Use issues, feature branches, and pull requests
+- ✅ Document AI assistance in code comments
+- ✅ Maintain 80% test coverage (verified by SonarCloud)
+- ✅ Follow professional Git workflow practices
 
 ### AI Tool Guidelines
 
-This course encourages thoughtful use of AI tools:
-- ✅ Use AI for learning and exploration
-- ✅ Generate boilerplate code
-- ✅ Debug with AI assistance
-- ❌ Don't submit AI code without understanding
-- ❌ Don't rely on AI for design decisions
-- ❌ Always verify AI suggestions
+This course **encourages** thoughtful use of AI tools:
 
-### Contact Information
+**✅ Good Uses:**
+- Generate boilerplate code
+- Explore different approaches
+- Debug with AI assistance
+- Learn new concepts
+- Refactor existing code
 
-**Instructor:** Ken Kousen  
-**Email:** kkousen@trincoll.edu  
-**Office Hours:** Wednesdays 1:30-3:00 PM, MECC 175
+**❌ Bad Uses:**
+- Submit AI code without understanding
+- Let AI make design decisions
+- Skip writing tests
+- Copy-paste without verification
 
-### Contributing
+**Remember**: Tests validate everything, including AI output!
 
-For errors or suggestions:
-1. Open an issue in this repository
-2. Submit a pull request with fixes
-3. Contact the instructor
+---
 
-### License
+## 🎓 Learning Outcomes
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+By the end of this course, students will be able to:
 
-This course material is freely available for educational use and can be adapted for other software design courses.
+1. **Design** maintainable software using SOLID principles and design patterns
+2. **Implement** production-ready Spring Boot REST APIs
+3. **Test** code comprehensively using TDD and multiple testing strategies
+4. **Evaluate** AI-generated code critically using testing and design principles
+5. **Collaborate** effectively using professional Git/GitHub workflows
+6. **Apply** functional programming concepts in Java
+7. **Deploy** applications using modern DevOps practices
+
+---
+
+## 📚 Course Materials
+
+### Slides & Presentations
+
+All slides are created with [Slidev](https://sli.dev/) and available in the `slides/` directory. Each week includes:
+- Markdown source files
+- Exported PDF versions
+- Live code examples
+- Practice exercises
+
+### Code Examples
+
+All code examples are organized as Gradle submodules with:
+- Comprehensive test suites
+- Real-world scenarios
+- Before/after refactoring examples
+- Progressive complexity
+
+### Documentation
+
+Extensive guides available in `docs/`:
+- GitHub workflow guide
+- Gradle configuration guide
+- IntelliJ IDEA setup guide
+- Testing best practices
+- Spring Boot patterns
+
+---
+
+## 📖 Recommended Resources
+
+### Textbooks
+
+- **Primary**: *Head First Java* (3rd Edition)
+- *Effective Java* by Joshua Bloch
+- *Design Patterns* by Gamma, Helm, Johnson, and Vlissides (Gang of Four)
+- *Clean Architecture* by Robert C. Martin
+
+### Online Resources
+
+- [Java Documentation](https://docs.oracle.com/en/java/)
+- [Spring Boot Documentation](https://docs.spring.io/spring-boot/)
+- [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
+- [AssertJ Documentation](https://assertj.github.io/doc/)
+- [jqwik User Guide](https://jqwik.net/docs/current/user-guide.html)
+- [Baeldung Java Tutorials](https://www.baeldung.com/)
+
+---
+
+## 🤝 Contributing
+
+This repository is a public educational resource! Contributions are welcome:
+
+1. **Report Issues**: Found a bug or typo? [Open an issue](../../issues)
+2. **Suggest Improvements**: Have ideas for better examples? Let us know!
+3. **Submit Fixes**: Fork, fix, and submit a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## 👥 Contact
+
+**Instructor**: Ken Kousen
+**Email**: kkousen@trincoll.edu
+**Office**: MECC 175
+**Office Hours**: Wednesdays 1:30-3:00 PM
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+**This course material is freely available for educational use and can be adapted for other software design courses.**
+
+---
+
+## 🌟 Acknowledgments
+
+- Trinity College Computer Science Department
+- The Java and Spring communities
+- All the students who have helped refine these materials
+- AI tools (Claude, ChatGPT, GitHub Copilot, Gemini) for development assistance
+
+---
+
+**Note**: This repository is actively maintained and updated throughout the Fall 2025 semester. Content and structure may evolve as the course progresses.
+
+*Last Updated: October 2025*

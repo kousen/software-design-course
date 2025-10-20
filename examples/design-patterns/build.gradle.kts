@@ -1,5 +1,3 @@
-// This module demonstrates design pattern implementations
-
 plugins {
     id("java")
 }
@@ -27,4 +25,5 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    jvmArgs("-Xshare:off","-XX:+EnableDynamicAgentLoading")
 }

@@ -9,5 +9,10 @@ public class NotificationService {
     
     public void notify(String message, String recipient) {
         messageService.sendMessage(message, recipient);
+        logMessageSent(message, recipient);
+    }
+
+    private void logMessageSent(String message, String recipient) {
+        System.out.println("Message sent to " + recipient + ": " + message);
     }
 }

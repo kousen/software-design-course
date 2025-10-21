@@ -68,8 +68,6 @@ layout: center
 
 # Command Pattern: The Problem
 
-<v-clicks>
-
 ```java
 // Without Command Pattern - actions tightly coupled
 class TextEditor {
@@ -84,12 +82,16 @@ class TextEditor {
         }
         // How to implement undo/redo?
         // How to create macros?
-        // How to queue operations?
     }
 }
 ```
 
-## Problems
+---
+
+# The Problem with Tight Coupling
+
+<v-clicks>
+
 - Cannot undo operations
 - Cannot create macros
 - Cannot queue/log operations
@@ -101,10 +103,6 @@ class TextEditor {
 
 # Command Pattern: The Solution
 
-<div class="grid grid-cols-2 gap-4 text-sm">
-
-<div>
-
 ## Command Interface
 
 ```java
@@ -115,12 +113,16 @@ interface Command {
 }
 ```
 
-## Concrete Command
+Encapsulate each request as an object
+
+---
+
+# Concrete Command Example
+
+<div class="text-sm">
 
 ```java
-class InsertCommand
-    implements Command {
-
+class InsertCommand implements Command {
     private final TextEditor editor;
     private final String text;
     private final int position;
@@ -130,17 +132,20 @@ class InsertCommand
     }
 
     public void undo() {
-        editor.delete(
-            position, text.length());
+        editor.delete(position, text.length());
     }
 }
 ```
 
 </div>
 
-<div>
+Each command knows how to execute and undo itself
 
-## Invoker (Command Manager)
+---
+
+# Command History (Invoker)
+
+<div class="text-sm">
 
 ```java
 class CommandHistory {
@@ -166,8 +171,6 @@ class CommandHistory {
     }
 }
 ```
-
-</div>
 
 </div>
 
@@ -208,7 +211,7 @@ classDiagram
 
 ---
 
-# Command Pattern: Text Editor Example
+# Command Pattern: Usage Example
 
 <div class="text-sm">
 
@@ -226,42 +229,35 @@ System.out.println(editor.getContent());  // "Hello World!"
 
 // Undo operations
 history.undo();  // Remove "!"
-System.out.println(editor.getContent());  // "Hello World"
-
 history.undo();  // Remove " World"
-System.out.println(editor.getContent());  // "Hello"
 
 // Redo operations
 history.redo();  // Add " World" back
-System.out.println(editor.getContent());  // "Hello World"
 ```
 
 </div>
 
-<v-click>
+---
 
-### Key Benefits
+# Command Pattern: Key Benefits
+
+<v-clicks>
+
 - ✓ Each operation is a separate class (testable)
 - ✓ Full undo/redo support
 - ✓ Command history tracking
 - ✓ Can save/replay command sequences
 
-</v-click>
+</v-clicks>
 
 ---
 
 # Macro Commands (Composite Pattern)
 
-<div class="grid grid-cols-2 gap-4">
-
 <div class="text-sm">
 
-## MacroCommand Class
-
 ```java
-class MacroCommand
-    implements Command {
-
+class MacroCommand implements Command {
     private List<Command> commands;
 
     public void execute() {
@@ -272,10 +268,8 @@ class MacroCommand
 
     public void undo() {
         // Undo in reverse order
-        var reversed =
-            new ArrayList<>(commands);
+        var reversed = new ArrayList<>(commands);
         Collections.reverse(reversed);
-
         for (Command cmd : reversed) {
             cmd.undo();
         }
@@ -285,36 +279,33 @@ class MacroCommand
 
 </div>
 
-<div class="text-sm">
+Execute multiple commands as one unit
 
-## Using Macros
+---
+
+# Using Macro Commands
+
+<div class="text-sm">
 
 ```java
 // Create a "Format Title" macro
 var titleCommands = List.of(
-    new InsertCommand(editor,
-        "Title", 0),
-    new InsertCommand(editor,
-        "\n", 5),
-    new InsertCommand(editor,
-        "=====", 6)
+    new InsertCommand(editor, "Title", 0),
+    new InsertCommand(editor, "\n", 5),
+    new InsertCommand(editor, "=====", 6)
 );
 
-var formatTitle = new MacroCommand(
-    titleCommands, "Format Title");
+var formatTitle = new MacroCommand(titleCommands, "Format Title");
 
 // Execute all 3 operations at once
 history.executeCommand(formatTitle);
 
-// Result:
-// Title
-// =====
+// Result: Title
+//         =====
 
 // Undo all 3 operations at once
 history.undo();
 ```
-
-</div>
 
 </div>
 
@@ -360,8 +351,6 @@ layout: center
 
 # Template Method: The Problem
 
-<v-clicks>
-
 ```java
 // Without Template Method - duplicated algorithm structure
 class CsvProcessor {
@@ -383,7 +372,12 @@ class JsonProcessor {
 }
 ```
 
-## Problems
+---
+
+# The Problem with Duplication
+
+<v-clicks>
+
 - Duplicate algorithm structure
 - Hard to maintain consistency
 - Cannot enforce processing steps
@@ -399,21 +393,15 @@ class JsonProcessor {
 
 ```java
 abstract class DataProcessor<T> {
-
     // Template method - final to prevent overriding
     public final ProcessingResult process() {
-        System.out.println("Starting processing...");
-
-        List<T> data = loadData();              // Abstract - subclass implements
-        if (!validateData(data)) {              // Abstract - subclass implements
+        List<T> data = loadData();
+        if (!validateData(data)) {
             return new ProcessingResult(false, "Validation failed");
         }
-
-        List<T> transformed = transformData(data);  // Abstract - subclass implements
-        int saved = saveData(transformed);          // Abstract - subclass implements
-
-        onProcessingComplete(saved);            // Hook - subclass can override
-
+        List<T> transformed = transformData(data);
+        int saved = saveData(transformed);
+        onProcessingComplete(saved);  // Hook method
         return new ProcessingResult(true, "Success", saved);
     }
 
@@ -422,6 +410,19 @@ abstract class DataProcessor<T> {
     protected abstract boolean validateData(List<T> data);
     protected abstract List<T> transformData(List<T> data);
     protected abstract int saveData(List<T> data);
+```
+
+</div>
+
+---
+
+# Template Method: Hook Methods
+
+<div class="text-sm">
+
+```java
+abstract class DataProcessor<T> {
+    // ... template method ...
 
     // Hook method - subclasses CAN override (optional)
     protected void onProcessingComplete(int count) {
@@ -432,96 +433,74 @@ abstract class DataProcessor<T> {
 
 </div>
 
+Hook methods provide optional extension points
+
 ---
 
-# Template Method: Concrete Implementation
+# CSV Processor Implementation
 
-<div class="grid grid-cols-2 gap-4 text-sm">
-
-<div>
-
-## CSV Processor
+<div class="text-sm">
 
 ```java
-class CsvDataProcessor
-    extends DataProcessor<String> {
-
+class CsvDataProcessor extends DataProcessor<String> {
     @Override
     protected List<String> loadData() {
-        // Load from CSV file
-        return csvLines;
+        return csvLines;  // Load from CSV file
     }
 
     @Override
-    protected boolean validateData(
-        List<String> data) {
-        // Check CSV format
-        return !data.isEmpty();
+    protected boolean validateData(List<String> data) {
+        return !data.isEmpty();  // Check CSV format
     }
 
     @Override
-    protected List<String>
-        transformData(List<String> data) {
-        // Trim and uppercase
+    protected List<String> transformData(List<String> data) {
         return data.stream()
             .map(String::toUpperCase)
             .toList();
     }
 
     @Override
-    protected int saveData(
-        List<String> data) {
-        // Save to file
-        return data.size();
+    protected int saveData(List<String> data) {
+        return data.size();  // Save to file
     }
 }
 ```
 
 </div>
 
-<div>
+---
 
-## JSON Processor
+# JSON Processor Implementation
+
+<div class="text-sm">
 
 ```java
-class JsonDataProcessor
-    extends DataProcessor<String> {
-
+class JsonDataProcessor extends DataProcessor<String> {
     @Override
     protected List<String> loadData() {
-        // Load from JSON file
-        return jsonObjects;
+        return jsonObjects;  // Load from JSON file
     }
 
     @Override
-    protected boolean validateData(
-        List<String> data) {
-        // Check JSON format
+    protected boolean validateData(List<String> data) {
         return data.stream()
-            .allMatch(s ->
-                s.startsWith("{") &&
-                s.endsWith("}"));
+            .allMatch(s -> s.startsWith("{") && s.endsWith("}"));
     }
 
     @Override
-    protected List<String>
-        transformData(List<String> data) {
-        // Add metadata
+    protected List<String> transformData(List<String> data) {
         return data.stream()
-            .map(json -> json +
-                ", \"processed\": true}")
+            .map(json -> json + ", \"processed\": true}")
             .toList();
     }
 
     @Override
-    protected int saveData(
-        List<String> data) {
+    protected int saveData(List<String> data) {
         return data.size();
     }
 }
 ```
-
-</div>
 
 </div>
 
@@ -555,41 +534,9 @@ classDiagram
 
 ---
 
-# Template Method: Hook Methods
+# Overriding Hook Methods
 
 <div class="text-sm">
-
-Hook methods provide optional extension points:
-
-```java
-abstract class DataProcessor<T> {
-
-    public final ProcessingResult process() {
-        // ... main algorithm ...
-
-        beforeProcessing();     // Hook 1: Before processing
-
-        List<T> data = loadData();
-
-        afterLoading(data);     // Hook 2: After loading
-
-        // ... rest of processing ...
-
-        onProcessingComplete(itemCount);  // Hook 3: After completion
-
-        return result;
-    }
-
-    // Hook methods with default no-op implementations
-    protected void beforeProcessing() { }
-    protected void afterLoading(List<T> data) { }
-    protected void onProcessingComplete(int count) { }
-}
-```
-
-<v-click>
-
-Subclasses can selectively override hooks:
 
 ```java
 class LoggingCsvProcessor extends CsvDataProcessor {
@@ -600,83 +547,58 @@ class LoggingCsvProcessor extends CsvDataProcessor {
 }
 ```
 
-</v-click>
-
 </div>
+
+Subclasses can selectively override hook methods
 
 ---
 
 # Template Method vs Strategy
 
-<div class="grid grid-cols-2 gap-6 text-sm">
+## Key Differences
 
-<div>
+<v-clicks>
 
-## Template Method
-
-**Structure-focused**
-
-```java
-abstract class Algorithm {
-    // Fixed algorithm structure
-    final void execute() {
-        step1();  // Variable
-        step2();  // Variable
-        step3();  // Variable
-    }
-
-    abstract void step1();
-    abstract void step2();
-    abstract void step3();
-}
-```
-
-### Characteristics
-- Uses **inheritance**
+**Template Method**
+- Uses **inheritance** (subclasses)
 - **Compile-time** binding
-- **Subclasses** provide variations
-- **Cannot** swap algorithms at runtime
+- Fixed algorithm structure
+- Cannot swap at runtime
 - Good for: Frameworks, libraries
 
-</div>
+**Strategy**
+- Uses **composition** (interfaces)
+- **Runtime** binding
+- Interchangeable algorithms
+- Can swap at runtime
+- Good for: Business rules, algorithms
 
-<div>
+</v-clicks>
 
-## Strategy
+---
 
-**Behavior-focused**
+# Using Both Together
+
+Template Method for the overall structure, Strategy for variable steps
+
+<div class="text-sm">
 
 ```java
-class Context {
-    private Strategy strategy;
-
-    void setStrategy(Strategy s) {
-        this.strategy = s;
+abstract class DataProcessor {
+    final void process() {
+        load();
+        validate();
+        transform();  // Strategy pattern here!
+        save();
     }
 
-    void execute() {
-        strategy.execute();
-    }
+    abstract void load();
+    abstract void validate();
+    abstract void save();
 }
 ```
 
-### Characteristics
-- Uses **composition**
-- **Runtime** binding
-- **Strategies** are interchangeable
-- **Can** swap algorithms at runtime
-- Good for: Business rules, algorithms
-
 </div>
-
-</div>
-
-<v-click>
-
-### Use Both Together!
-Template Method for the overall structure, Strategy for variable steps
-
-</v-click>
 
 ---
 
@@ -712,30 +634,16 @@ Template Method for the overall structure, Strategy for variable steps
 
 # Combining Command & Template Method
 
+Real-world patterns often combine multiple patterns
+
 <div class="text-sm">
 
-Real-world patterns often combine multiple patterns:
-
 ```java
-// Template Method for command execution lifecycle
 abstract class TransactionalCommand implements Command {
-
     public final void execute() {
-        beginTransaction();      // Template method controls flow
-
-        try {
-            doExecute();         // Subclass provides specific action
-            commitTransaction();
-        } catch (Exception e) {
-            rollbackTransaction();
-            throw e;
-        }
-    }
-
-    public final void undo() {
         beginTransaction();
         try {
-            doUndo();           // Subclass provides specific undo
+            doExecute();  // Subclass provides specific action
             commitTransaction();
         } catch (Exception e) {
             rollbackTransaction();
@@ -743,8 +651,7 @@ abstract class TransactionalCommand implements Command {
         }
     }
 
-    protected abstract void doExecute();    // Subclass implements
-    protected abstract void doUndo();       // Subclass implements
+    protected abstract void doExecute();
 
     private void beginTransaction() { /* ... */ }
     private void commitTransaction() { /* ... */ }
@@ -753,6 +660,8 @@ abstract class TransactionalCommand implements Command {
 ```
 
 </div>
+
+Template Method controls transaction lifecycle, Command provides action
 
 ---
 
@@ -828,44 +737,6 @@ abstract class TransactionalCommand implements Command {
 They define **how objects interact** and **distribute responsibility**
 
 </v-click>
-
----
-
-# Next Week Preview
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Week 8: Creational Patterns
-
-**Session 15**: Singleton & Factory
-- Enum-based Singleton
-- Static factory methods
-- Why `List.of()` is a factory
-
-**Session 16**: Builder Pattern
-- Immutable object construction
-- Fluent interfaces
-- Records + Builders
-
-</div>
-
-<div>
-
-## Modern Java Simplifications
-
-Traditional patterns get simpler:
-
-- **Singleton** → Enum
-- **Factory** → Static methods
-- **Builder** → Records with withers
-
-But the **concepts** remain essential!
-
-</div>
-
-</div>
 
 ---
 

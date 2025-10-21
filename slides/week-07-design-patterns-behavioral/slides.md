@@ -206,8 +206,6 @@ layout: center
 
 # Strategy Pattern: The Problem
 
-<v-clicks>
-
 ## Without Strategy Pattern
 
 ```java
@@ -219,61 +217,59 @@ public class OrderProcessor {
             return 12.0 + order.weight() * 0.75;
         } else if (type.equals("overnight")) {
             return 25.0 + order.weight() * 1.00;
-        } else if (type.equals("international")) {
-            return 30.0 + order.weight() * 2.00 + 15.0; // customs
         }
-        throw new IllegalArgumentException("Unknown shipping type");
+        throw new IllegalArgumentException("Unknown type");
     }
 }
 ```
 
-## Problems
+---
+
+# The Problem with If/Else Chains
+
+## Issues
+
+<v-clicks>
+
 - Violates **Open-Closed Principle** (must modify to add strategies)
-- Violates **Single Responsibility** (shipping logic mixed with selection)
+- Violates **Single Responsibility** (logic mixed with selection)
 - Hard to test individual strategies
 - Cannot reuse strategies elsewhere
+- Grows complex as more options are added
 
 </v-clicks>
 
 ---
 
-# Strategy Pattern: The Solution
+# Strategy Pattern: Traditional Solution
 
-<div class="grid grid-cols-2 gap-6">
-
-<div>
-
-## Traditional Approach
+## Strategy Interface
 
 ```java
-// Strategy interface
 interface ShippingStrategy {
     double calculate(Order order);
 }
+```
 
-// Concrete strategies
-class StandardShipping
-    implements ShippingStrategy {
+## Concrete Strategies
 
+```java
+class StandardShipping implements ShippingStrategy {
     public double calculate(Order order) {
-        return 5.0 +
-            order.weight() * 0.50;
+        return 5.0 + order.weight() * 0.50;
     }
 }
 
-class ExpressShipping
-    implements ShippingStrategy {
-
+class ExpressShipping implements ShippingStrategy {
     public double calculate(Order order) {
-        return 12.0 +
-            order.weight() * 0.75;
+        return 12.0 + order.weight() * 0.75;
     }
 }
 ```
 
-</div>
+---
 
-<div>
+# Using the Traditional Strategy
 
 ## Context Class
 
@@ -281,22 +277,22 @@ class ExpressShipping
 class OrderProcessor {
     private ShippingStrategy strategy;
 
-    public void setStrategy(
-        ShippingStrategy strategy) {
+    public void setStrategy(ShippingStrategy strategy) {
         this.strategy = strategy;
     }
 
-    public double processOrder(
-        Order order) {
+    public double processOrder(Order order) {
         return strategy.calculate(order);
     }
 }
+```
 
-// Usage
+## Usage
+
+```java
 var processor = new OrderProcessor();
-processor.setStrategy(
-    new StandardShipping());
-processor.processOrder(order);
+processor.setStrategy(new StandardShipping());
+double cost = processor.processOrder(order);
 ```
 
 ## Benefits
@@ -304,20 +300,13 @@ processor.processOrder(order);
 ✓ Easy to test
 ✓ Reusable strategies
 
-</div>
-
-</div>
-
 ---
 
 # Modern Java Strategy Pattern
 
-## Using Function Interface & Lambdas
+## Using Function Interface
 
-<v-clicks>
-
-```java {all|1-2|4-12|14-20|22-27|all}
-// No need for interface! Use Function<T, R> from java.util.function
+```java
 import java.util.function.Function;
 
 // Define strategies as Function constants
@@ -331,8 +320,17 @@ class ShippingStrategies {
     public static final Function<Order, Double> OVERNIGHT =
         order -> 25.0 + order.weight() * 1.00;
 }
+```
 
-// Context uses Function interface
+No custom interface needed - use `Function<T, R>` from `java.util.function`
+
+---
+
+# Modern Strategy: Context & Usage
+
+## Context Class
+
+```java
 class OrderProcessor {
     private Function<Order, Double> strategy = ShippingStrategies.STANDARD;
 
@@ -344,21 +342,21 @@ class OrderProcessor {
         return strategy.apply(order);
     }
 }
-
-// Usage - predefined strategies
-processor.setStrategy(ShippingStrategies.EXPRESS);
-
-// Usage - custom lambda
-processor.setStrategy(order -> {
-    double base = 10.0;
-    return order.weight() > 10 ? base * 0.8 : base; // bulk discount
-});
-
-// Usage - method reference
-processor.setStrategy(ShippingCalculator::calculateBulk);
 ```
 
-</v-clicks>
+## Three Ways to Use
+
+```java
+// 1. Predefined strategies
+processor.setStrategy(ShippingStrategies.EXPRESS);
+
+// 2. Custom lambda
+processor.setStrategy(order ->
+    order.weight() > 10 ? 10.0 * 0.8 : 10.0);
+
+// 3. Method reference
+processor.setStrategy(Calculator::calculateBulk);
+```
 
 ---
 
@@ -401,10 +399,9 @@ classDiagram
 
 # Real Example: Payroll Calculation
 
-<div class="text-sm">
+## Data Structure
 
-```java {all|1-10|12-22|24-32|34-42|all}
-// Data record - modern Java immutable data carrier
+```java
 record PayrollData(
     Employee employee,
     Integer hoursWorked,
@@ -414,33 +411,49 @@ record PayrollData(
     Double baseSalary,
     Double commissionRate
 ) {}
+```
 
-// Strategy definitions using Function interface
+Modern Java record for immutable data
+
+---
+
+# Payroll Strategies
+
+```java
 class PayrollStrategies {
     // Hourly with overtime
     public static final Function<PayrollData, Double> HOURLY = data -> {
         int hours = data.hoursWorked();
         double rate = data.hourlyRate();
         if (hours <= 40) return hours * rate;
-        return (40 * rate) + ((hours - 40) * rate * 1.5); // 1.5x overtime
+        return (40 * rate) + ((hours - 40) * rate * 1.5);
     };
 
     // Salaried (bi-weekly)
     public static final Function<PayrollData, Double> SALARIED =
         data -> data.annualSalary() / 26;
 
-    // Commission only
+    // Commission
     public static final Function<PayrollData, Double> COMMISSION =
         data -> data.salesAmount() * data.commissionRate();
 
     // Base + commission
     public static final Function<PayrollData, Double> BASE_PLUS_COMMISSION =
-        data -> data.baseSalary() + (data.salesAmount() * data.commissionRate());
+        data -> data.baseSalary() +
+               (data.salesAmount() * data.commissionRate());
 }
+```
 
-// Context processor
+---
+
+# Payroll Processor
+
+## Context Class
+
+```java
 class PayrollProcessor {
-    private Function<PayrollData, Double> calculator = PayrollStrategies.SALARIED;
+    private Function<PayrollData, Double> calculator =
+        PayrollStrategies.SALARIED;
 
     public void setCalculator(Function<PayrollData, Double> calculator) {
         this.calculator = calculator;
@@ -452,31 +465,41 @@ class PayrollProcessor {
 }
 ```
 
-</div>
+Same pattern, different domain!
 
 ---
 
 # Using the Payroll Strategy
 
-```java {all|1-3|5-9|11-16|18-24|all}
+## Predefined Strategy
+
+```java
 var processor = new PayrollProcessor();
 
-// 1. Predefined strategy
 processor.setCalculator(PayrollStrategies.HOURLY);
-var hourlyData = new PayrollData(employee, 45, 25.0, null, null, null, null);
+var hourlyData = new PayrollData(employee, 45, 25.0,
+    null, null, null, null);
 double pay = processor.processPayroll(hourlyData);
 // Result: (40 * $25) + (5 * $25 * 1.5) = $1,187.50
+```
 
-// 2. Custom lambda - tiered commission
+## Custom Lambda
+
+```java
 processor.setCalculator(data -> {
     double sales = data.salesAmount();
     double commission = sales <= 20000 ?
-        sales * 0.05 :                      // 5% up to $20k
-        (20000 * 0.05) + ((sales - 20000) * 0.08); // 8% above
+        sales * 0.05 :
+        (20000 * 0.05) + ((sales - 20000) * 0.08);
     return data.baseSalary() + commission;
 });
+```
 
-// 3. Batch processing with streams
+---
+
+# Batch Processing with Strategies
+
+```java
 Map<String, Function<PayrollData, Double>> employeeStrategies = Map.of(
     "Alice", PayrollStrategies.HOURLY,
     "Bob", PayrollStrategies.SALARIED,
@@ -488,91 +511,66 @@ List<Double> payments = employees.parallelStream()
     .toList();
 ```
 
+Strategy map + parallel streams = powerful batch processing!
+
 ---
 
 # Strategy Pattern Benefits
 
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Advantages
-
 <v-clicks>
 
-### Open-Closed Principle
-Add new strategies without modifying existing code
+## Core Advantages
 
-### Testability
-Each strategy can be tested independently
-
-### Runtime Flexibility
-Switch strategies at runtime based on context
-
-### Code Reuse
-Strategies can be used across different contexts
-
-### Composition
-Combine strategies or create decorators
-
-</v-clicks>
-
-</div>
-
-<div>
+- **Open-Closed Principle**: Add new strategies without modifying code
+- **Testability**: Each strategy tested independently
+- **Runtime Flexibility**: Switch strategies based on context
+- **Code Reuse**: Use strategies across different contexts
 
 ## Modern Java Benefits
 
-<v-clicks>
-
-### No Boilerplate
-Lambdas eliminate strategy classes
-
-### Type Safety
-Function interface provides compile-time checking
-
-### Parallel Processing
-Easy to use with streams for batch operations
-
-### Method References
-Reuse existing methods as strategies
-
-### Functional Composition
-Chain and combine strategies functionally
+- **No Boilerplate**: Lambdas eliminate strategy classes
+- **Type Safety**: Compile-time checking with `Function<T, R>`
+- **Parallel Processing**: Easy integration with streams
+- **Method References**: Reuse existing methods as strategies
+- **Functional Composition**: Chain and combine strategies
 
 </v-clicks>
-
-</div>
-
-</div>
 
 ---
 
 # When to Use Strategy Pattern
 
-<v-clicks>
-
 ## Perfect Fit ✓
+
+<v-clicks>
 
 - Multiple algorithms for the same task
 - Need to switch algorithms at runtime
-- Want to isolate algorithm implementation from usage
-- Algorithms have conditional logic that's hard to maintain
+- Want to isolate algorithm implementation
+- Complex conditional logic that's hard to maintain
 
-## Examples in Real Systems
+</v-clicks>
+
+---
+
+# Real-World Strategy Examples
+
+<v-clicks>
+
+## Common Use Cases
 
 - **Payment processing**: Credit card, PayPal, Bitcoin
 - **Compression**: ZIP, GZIP, RAR, 7z
-- **Sorting**: Quick sort, merge sort, bubble sort
-- **Validation**: Email, phone, credit card, password rules
+- **Sorting**: Different algorithms based on data size
+- **Validation**: Email, phone, credit card, password
 - **Pricing**: Standard, discount, promotional, tiered
 - **Routing**: Fastest, shortest, scenic, avoid tolls
 
-## Maybe Overkill ✗
+## When to Avoid
 
 - Only one algorithm that rarely changes
 - Algorithm is extremely simple
-- Context doesn't need runtime flexibility
+- No need for runtime flexibility
 
 </v-clicks>
 

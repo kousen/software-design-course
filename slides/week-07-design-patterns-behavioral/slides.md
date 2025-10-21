@@ -326,9 +326,7 @@ No custom interface needed - use `Function<T, R>` from `java.util.function`
 
 ---
 
-# Modern Strategy: Context & Usage
-
-## Context Class
+# Modern Strategy: Context Class
 
 ```java
 class OrderProcessor {
@@ -344,7 +342,11 @@ class OrderProcessor {
 }
 ```
 
-## Three Ways to Use
+Context holds a strategy and delegates calculation
+
+---
+
+# Using Strategies: Three Ways
 
 ```java
 // 1. Predefined strategies
@@ -357,6 +359,8 @@ processor.setStrategy(order ->
 // 3. Method reference
 processor.setStrategy(Calculator::calculateBulk);
 ```
+
+Strategies can be swapped at runtime!
 
 ---
 
@@ -576,15 +580,9 @@ Strategy map + parallel streams = powerful batch processing!
 
 ---
 
-# Strategy vs SOLID Principles
+# Strategy Pattern & Open-Closed Principle
 
-<div class="grid grid-cols-2 gap-6">
-
-<div>
-
-## Open-Closed Principle (OCP)
-
-Remember from Week 6?
+## Remember from Week 6?
 
 ```java
 // OCP Example - DiscountStrategy
@@ -592,17 +590,13 @@ interface DiscountStrategy {
     double calculate(double amount);
 }
 
-class RegularCustomerDiscount
-    implements DiscountStrategy {
-
+class RegularCustomerDiscount implements DiscountStrategy {
     public double calculate(double amount) {
         return amount * 0.90; // 10% off
     }
 }
 
-class VIPCustomerDiscount
-    implements DiscountStrategy {
-
+class VIPCustomerDiscount implements DiscountStrategy {
     public double calculate(double amount) {
         return amount * 0.75; // 25% off
     }
@@ -611,35 +605,29 @@ class VIPCustomerDiscount
 
 This **is** the Strategy pattern!
 
-</div>
+---
 
-<div>
-
-## Strategy Pattern IS OCP
+# Strategy Pattern IS OCP
 
 <v-clicks>
 
 Strategy pattern is the primary way to achieve the Open-Closed Principle
 
-### OCP States
+## OCP States
 "Software entities should be open for extension but closed for modification"
 
-### Strategy Achieves This By
+## Strategy Achieves This By
 - Define strategy interface (**closed**)
 - Create new strategy implementations (**open**)
 - Context uses any strategy via interface
 - Add strategies without changing context
 
-### You've Already Seen It!
+## You've Already Seen It!
 Week 6 OCP examples were Strategy patterns:
 - `DiscountStrategy` for orders
 - `MessageService` implementations (DIP)
 
 </v-clicks>
-
-</div>
-
-</div>
 
 ---
 
@@ -703,9 +691,9 @@ Essential pattern in production systems for:
 
 # Exercise: Temperature Converter Strategy
 
-<div class="text-sm">
-
 Implement a temperature converter with multiple conversion strategies.
+
+<div class="text-sm">
 
 ```java
 record Temperature(double value, String unit) {}
@@ -720,11 +708,18 @@ class ConversionStrategies {
 
     // Celsius to Kelvin: K = C + 273.15
     public static final Function<Temperature, Temperature> CELSIUS_TO_KELVIN = null;
-
-    // Kelvin to Celsius: C = K - 273.15
-    public static final Function<Temperature, Temperature> KELVIN_TO_CELSIUS = null;
 }
+```
 
+</div>
+
+---
+
+# Exercise: Temperature Converter (continued)
+
+<div class="text-sm">
+
+```java
 class TemperatureConverter {
     private Function<Temperature, Temperature> strategy;
 
@@ -739,6 +734,8 @@ class TemperatureConverter {
 ```
 
 **Bonus**: Create a composite strategy that converts Fahrenheit → Celsius → Kelvin
+
+Hint: Use `Function.andThen()` to chain strategies together!
 
 </div>
 

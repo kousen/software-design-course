@@ -202,6 +202,29 @@ live-coding/session-X/       # Gradle submodule
 - Provide live coding opportunities
 - Export to PDF for student access
 
+### Slidev Slide Creation Rules (CRITICAL - Prevent Overflow)
+
+When creating Slidev presentations, follow these **hard limits** to prevent content overflow:
+
+#### Line Count Limits (Strict)
+- **Code blocks**: Maximum 15 lines per slide
+- **Total content**: Maximum 25 lines per slide (including headers, bullets, code, spacing)
+- **If any section exceeds limits**: MUST split into multiple slides immediately
+
+#### Structural Rules
+- Maximum 2 code blocks per slide
+- If using `<v-clicks>` with 4+ sections → split the slide
+- Example exercises with >20 lines of code → split into "Part 1" and "Part 2" slides
+
+#### Enforcement Process
+After writing each slide with code:
+1. Count total lines (headers + bullets + code + spacing)
+2. If > 25 lines, immediately split before continuing
+3. Never defer splitting to "later review"
+
+#### Why These Rules Exist
+Slidev renders in fixed browser windows. Content that looks fine in markdown source will run off the bottom when rendered. These limits have been empirically validated through multiple rounds of fixes.
+
 ## Assignment Design
 
 - Start simple, build complexity

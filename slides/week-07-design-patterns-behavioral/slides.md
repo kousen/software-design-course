@@ -269,9 +269,7 @@ class ExpressShipping implements ShippingStrategy {
 
 ---
 
-# Using the Traditional Strategy
-
-## Context Class
+# Traditional Strategy: Context Class
 
 ```java
 class OrderProcessor {
@@ -286,6 +284,12 @@ class OrderProcessor {
     }
 }
 ```
+
+Context class delegates to the strategy interface
+
+---
+
+# Traditional Strategy: Usage & Benefits
 
 ## Usage
 

@@ -76,11 +76,6 @@ layout: two-cols
 
 # What Are Design Patterns?
 
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-## Definition
-
 <v-clicks>
 
 Reusable solutions to commonly occurring problems in software design
@@ -92,10 +87,9 @@ Reusable solutions to commonly occurring problems in software design
 
 </v-clicks>
 
-</div>
-<div>
+---
 
-## The Gang of Four (GoF)
+# The Gang of Four (GoF)
 
 <v-clicks>
 
@@ -111,9 +105,6 @@ Published in 1994 by:
 - **Behavioral** - Object interaction
 
 </v-clicks>
-
-</div>
-</div>
 
 ---
 

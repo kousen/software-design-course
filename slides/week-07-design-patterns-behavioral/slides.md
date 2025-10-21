@@ -120,17 +120,26 @@ Published in 1994 by:
 
 You'll recognize situations where patterns apply
 
-## Modern Simplification
+## Career Value
+
+Patterns are a common language in technical interviews and code reviews
+
+</v-clicks>
+
+---
+
+# Modern Java Simplifications
 
 Many patterns are simpler with modern Java features:
+
+<v-clicks>
+
 - **Strategy Pattern** → Lambda expressions
 - **Factory Pattern** → Static factory methods (`List.of()`, `Optional.of()`)
 - **Observer Pattern** → Functional reactive programming
 - **Command Pattern** → Method references
 
-## Career Value
-
-Patterns are a common language in technical interviews and code reviews
+But the **concepts** remain essential!
 
 </v-clicks>
 
@@ -604,9 +613,9 @@ This **is** the Strategy pattern!
 
 # Strategy Pattern IS OCP
 
-<v-clicks>
-
 Strategy pattern is the primary way to achieve the Open-Closed Principle
+
+<v-clicks>
 
 ## OCP States
 "Software entities should be open for extension but closed for modification"
@@ -617,10 +626,20 @@ Strategy pattern is the primary way to achieve the Open-Closed Principle
 - Context uses any strategy via interface
 - Add strategies without changing context
 
-## You've Already Seen It!
+</v-clicks>
+
+---
+
+# You've Already Seen Strategy!
+
 Week 6 OCP examples were Strategy patterns:
+
+<v-clicks>
+
 - `DiscountStrategy` for orders
 - `MessageService` implementations (DIP)
+
+Strategy pattern **is** the Open-Closed Principle in action
 
 </v-clicks>
 
@@ -638,7 +657,14 @@ Let's implement a complete shipping calculator with multiple strategies
 3. Allow custom strategies for bulk discounts
 4. Process batch shipments efficiently
 
-## We'll Build
+</v-clicks>
+
+---
+
+# What We'll Build
+
+<v-clicks>
+
 - `ShippingData` record
 - `ShippingStrategies` with Function constants
 - `ShippingCalculator` context class
@@ -667,6 +693,14 @@ Define a family of algorithms, encapsulate each one, make them interchangeable
 - Lambdas replace concrete strategy classes
 - Method references for existing methods
 - Easy to compose and combine
+
+</v-clicks>
+
+---
+
+# Strategy Pattern & SOLID
+
+<v-clicks>
 
 ## Relationship to SOLID
 - **Embodies** Open-Closed Principle
@@ -731,71 +765,6 @@ class TemperatureConverter {
 **Bonus**: Create a composite strategy that converts Fahrenheit → Celsius → Kelvin
 
 Hint: Use `Function.andThen()` to chain strategies together!
-
-</div>
-
----
-
-# Next Session Preview
-
-<div class="grid grid-cols-2 gap-8">
-
-<div>
-
-## Command Pattern
-
-Encapsulate a request as an object
-
-```java
-interface Command {
-    void execute();
-    void undo();
-}
-
-class SaveFileCommand
-    implements Command {
-
-    void execute() { /* save */ }
-    void undo() { /* restore */ }
-}
-```
-
-Use cases:
-- Undo/redo operations
-- Transaction systems
-- Macro recording
-- GUI actions
-
-</div>
-
-<div>
-
-## Template Method Pattern
-
-Define algorithm skeleton, subclasses fill in steps
-
-```java
-abstract class DataProcessor {
-    // Template method
-    public final void process() {
-        loadData();
-        validateData();
-        transformData();
-        saveData();
-    }
-
-    protected abstract void loadData();
-    protected abstract void transformData();
-    // ... concrete methods for common steps
-}
-```
-
-Use cases:
-- Framework hooks
-- Test fixtures
-- Workflow pipelines
-
-</div>
 
 </div>
 

@@ -41,18 +41,30 @@ mdc: true
 ## Command Pattern (First Half)
 - Encapsulating requests as objects
 - Undo/redo functionality
-- Macro commands (Composite pattern integration)
+- Macro commands
 - Real-world applications
 
 ## Template Method Pattern (Second Half)
 - Defining algorithm skeletons
 - Abstract vs. concrete methods
 - Hook methods for customization
-- Framework design patterns
 
-## Both patterns are complementary
-- Command: Encapsulates **what** to do
-- Template Method: Defines **how** to do it
+</v-clicks>
+
+---
+
+# Both Patterns Are Complementary
+
+<v-clicks>
+
+## Command Pattern
+Encapsulates **what** to do
+
+## Template Method Pattern
+Defines **how** to do it
+
+## Together
+They provide complete control over operations
 
 </v-clicks>
 
@@ -178,36 +190,50 @@ class CommandHistory {
 
 # Command Pattern: Structure
 
+## Four Key Participants
+
+<v-clicks>
+
+- **Command**: Interface with `execute()` and `undo()`
+- **ConcreteCommand**: Implements the command
+- **Invoker**: Executes and tracks commands
+- **Receiver**: Performs the actual work
+
+</v-clicks>
+
+---
+
+# Command Pattern: UML Diagram
+
+<div class="text-xs">
+
 ```mermaid
 classDiagram
+    direction LR
     class Command {
         <<interface>>
         +execute()
         +undo()
     }
-
     class ConcreteCommand {
         -receiver
-        -state
         +execute()
         +undo()
     }
-
     class Invoker {
-        -history: Stack~Command~
-        +executeCommand(Command)
+        -history
+        +executeCommand()
         +undo()
-        +redo()
     }
-
     class Receiver {
         +action()
     }
-
     Command <|-- ConcreteCommand
     ConcreteCommand --> Receiver
     Invoker --> Command
 ```
+
+</div>
 
 ---
 
@@ -223,15 +249,11 @@ var history = new CommandHistory();
 // Execute commands
 history.executeCommand(new InsertCommand(editor, "Hello", 0));
 history.executeCommand(new InsertCommand(editor, " World", 5));
-history.executeCommand(new InsertCommand(editor, "!", 11));
 
 System.out.println(editor.getContent());  // "Hello World!"
 
-// Undo operations
-history.undo();  // Remove "!"
+// Undo and redo
 history.undo();  // Remove " World"
-
-// Redo operations
 history.redo();  // Add " World" back
 ```
 
@@ -614,7 +636,15 @@ abstract class DataProcessor {
 - **Testing**: Setup, execute, teardown pattern
 - **Code generation**: Template-based generation
 
-## Real-World Examples
+</v-clicks>
+
+---
+
+# Template Method: Real-World Examples
+
+<v-clicks>
+
+## Frameworks & Libraries
 
 - **JUnit**: Test lifecycle methods
 - **Spring**: Transaction templates, JDBC templates
@@ -737,33 +767,6 @@ Template Method controls transaction lifecycle, Command provides action
 They define **how objects interact** and **distribute responsibility**
 
 </v-click>
-
----
-
-# Assignment
-
-<v-clicks>
-
-## Implement Two Patterns (Due Next Week)
-
-### Option 1: Command Pattern
-Create a drawing application with:
-- Draw shapes commands (Circle, Rectangle, Line)
-- Undo/redo for drawing operations
-- Macro for drawing composite shapes
-- 80% test coverage
-
-### Option 2: Template Method Pattern
-Create a file converter with:
-- Abstract conversion template
-- Concrete implementations (CSV→JSON, JSON→XML, XML→CSV)
-- Validation and transformation steps
-- 80% test coverage
-
-### Bonus: Combine Both Patterns
-Use Template Method for conversion lifecycle, Command for undo/redo
-
-</v-clicks>
 
 ---
 layout: center

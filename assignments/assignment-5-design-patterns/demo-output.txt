@@ -1,0 +1,147 @@
+============================================================
+DESIGN PATTERNS GAME DEMO
+============================================================
+
+============================================================
+DEMO 1: FACTORY METHOD PATTERN
+============================================================
+Creating characters using factory methods...
+
+✓ Conan (WARRIOR) - HP: 150/150, ATK: 40, DEF: 30
+  - High health, melee attack, heavy armor
+
+✓ Gandalf (MAGE) - HP: 80/80, ATK: 60, DEF: 10
+  - High mana, magic attack, standard defense
+
+✓ Legolas (ARCHER) - HP: 100/100, ATK: 50, DEF: 15
+  - Balanced stats, ranged attack with crits
+
+✓ Rogue (ROGUE) - HP: 90/90, ATK: 55, DEF: 20
+  - Agile stats, melee attack
+
+Factory Pattern Benefits:
+• Pre-configured characters with sensible defaults
+• Open-Closed Principle: Add new types without changing existing code
+• Encapsulates complex object creation
+
+============================================================
+DEMO 2: STRATEGY PATTERN
+============================================================
+Demonstrating interchangeable attack strategies...
+
+Initial Setup:
+  Attacker: Fighter (WARRIOR) - HP: 150/150, ATK: 40, DEF: 30
+  Target:   Target (WARRIOR) - HP: 150/150, ATK: 40, DEF: 30
+
+1. Using MELEE attack strategy:
+   → Damage: 48 (attack power × 1.2)
+
+2. Using MAGIC attack strategy (with a Mage):
+   → Damage: 70 (attack power + mana/10)
+   → Mana before: 100, after: 90
+
+3. Switching to RANGED attack strategy:
+   → Damage: 32 (attack power × 0.8)
+
+Strategy Pattern Benefits:
+• Algorithms are interchangeable at runtime
+• Open-Closed Principle: Add new strategies without modifying existing code
+• Clean separation of concerns
+
+============================================================
+DEMO 3: COMMAND PATTERN
+============================================================
+Demonstrating commands with undo...
+
+Initial State:
+  Hero:  150/150 HP
+  Enemy: 150/150 HP
+
+→ Executing ATTACK command:
+  Hero:  150/150 HP
+  Enemy: 132/150 HP (damaged!)
+
+→ Undoing ATTACK command:
+  Hero:  150/150 HP
+  Enemy: 150/150 HP (restored!)
+
+→ Executing HEAL command:
+  Hero damaged: 143/150 HP
+  Hero healed:  150/150 HP
+
+→ Undoing HEAL command:
+  Hero:  143/150 HP (restored to before heal!)
+
+Command Pattern Benefits:
+• Actions are first-class objects
+• Undo/redo support
+• Command history and logging
+• Macro commands (combine multiple commands)
+
+============================================================
+DEMO 4: TEMPLATE METHOD PATTERN
+============================================================
+Demonstrating customizable battle sequences...
+
+Initial State:
+  Attacker: 150/150 HP
+  Defender: 150/150 HP
+
+1. STANDARD Battle Sequence:
+   Steps: begin → preAttack → attack → postAttack → end
+   Attacker: 150/150 HP
+   Defender: 132/150 HP (damaged!)
+
+2. POWER ATTACK Battle Sequence:
+   Steps: begin → power-up → powered attack → recoil → end
+   Attacker: 135/150 HP (recoil damage!)
+   Defender: 122/150 HP (MORE damage!)
+   Recoil taken: 15 HP
+
+Template Method Pattern Benefits:
+• Algorithm structure is fixed (can't be changed)
+• Individual steps can be customized (hooks)
+• Code reuse through inheritance
+• Inversion of Control ("Hollywood Principle")
+
+============================================================
+DEMO 5: ALL PATTERNS WORKING TOGETHER
+============================================================
+A complete battle scenario...
+
+1. FACTORY creates characters:
+   ✓ Hero (Warrior) vs Boss (Mage)
+
+2. STRATEGY determines behavior:
+   ✓ Hero uses Melee attack, Heavy armor defense
+   ✓ Boss uses Magic attack, Standard defense
+
+3. COMMAND executes Turn 1:
+   ✓ Hero attacks Boss
+     Boss: 37/80 HP
+
+4. TEMPLATE METHOD executes Boss turn:
+   ✓ Boss uses POWER ATTACK
+     Hero: 95/150 HP
+     Boss: 29/80 HP (recoil)
+
+5. COMMAND heals Hero:
+   ✓ Hero healed +25 HP
+     Hero: 120/150 HP
+
+6. COMMAND maintains history:
+   ✓ Commands executed: 2
+   ✓ Can undo last 2 actions
+
+Patterns Collaboration:
+• FACTORY creates objects with sensible defaults
+• BUILDER provides flexibility beyond factory
+• STRATEGY makes behavior interchangeable
+• COMMAND makes actions undoable
+• TEMPLATE METHOD standardizes processes
+
+→ Together they create flexible, maintainable code!
+
+============================================================
+Demo complete! All patterns working together.
+============================================================

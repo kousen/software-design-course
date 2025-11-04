@@ -1,6 +1,5 @@
 package edu.trincoll.patterns.behavioral.command;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 

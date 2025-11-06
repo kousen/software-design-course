@@ -24,12 +24,8 @@ public class Chat {
     }
 
     public String chat(String model, String prompt) {
-        String request = """
-                {
-                    "model": "%s",
-                    "input": "%s"
-                }
-                """.formatted(model, prompt);
+        var input = new ChatInput(model, prompt);
+        String request = objectMapper.writeValueAsString(input);
         logger.debug(request);
 
         try {
@@ -44,7 +40,8 @@ public class Chat {
             HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             logger.debug("Status: {}", response.statusCode());
             logger.debug("Response:{}", response.body());
-            return response.body();
+            ChatResponse resp = objectMapper.readValue(response.body(), ChatResponse.class);
+            return resp.output().get(1).content().getFirst().text();
         } catch (Exception e) {
             System.err.println("Request failed: " + e.getMessage());
         }

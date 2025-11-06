@@ -19,6 +19,7 @@ class ChatTest {
         String response = chat.chat("Why is the sky blue?");
         assertNotNull(response);
         assertTrue(response.toLowerCase().contains("scatter"));
+        System.out.println(response);
     }
 
 }

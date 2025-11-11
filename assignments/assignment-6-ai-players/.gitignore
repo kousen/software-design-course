@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# API Keys (NEVER COMMIT THESE!)
+.env
+*.key
+*-key.json
+application-local.yml
+application-local.properties
+
+# Logs
+*.log
+
+# Test outputs
+test-output/

@@ -1,0 +1,73 @@
+package edu.trincoll.game.config;
+
+import org.springframework.ai.anthropic.AnthropicChatModel;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Spring Configuration for ChatClient beans.
+ *
+ * This configuration demonstrates:
+ * - Spring's Dependency Injection
+ * - Factory pattern for creating ChatClient instances
+ * - How to configure multiple AI providers
+ *
+ * Each ChatClient bean is named so it can be injected by qualifier.
+ *
+ * Design Pattern: FACTORY
+ * - Creates different ChatClient instances
+ * - Encapsulates model-specific configuration
+ * - Allows swapping models via dependency injection
+ */
+@Configuration
+public class ChatClientConfig {
+
+    /**
+     * Creates ChatClient for OpenAI (GPT models).
+     *
+     * Configuration comes from application.yml:
+     * - spring.ai.openai.api-key
+     * - spring.ai.openai.chat.options.model
+     *
+     * @param chatModel the auto-configured OpenAI chat model
+     * @return ChatClient configured for OpenAI
+     */
+    @Bean
+    public ChatClient openAiChatClient(OpenAiChatModel chatModel) {
+        return ChatClient.builder(chatModel).build();
+    }
+
+    /**
+     * Creates ChatClient for Anthropic (Claude models).
+     *
+     * Configuration comes from application.yml:
+     * - spring.ai.anthropic.api-key
+     * - spring.ai.anthropic.chat.options.model
+     *
+     * @param chatModel the auto-configured Anthropic chat model
+     * @return ChatClient configured for Anthropic
+     */
+    @Bean
+    public ChatClient anthropicChatClient(AnthropicChatModel chatModel) {
+        return ChatClient.builder(chatModel).build();
+    }
+
+    /**
+     * Creates ChatClient for Google Gemini.
+     *
+     * Configuration comes from application.yml:
+     * - spring.ai.vertex.ai.gemini.project-id
+     * - spring.ai.vertex.ai.gemini.location
+     * - spring.ai.vertex.ai.gemini.chat.options.model
+     *
+     * @param chatModel the auto-configured Vertex AI Gemini chat model
+     * @return ChatClient configured for Gemini
+     */
+    @Bean
+    public ChatClient geminiChatClient(VertexAiGeminiChatModel chatModel) {
+        return ChatClient.builder(chatModel).build();
+    }
+}

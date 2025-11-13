@@ -27,7 +27,6 @@ dependencies {
     implementation("org.springframework.ai:spring-ai-starter-model-anthropic")
     implementation("org.springframework.ai:spring-ai-starter-model-openai")
     implementation("org.springframework.ai:spring-ai-starter-model-vertex-ai-gemini")
-    implementation("org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter")
 
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -8,8 +8,8 @@ spring:
       api-key: ${OPENAI_API_KEY}
       chat:
         options:
-          model: gpt-5  # Latest GPT-5 model
-          temperature: 0.7
+          model: gpt-5  # Latest GPT-5 model (will become gpt-5.1)
+          # Note: GPT-5 does not support custom temperature - always uses 1.0
           max-tokens: 500
 
     # Anthropic Configuration (Claude Sonnet 4.5)

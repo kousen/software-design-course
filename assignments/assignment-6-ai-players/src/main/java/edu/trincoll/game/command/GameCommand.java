@@ -3,7 +3,7 @@ package edu.trincoll.game.command;
 /**
  * Command pattern interface for game actions.
  * Commands encapsulate actions that can be executed and undone.
- *
+ * <p>
  * This demonstrates the Command pattern - turning requests into objects
  * that can be queued, logged, and potentially undone.
  */

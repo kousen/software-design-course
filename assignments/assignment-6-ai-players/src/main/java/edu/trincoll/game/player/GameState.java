@@ -2,11 +2,11 @@ package edu.trincoll.game.player;
 
 /**
  * Immutable record representing the current game state.
- *
+ * <p>
  * This record uses Java's modern features (records from Java 14+)
  * to create an immutable data structure that can be safely shared
  * between different players without worrying about mutation.
- *
+ * <p>
  * Design Pattern: VALUE OBJECT
  * - Immutable
  * - Equals/hashCode based on values

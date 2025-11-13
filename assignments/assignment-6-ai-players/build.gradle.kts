@@ -2,40 +2,42 @@ plugins {
     java
     application
     jacoco
+    id("org.springframework.boot") version "3.5.7"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "edu.trincoll"
 version = "1.0.0"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
+
+extra["springAiVersion"] = "1.0.3"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://repo.spring.io/milestone") }
 }
 
 dependencies {
     // Spring Boot & Spring AI
-    implementation("org.springframework.boot:spring-boot-starter:3.4.1")
-    implementation("org.springframework.ai:spring-ai-openai-spring-boot-starter:1.0.3")
-    implementation("org.springframework.ai:spring-ai-anthropic-spring-boot-starter:1.0.3")
-    implementation("org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter:1.0.3")
-
-    // JSON processing
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.2")
-
-    // Logging
-    implementation("org.slf4j:slf4j-api:2.0.16")
-    implementation("ch.qos.logback:logback-classic:1.5.15")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.ai:spring-ai-starter-model-anthropic")
+    implementation("org.springframework.ai:spring-ai-starter-model-openai")
+    implementation("org.springframework.ai:spring-ai-starter-model-vertex-ai-gemini")
+    implementation("org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter")
 
     // Testing
-    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
-    testImplementation("org.assertj:assertj-core:3.26.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+    }
 }
 
 application {

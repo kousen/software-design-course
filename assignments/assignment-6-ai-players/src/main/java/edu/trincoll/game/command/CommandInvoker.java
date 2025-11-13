@@ -7,9 +7,9 @@ import java.util.Stack;
 /**
  * Invoker for executing and managing commands.
  * Maintains command history for undo operations.
- *
+ * <p>
  * TODO 4c: Implement executeCommand() and undoLastCommand()
- *
+ * <p>
  * This class demonstrates the Command pattern's ability to:
  * - Queue commands for execution
  * - Maintain history

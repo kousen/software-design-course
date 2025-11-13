@@ -10,15 +10,15 @@ import java.util.List;
 
 /**
  * Simple rule-based AI player.
- *
+ * <p>
  * This demonstrates a basic AI strategy using if-then rules.
  * Students will compare this against LLM-based decision-making.
- *
+ * <p>
  * Design Pattern: STRATEGY (concrete strategy)
  * - Implements Player interface
  * - Uses deterministic rules
  * - Provides baseline for AI comparison
- *
+ * <p>
  * Rules:
  * 1. If self HP < 30%, heal self
  * 2. If ally HP < 20%, heal weakest ally

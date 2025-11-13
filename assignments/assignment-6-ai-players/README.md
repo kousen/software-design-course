@@ -531,19 +531,19 @@ The game continues until one team is defeated, showing:
 
 ## Grading Rubric
 
-| Component | Points | Requirements |
-|-----------|--------|--------------|
-| **TODO 1: Build Prompt** | 10 | Comprehensive prompt with all required information |
-| **TODO 2: Call LLM** | 5 | Correct use of ChatClient API |
-| **TODO 3: Parse Response** | 10 | Robust JSON parsing with error handling |
-| **TODO 4: Game Loop** | 15 | Correct turn alternation and win detection |
-| **TODO 5: Process Turn** | 10 | Proper command execution and state updates |
-| **TODO 6: Team Configuration** | 15 | All three LLMs used, valid team setup |
-| **Code Quality** | 10 | Clean code, proper error handling, good naming |
-| **Testing** | 10 | Unit tests for key components |
-| **Documentation** | 10 | README with observations, prompt analysis |
-| **Demo** | 5 | Game runs successfully with all player types |
-| **TOTAL** | **100** | |
+| Component                      | Points  | Requirements                                       |
+|--------------------------------|---------|----------------------------------------------------|
+| **TODO 1: Build Prompt**       | 10      | Comprehensive prompt with all required information |
+| **TODO 2: Call LLM**           | 5       | Correct use of ChatClient API                      |
+| **TODO 3: Parse Response**     | 10      | Robust JSON parsing with error handling            |
+| **TODO 4: Game Loop**          | 15      | Correct turn alternation and win detection         |
+| **TODO 5: Process Turn**       | 10      | Proper command execution and state updates         |
+| **TODO 6: Team Configuration** | 15      | All three LLMs used, valid team setup              |
+| **Code Quality**               | 10      | Clean code, proper error handling, good naming     |
+| **Testing**                    | 10      | Unit tests for key components                      |
+| **Documentation**              | 10      | README with observations, prompt analysis          |
+| **Demo**                       | 5       | Game runs successfully with all player types       |
+| **TOTAL**                      | **100** |                                                    |
 
 ### Code Quality Criteria
 - Clean, readable code with meaningful names
@@ -566,20 +566,20 @@ This assignment reinforces patterns from Assignment 5 and introduces new ones:
 
 ### From Assignment 5
 
-| Pattern | Where Used | Purpose |
-|---------|-----------|---------|
-| **Strategy** | Attack/Defense strategies, Player implementations | Interchangeable algorithms |
-| **Command** | AttackCommand, HealCommand | Encapsulate actions, enable undo |
-| **Factory Method** | CharacterFactory | Create pre-configured characters |
-| **Builder** | Character.builder() | Construct complex objects |
-| **Template Method** | BattleSequence | Define algorithm skeleton |
+| Pattern             | Where Used                                        | Purpose                          |
+|---------------------|---------------------------------------------------|----------------------------------|
+| **Strategy**        | Attack/Defense strategies, Player implementations | Interchangeable algorithms       |
+| **Command**         | AttackCommand, HealCommand                        | Encapsulate actions, enable undo |
+| **Factory Method**  | CharacterFactory                                  | Create pre-configured characters |
+| **Builder**         | Character.builder()                               | Construct complex objects        |
+| **Template Method** | BattleSequence                                    | Define algorithm skeleton        |
 
 ### New in Assignment 6
 
-| Pattern | Where Used | Purpose |
-|---------|-----------|---------|
-| **Adapter** | LLMPlayer | Adapt LLM text responses to GameCommand objects |
-| **Facade** | GameController | Simplify complex game interactions |
+| Pattern      | Where Used     | Purpose                                          |
+|--------------|----------------|--------------------------------------------------|
+| **Adapter**  | LLMPlayer      | Adapt LLM text responses to GameCommand objects  |
+| **Facade**   | GameController | Simplify complex game interactions               |
 | **Mediator** | GameController | Coordinate between players, characters, commands |
 
 ---

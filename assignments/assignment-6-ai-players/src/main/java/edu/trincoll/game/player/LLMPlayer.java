@@ -12,17 +12,17 @@ import java.util.List;
 
 /**
  * LLM-based AI player using Spring AI.
- *
+ * <p>
  * This class demonstrates how to integrate Large Language Models
  * into game AI using the Strategy pattern. The LLM acts as the
  * decision-making algorithm, making this player fundamentally
  * different from rule-based AI.
- *
+ * <p>
  * Design Patterns:
  * - STRATEGY: Implements Player interface with LLM-based decisions
  * - ADAPTER: Adapts LLM output format to game commands
  * - FACADE: Simplifies complex LLM interaction
- *
+ * <p>
  * Students will implement the prompt engineering and response parsing.
  */
 public class LLMPlayer implements Player {
@@ -168,9 +168,8 @@ public class LLMPlayer implements Player {
     private int estimateDamage(Character attacker, Character target) {
         // Rough estimate using attack strategy
         int baseDamage = attacker.attack(target);
-        int damageAfterDefense = target.getDefenseStrategy()
+        return target.getDefenseStrategy()
             .calculateDamageReduction(target, baseDamage);
-        return damageAfterDefense;
     }
 
     /**
@@ -182,7 +181,7 @@ public class LLMPlayer implements Player {
         return characters.stream()
             .filter(c -> c.getName().equalsIgnoreCase(name))
             .findFirst()
-            .orElse(characters.get(0)); // Fallback to first if not found
+            .orElse(characters.getFirst()); // Fallback to first if not found
     }
 
     /**

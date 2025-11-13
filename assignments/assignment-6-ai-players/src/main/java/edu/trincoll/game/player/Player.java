@@ -7,17 +7,16 @@ import java.util.List;
 
 /**
  * Strategy pattern for player decision-making.
- *
+ * <p>
  * This interface demonstrates the Strategy pattern at a higher level:
  * different players (Human, AI, Rule-based) use different algorithms
  * to decide which action to take in the game.
- *
+ * <p>
  * Design Pattern: STRATEGY
  * - Encapsulates decision-making algorithms
  * - Makes players interchangeable
  * - Open-Closed Principle: add new player types without modifying existing code
  */
-@FunctionalInterface
 public interface Player {
     /**
      * Decides what action this player should take.

@@ -15,11 +15,13 @@ import java.util.Map;
  * Main game controller that orchestrates turn-based combat.
  * <p>
  * Design Patterns Demonstrated:
+ * <p>
  * - FACADE: Simplifies complex game loop interactions
  * - MEDIATOR: Coordinates between players, characters, and commands
  * - ITERATOR: Manages turn order
  * <p>
  * This class shows how multiple patterns work together:
+ * <p>
  * - Players (Strategy) make decisions
  * - Commands (Command) encapsulate actions
  * - Controller (Mediator/Facade) orchestrates everything
@@ -47,6 +49,7 @@ public class GameController {
      * TODO 4: Implement game loop (15 points)
      * <p>
      * The game loop should:
+     * <p>
      * 1. Check win condition (isGameOver())
      * 2. Process each character's turn in team1
      * 3. Check win condition again
@@ -55,6 +58,7 @@ public class GameController {
      * 6. Display round summary
      * <p>
      * For each turn:
+     * <p>
      * - Get the Player for the character
      * - Call player.decideAction(character, allies, enemies, gameState)
      * - Execute the command using invoker
@@ -73,6 +77,7 @@ public class GameController {
      * TODO 5: Implement turn processing (10 points)
      * <p>
      * Steps:
+     * <p>
      * 1. Get the player controlling this character
      * 2. Determine allies and enemies lists
      * 3. Call player.decideAction() to get a command
@@ -98,7 +103,7 @@ public class GameController {
 
     /**
      * Checks if the game is over.
-     *
+     * <p>
      * Game ends when all characters on one team are defeated (HP <= 0).
      *
      * @return true if game is over, false otherwise

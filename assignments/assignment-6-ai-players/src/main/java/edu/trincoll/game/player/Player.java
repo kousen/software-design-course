@@ -13,6 +13,7 @@ import java.util.List;
  * to decide which action to take in the game.
  * <p>
  * Design Pattern: STRATEGY
+ * <p>
  * - Encapsulates decision-making algorithms
  * - Makes players interchangeable
  * - Open-Closed Principle: add new player types without modifying existing code

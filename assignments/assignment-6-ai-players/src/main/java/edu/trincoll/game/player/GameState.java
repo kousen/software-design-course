@@ -8,6 +8,7 @@ package edu.trincoll.game.player;
  * between different players without worrying about mutation.
  * <p>
  * Design Pattern: VALUE OBJECT
+ * <p>
  * - Immutable
  * - Equals/hashCode based on values
  * - No identity

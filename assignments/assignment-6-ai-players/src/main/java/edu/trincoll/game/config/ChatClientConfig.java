@@ -9,15 +9,17 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Spring Configuration for ChatClient beans.
- *
+ * <p>
  * This configuration demonstrates:
+ * <p>
  * - Spring's Dependency Injection
  * - Factory pattern for creating ChatClient instances
  * - How to configure multiple AI providers
- *
+ * <p>
  * Each ChatClient bean is named so it can be injected by qualifier.
- *
+ * <p>
  * Design Pattern: FACTORY
+ * <p>
  * - Creates different ChatClient instances
  * - Encapsulates model-specific configuration
  * - Allows swapping models via dependency injection
@@ -27,8 +29,9 @@ public class ChatClientConfig {
 
     /**
      * Creates ChatClient for OpenAI (GPT models).
-     *
+     * <p>
      * Configuration comes from application.yml:
+     * <p>
      * - spring.ai.openai.api-key
      * - spring.ai.openai.chat.options.model
      *
@@ -42,8 +45,9 @@ public class ChatClientConfig {
 
     /**
      * Creates ChatClient for Anthropic (Claude models).
-     *
+     * <p>
      * Configuration comes from application.yml:
+     * <p>
      * - spring.ai.anthropic.api-key
      * - spring.ai.anthropic.chat.options.model
      *
@@ -57,8 +61,9 @@ public class ChatClientConfig {
 
     /**
      * Creates ChatClient for Google Gemini.
-     *
+     * <p>
      * Configuration comes from application.yml:
+     * <p>
      * - spring.ai.vertex.ai.gemini.project-id
      * - spring.ai.vertex.ai.gemini.location
      * - spring.ai.vertex.ai.gemini.chat.options.model

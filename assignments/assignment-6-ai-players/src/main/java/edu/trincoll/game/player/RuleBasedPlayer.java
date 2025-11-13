@@ -15,11 +15,13 @@ import java.util.List;
  * Students will compare this against LLM-based decision-making.
  * <p>
  * Design Pattern: STRATEGY (concrete strategy)
+ * <p>
  * - Implements Player interface
  * - Uses deterministic rules
  * - Provides baseline for AI comparison
  * <p>
  * Rules:
+ * <p>
  * 1. If self HP < 30%, heal self
  * 2. If ally HP < 20%, heal weakest ally
  * 3. Otherwise, attack weakest enemy

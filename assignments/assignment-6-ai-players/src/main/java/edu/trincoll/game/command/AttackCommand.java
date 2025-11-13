@@ -8,11 +8,13 @@ import edu.trincoll.game.model.Character;
  * TODO 4a: Implement execute() and undo()
  * <p>
  * Requirements for execute():
+ * <p>
  * 1. Calculate damage: attacker.attack(target)
  * 2. Apply damage: target.takeDamage(calculatedDamage)
  * 3. Store the damage dealt for potential undo
  * <p>
  * Requirements for undo():
+ * <p>
  * 1. Heal the target for the amount of damage that was dealt
  * 2. Use target.heal(damageDealt)
  * <p>

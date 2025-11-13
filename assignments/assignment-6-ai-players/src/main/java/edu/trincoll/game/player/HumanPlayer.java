@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Human player implementation that reads input from console.
  * <p>
  * Design Pattern: STRATEGY (concrete strategy)
+ * <p>
  * - Implements Player interface
  * - Uses console I/O for decision-making
  * - Interchangeable with AI players

@@ -19,6 +19,7 @@ import java.util.List;
  * different from rule-based AI.
  * <p>
  * Design Patterns:
+ * <p>
  * - STRATEGY: Implements Player interface with LLM-based decisions
  * - ADAPTER: Adapts LLM output format to game commands
  * - FACADE: Simplifies complex LLM interaction

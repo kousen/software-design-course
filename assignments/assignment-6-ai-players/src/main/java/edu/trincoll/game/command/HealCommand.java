@@ -8,12 +8,14 @@ import edu.trincoll.game.model.Character;
  * TODO 4b: Implement execute() and undo()
  * <p>
  * Requirements for execute():
+ * <p>
  * 1. Store the target's current health before healing
  * 2. Heal the target: target.heal(amount)
  * 3. Store the target's health after healing
  * 4. Calculate actual healing done (after - before)
  * <p>
  * Requirements for undo():
+ * <p>
  * 1. Restore health to before healing
  * 2. Use target.setHealth() to set health directly
  *    (Can't use takeDamage as it applies defense)

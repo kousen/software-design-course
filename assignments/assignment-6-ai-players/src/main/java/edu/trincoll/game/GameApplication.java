@@ -21,15 +21,18 @@ import java.util.Scanner;
  * Main Spring Boot application for AI-powered RPG game.
  * <p>
  * This application demonstrates:
+ * <p>
  * - Spring Boot autoconfiguration
  * - Spring AI integration
  * - Command-line game interface
  * - Design patterns working together
  * <p>
  * Run with:
+ * <p>
  *   ./gradlew run
  * <p>
  * Or with API keys:
+ * <p>
  *   OPENAI_API_KEY=xxx ANTHROPIC_API_KEY=yyy ./gradlew run
  */
 @SpringBootApplication
@@ -44,7 +47,7 @@ public class GameApplication {
      * <p>
      * This is where the game setup and execution happens.
      * Students will implement team configuration here.
-     * <p>
+     *
      * @param openAiClient ChatClient for OpenAI/GPT-5
      * @param anthropicClient ChatClient for Anthropic/Claude Sonnet 4.5
      * @param geminiClient ChatClient for Google/Gemini 2.5 Pro
@@ -78,14 +81,17 @@ public class GameApplication {
             // TODO 6: Implement team configuration (15 points)
             // <p>
             // Create two teams with a mix of player types:
+            // <p>
             // - Team 1: Should include at least 1 human player
             // - Team 2: Should use all three AI models (GPT-5, Claude Sonnet 4.5, Gemini 2.5 Pro)
             // <p>
             // Example team setup:
+            // <p>
             //   Team 1: Human Warrior, RuleBasedAI Mage
             //   Team 2: GPT-5 Archer, Claude Sonnet 4.5 Rogue, Gemini 2.5 Pro Warrior
             // <p>
             // Steps:
+            // <p>
             // 1. Create characters using CharacterFactory
             // 2. Create Player instances (Human, LLMPlayer, RuleBasedPlayer)
             // 3. Map each character to their player

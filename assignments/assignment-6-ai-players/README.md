@@ -343,29 +343,47 @@ controller.displayResult();
 
 ### 1. API Keys Required
 
-You'll need API keys for all three providers:
+You'll need API keys for all three providers. Spring Boot reads these from **environment variables** (configured in `application.yml`).
 
-**OpenAI (GPT-5):**
+#### Setting Environment Variables
+
+**Option 1: Shell Export (Mac/Linux)**
 ```bash
 export OPENAI_API_KEY=sk-...
-```
-Sign up: https://platform.openai.com/
-Model: `gpt-5` (latest)
-
-**Anthropic (Claude Sonnet 4.5):**
-```bash
 export ANTHROPIC_API_KEY=sk-ant-...
-```
-Sign up: https://console.anthropic.com/
-Model: `claude-sonnet-4.5` (latest)
-
-**Google Gemini (Gemini 2.5 Pro):**
-```bash
 export GOOGLE_CLOUD_PROJECT_ID=your-project-id
 export GOOGLE_CLOUD_LOCATION=us-central1
 ```
-Setup: https://cloud.google.com/vertex-ai/docs/start/cloud-environment
-Model: `gemini-2.5-pro` (latest)
+
+**Option 2: IntelliJ IDEA Run Configuration**
+1. Edit Run Configuration
+2. Environment Variables section
+3. Add: `OPENAI_API_KEY=sk-...;ANTHROPIC_API_KEY=sk-ant-...`
+
+**Option 3: Gradle Command Line**
+```bash
+OPENAI_API_KEY=sk-... ANTHROPIC_API_KEY=sk-ant-... ./gradlew run
+```
+
+**Option 4: System Environment Variables**
+- Set permanently in your OS environment variables
+
+#### Getting API Keys
+
+**OpenAI (GPT-5):**
+- Sign up: https://platform.openai.com/
+- Generate key at: https://platform.openai.com/api-keys
+- Model: `gpt-5` (latest, will become `gpt-5.1`)
+
+**Anthropic (Claude Sonnet 4.5):**
+- Sign up: https://console.anthropic.com/
+- Generate key at: https://console.anthropic.com/settings/keys
+- Model: `claude-sonnet-4.5` (latest)
+
+**Google Gemini (Gemini 2.5 Pro):**
+- Setup: https://cloud.google.com/vertex-ai/docs/start/cloud-environment
+- Requires Google Cloud project and location
+- Model: `gemini-2.5-pro` (latest)
 
 **Note:** You can request course API keys from the instructor if needed.
 

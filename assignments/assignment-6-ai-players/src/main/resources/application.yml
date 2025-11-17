@@ -8,29 +8,18 @@ spring:
       api-key: ${OPENAI_API_KEY}
       chat:
         options:
-          model: gpt-5  # Latest GPT-5 model (will become gpt-5.1)
-          # Note: GPT-5 does not support custom temperature - always uses 1.0
-          max-tokens: 500
+          model: gpt-5.1  # Latest GPT-5 model
+          temperature: 0.7
+          # Note: GPT-5 does not support max-tokens parameter
 
     # Anthropic Configuration (Claude Sonnet 4.5)
     anthropic:
       api-key: ${ANTHROPIC_API_KEY}
       chat:
         options:
-          model: claude-sonnet-4.5  # Latest Claude Sonnet 4.5
+          model: claude-sonnet-4-5  # Latest Claude Sonnet 4.5 (note: uses dashes)
           temperature: 0.7
           max-tokens: 500
-
-    # Google Gemini Configuration (Gemini 2.5 Pro)
-    vertex:
-      ai:
-        gemini:
-          project-id: ${GOOGLE_CLOUD_PROJECT_ID:your-project-id}
-          location: ${GOOGLE_CLOUD_LOCATION:us-central1}
-          chat:
-            options:
-              model: gemini-2.5-pro  # Latest Gemini 2.5 Pro
-              temperature: 0.7
 
 # Logging Configuration
 logging:

@@ -76,6 +76,9 @@ public class LLMPlayer implements Player {
         //   "reasoning": "why this decision was made"
         // }
         //
+        // IMPORTANT: Some LLMs wrap JSON in markdown code blocks (```json ... ```)
+        // You may need to clean the response before parsing.
+        //
         // Hint: Use objectMapper.readValue(response, Decision.class)
         // Then convert Decision to appropriate GameCommand
     }

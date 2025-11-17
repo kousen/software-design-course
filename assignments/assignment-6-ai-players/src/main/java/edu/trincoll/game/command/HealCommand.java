@@ -4,22 +4,20 @@ import edu.trincoll.game.model.Character;
 
 /**
  * Command to heal a character.
- * <p>
+ *
  * TODO 4b: Implement execute() and undo()
- * <p>
+ *
  * Requirements for execute():
- * <p>
  * 1. Store the target's current health before healing
  * 2. Heal the target: target.heal(amount)
  * 3. Store the target's health after healing
  * 4. Calculate actual healing done (after - before)
- * <p>
+ *
  * Requirements for undo():
- * <p>
  * 1. Restore health to before healing
  * 2. Use target.setHealth() to set health directly
  *    (Can't use takeDamage as it applies defense)
- * <p>
+ *
  * Note: Need to track actual healing because you can't heal above max health.
  */
 public class HealCommand implements GameCommand {
@@ -34,14 +32,24 @@ public class HealCommand implements GameCommand {
 
     @Override
     public void execute() {
-        // TODO 4b: Implement heal execution
-        throw new UnsupportedOperationException("TODO 4b: Implement HealCommand.execute()");
+        // Store health before healing
+        int healthBefore = target.getStats().health();
+
+        // Heal the target
+        target.heal(amount);
+
+        // Store health after healing
+        int healthAfter = target.getStats().health();
+
+        // Calculate actual healing done (respects max health)
+        actualHealingDone = healthAfter - healthBefore;
     }
 
     @Override
     public void undo() {
-        // TODO 4b: Implement heal undo
-        throw new UnsupportedOperationException("TODO 4b: Implement HealCommand.undo()");
+        // Set health directly to undo healing (can't use takeDamage as it applies defense)
+        int currentHealth = target.getStats().health();
+        target.setHealth(currentHealth - actualHealingDone);
     }
 
     @Override

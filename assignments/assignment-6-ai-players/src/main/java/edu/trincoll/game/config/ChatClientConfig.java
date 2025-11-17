@@ -3,7 +3,6 @@ package edu.trincoll.game.config;
 import org.springframework.ai.anthropic.AnthropicChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -56,23 +55,6 @@ public class ChatClientConfig {
      */
     @Bean
     public ChatClient anthropicChatClient(AnthropicChatModel chatModel) {
-        return ChatClient.builder(chatModel).build();
-    }
-
-    /**
-     * Creates ChatClient for Google Gemini.
-     * <p>
-     * Configuration comes from application.yml:
-     * <p>
-     * - spring.ai.vertex.ai.gemini.project-id
-     * - spring.ai.vertex.ai.gemini.location
-     * - spring.ai.vertex.ai.gemini.chat.options.model
-     *
-     * @param chatModel the auto-configured Vertex AI Gemini chat model
-     * @return ChatClient configured for Gemini
-     */
-    @Bean
-    public ChatClient geminiChatClient(VertexAiGeminiChatModel chatModel) {
         return ChatClient.builder(chatModel).build();
     }
 }

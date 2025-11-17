@@ -29,7 +29,7 @@ You're not just calling an API—you're **architecting AI integration** into an 
 ## Learning Objectives
 
 - Understand how design patterns facilitate system extension
-- Integrate Spring AI with OpenAI, Anthropic, and Google Gemini
+- Integrate Spring AI with OpenAI, Anthropic
 - Practice prompt engineering for structured decision-making
 - Compare LLM decision-making strategies
 - See patterns working together in a complete application
@@ -49,7 +49,7 @@ You're **extending** the Assignment 5 game system with three types of players:
 - Baseline for comparison with LLMs
 
 ### 3. LLM Player (Your Focus)
-- Uses GPT-5, Claude Sonnet 4.5, or Gemini 2.5 Pro for decisions
+- Uses GPT-5 or Claude Sonnet 4.5 for decisions
 - Requires prompt engineering
 - Demonstrates state-of-the-art AI decision-making
 
@@ -303,7 +303,7 @@ Set up teams with a mix of player types, ensuring all three LLMs are used.
 
 **Requirements:**
 - **Team 1**: At least 1 human player, 1-2 AI players
-- **Team 2**: All three LLM models (OpenAI, Anthropic, Gemini)
+- **Team 2**: Two LLM models (OpenAI, Anthropic)
 
 **Example Configuration:**
 ```java

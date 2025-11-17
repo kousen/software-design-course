@@ -38,8 +38,11 @@ public abstract class BattleSequence {
      * Make this method final so subclasses can't override the sequence.
      */
     public final void executeTurn() {
-        // TODO 5a: Implement the template method
-        throw new UnsupportedOperationException("TODO 5a: Implement executeTurn() template method");
+        beginTurn();
+        preAttackAction();
+        performAttack();
+        postAttackAction();
+        endTurn();
     }
 
     /**

@@ -24,7 +24,18 @@ import edu.trincoll.game.model.Character;
 public class MagicAttackStrategy implements AttackStrategy {
     @Override
     public int calculateDamage(Character attacker, Character target) {
-        // TODO 1b: Implement magic attack calculation
-        throw new UnsupportedOperationException("TODO 1b: Implement magic attack calculation");
+        // Base damage = attacker's attack power
+        int baseDamage = attacker.getStats().attackPower();
+
+        // Mana bonus = current mana / 10
+        int manaBonus = attacker.getStats().mana() / 10;
+
+        // Total damage = base + mana bonus
+        int totalDamage = baseDamage + manaBonus;
+
+        // Consume 10 mana
+        attacker.useMana(10);
+
+        return totalDamage;
     }
 }

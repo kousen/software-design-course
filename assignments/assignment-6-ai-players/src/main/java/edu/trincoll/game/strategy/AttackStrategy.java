@@ -5,10 +5,11 @@ import edu.trincoll.game.model.Character;
 /**
  * Strategy pattern for attack behaviors.
  * Different attack strategies calculate damage differently.
- * <p>
+ *
  * This is a functional interface, so it can be implemented with lambda expressions
  * for custom attack behaviors (modern Java approach from Week 7).
  */
+@FunctionalInterface
 public interface AttackStrategy {
     /**
      * Calculate damage dealt to the target.

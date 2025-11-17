@@ -7,11 +7,10 @@ import java.util.Stack;
 /**
  * Invoker for executing and managing commands.
  * Maintains command history for undo operations.
- * <p>
+ *
  * TODO 4c: Implement executeCommand() and undoLastCommand()
- * <p>
+ *
  * This class demonstrates the Command pattern's ability to:
- * <p>
  * - Queue commands for execution
  * - Maintain history
  * - Support undo operations
@@ -21,29 +20,38 @@ public class CommandInvoker {
 
     /**
      * TODO 4c: Implement executeCommand()
-     * <p>
+     *
      * Requirements:
-     * <p>
      * 1. Execute the command: command.execute()
      * 2. Add the command to history: commandHistory.push(command)
      */
     public void executeCommand(GameCommand command) {
-        // TODO 4c: Implement command execution
-        throw new UnsupportedOperationException("TODO 4c: Implement executeCommand()");
+        // Execute the command
+        command.execute();
+
+        // Add to history
+        commandHistory.push(command);
     }
 
     /**
      * TODO 4c: Implement undoLastCommand()
-     * <p>
+     *
      * Requirements:
-     * <p>
      * 1. Check if history is empty - if so, return
      * 2. Pop the last command from history
      * 3. Call undo() on that command
      */
     public void undoLastCommand() {
-        // TODO 4c: Implement undo
-        throw new UnsupportedOperationException("TODO 4c: Implement undoLastCommand()");
+        // Check if history is empty
+        if (commandHistory.isEmpty()) {
+            return;
+        }
+
+        // Pop the last command
+        GameCommand command = commandHistory.pop();
+
+        // Undo it
+        command.undo();
     }
 
     /**

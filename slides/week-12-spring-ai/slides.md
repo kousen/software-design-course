@@ -126,7 +126,7 @@ OpenAI  Anthropic  Ollama   Others
 
 Add Spring AI to your project
 
-```gradle
+```kotlin
 dependencies {
     implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
     implementation 'org.springframework.ai:spring-ai-anthropic-spring-boot-starter'
@@ -137,7 +137,7 @@ dependencies {
 
 ## Dependency Management
 
-```gradle
+```kotlin
 dependencyManagement {
     imports {
         mavenBom "org.springframework.ai:spring-ai-bom:1.1.0"

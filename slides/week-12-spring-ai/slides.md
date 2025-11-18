@@ -787,7 +787,7 @@ spring.ai.chat.client.observations:
 
 ## Support
 - Office hours: Wed 1:30-3:00 PM
-- Discussion board
+- Email: kkousen@trincoll.edu
 
 ---
 layout: center

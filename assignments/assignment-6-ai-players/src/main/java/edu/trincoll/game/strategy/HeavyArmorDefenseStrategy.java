@@ -27,16 +27,13 @@ import edu.trincoll.game.model.Character;
 public class HeavyArmorDefenseStrategy implements DefenseStrategy {
     @Override
     public int calculateDamageReduction(Character defender, int incomingDamage) {
-        // Damage reduction = full defense value
-        int damageReduction = defender.getStats().defense();
+        // Maximum reduction allowed is 75% of incoming damage
+        int maxReduction = (int) (incomingDamage * 0.75);
 
-        // Actual damage = incoming - reduction
-        int actualDamage = incomingDamage - damageReduction;
+        // Actual reduction is the lesser of defense or max allowed reduction
+        int actualReduction = Math.min(defender.getStats().defense(), maxReduction);
 
-        // Cap at 75% reduction (minimum 25% damage gets through)
-        int minDamage = (int) (incomingDamage * 0.25);
-
-        // Return the greater of actualDamage or minDamage, ensuring never negative
-        return Math.max(minDamage, Math.max(0, actualDamage));
+        // Damage dealt is incoming minus actual reduction
+        return incomingDamage - actualReduction;
     }
 }

@@ -313,17 +313,17 @@ class CommandPatternTest {
         @Test
         @DisplayName("Should maintain command history across multiple operations")
         void shouldMaintainCommandHistory() {
-            target.setHealth(100);
+            target.setHealth(60);  // Mage max health is 80
 
             GameCommand heal = new HealCommand(target, 20);
             GameCommand attack = new AttackCommand(attacker, target);
 
-            invoker.executeCommand(heal);
-            invoker.executeCommand(attack);
-            invoker.undoLastCommand();
+            invoker.executeCommand(heal);  // 60 + 20 = 80
+            invoker.executeCommand(attack);  // 80 - 43 = 37
+            invoker.undoLastCommand();  // 37 + 43 = 80
 
             // After undoing attack, heal should still be in effect
-            assertThat(target.getStats().health()).isEqualTo(120);
+            assertThat(target.getStats().health()).isEqualTo(80);
         }
     }
 

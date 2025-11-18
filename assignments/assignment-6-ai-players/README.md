@@ -299,11 +299,11 @@ private void processTurn(Character character,
 ### TODO 6: Configure Teams (15 points)
 **File**: `src/main/java/edu/trincoll/game/GameApplication.java` (method: `run` and `createTeamConfiguration`)
 
-Set up teams with a mix of player types, ensuring all three LLMs are used.
+Set up teams with a mix of player types, ensuring both LLM providers are used.
 
 **Requirements:**
 - **Team 1**: At least 1 human player, 1-2 AI players
-- **Team 2**: Two LLM models (OpenAI, Anthropic)
+- **Team 2**: Two LLM players (one OpenAI, one Anthropic)
 
 **Example Configuration:**
 ```java
@@ -312,11 +312,10 @@ Character humanWarrior = CharacterFactory.createWarrior("Conan");
 Character aiMage = CharacterFactory.createMage("Gandalf");
 List<Character> team1 = List.of(humanWarrior, aiMage);
 
-// Team 2: Three LLM players (one of each model)
+// Team 2: Two LLM players (GPT-5 and Claude)
 Character gptArcher = CharacterFactory.createArcher("Legolas");
 Character claudeRogue = CharacterFactory.createRogue("Shadow");
-Character geminiWarrior = CharacterFactory.createWarrior("Tank");
-List<Character> team2 = List.of(gptArcher, claudeRogue, geminiWarrior);
+List<Character> team2 = List.of(gptArcher, claudeRogue);
 
 // Map characters to players
 Map<Character, Player> playerMap = new HashMap<>();
@@ -324,7 +323,6 @@ playerMap.put(humanWarrior, new HumanPlayer());
 playerMap.put(aiMage, new RuleBasedPlayer());
 playerMap.put(gptArcher, new LLMPlayer(openAiClient, "GPT-5"));
 playerMap.put(claudeRogue, new LLMPlayer(anthropicClient, "Claude-Sonnet-4.5"));
-playerMap.put(geminiWarrior, new LLMPlayer(geminiClient, "Gemini-2.5-Pro"));
 
 // Create and run game
 GameController controller = new GameController(team1, team2, playerMap);
@@ -343,7 +341,7 @@ controller.displayResult();
 
 ### 1. API Keys Required
 
-You'll need API keys for all three providers. Spring Boot reads these from **environment variables** (configured in `application.yml`).
+You'll need API keys for both LLM providers. Spring Boot reads these from **environment variables** (configured in `application.yml`).
 
 #### Setting Environment Variables
 
@@ -351,8 +349,6 @@ You'll need API keys for all three providers. Spring Boot reads these from **env
 ```bash
 export OPENAI_API_KEY=sk-...
 export ANTHROPIC_API_KEY=sk-ant-...
-export GOOGLE_CLOUD_PROJECT_ID=your-project-id
-export GOOGLE_CLOUD_LOCATION=us-central1
 ```
 
 **Option 2: IntelliJ IDEA Run Configuration**
@@ -373,17 +369,12 @@ OPENAI_API_KEY=sk-... ANTHROPIC_API_KEY=sk-ant-... ./gradlew run
 **OpenAI (GPT-5):**
 - Sign up: https://platform.openai.com/
 - Generate key at: https://platform.openai.com/api-keys
-- Model: `gpt-5` (latest, will become `gpt-5.1`)
+- Model: `gpt-5.1` (latest)
 
 **Anthropic (Claude Sonnet 4.5):**
 - Sign up: https://console.anthropic.com/
 - Generate key at: https://console.anthropic.com/settings/keys
-- Model: `claude-sonnet-4.5` (latest)
-
-**Google Gemini (Gemini 2.5 Pro):**
-- Setup: https://cloud.google.com/vertex-ai/docs/start/cloud-environment
-- Requires Google Cloud project and location
-- Model: `gemini-2.5-pro` (latest)
+- Model: `claude-sonnet-4-5` (note the dashes)
 
 **Note:** You can request course API keys from the instructor if needed.
 
@@ -399,12 +390,7 @@ OPENAI_API_KEY=sk-... ANTHROPIC_API_KEY=sk-ant-... ./gradlew run
 - Estimated cost per game: ~$0.03-0.10
 - Free tier available for some accounts
 
-**Google Gemini 2.5 Pro:**
-- Competitive pricing with generous free tier
-- Estimated cost per game: ~$0.01-0.05
-- Best for budget-conscious testing
-
-**Recommendation:** Start with Gemini 2.5 Pro (lowest cost), then experiment with GPT-5 and Claude Sonnet 4.5 to compare performance.
+**Recommendation:** Both providers offer reasonable pricing for this assignment. Most students will complete the assignment for under $1 total cost across all testing.
 
 ### 2. Verify Setup
 ```bash
@@ -487,9 +473,8 @@ Team 1:
   - Gandalf (MAGE) - RuleBasedAI
 
 Team 2:
-  - Legolas (ARCHER) - OpenAI GPT-4
-  - Shadow (ROGUE) - Anthropic Claude
-  - Tank (WARRIOR) - Google Gemini
+  - Legolas (ARCHER) - OpenAI GPT-5
+  - Shadow (ROGUE) - Anthropic Claude Sonnet 4.5
 
 ============================================================
 TURN 1 - ROUND 1
@@ -502,7 +487,6 @@ Your Team:
 Enemy Team:
   Legolas (ARCHER) - HP: 100/100, Mana: 20/20
   Shadow (ROGUE) - HP: 90/90, Mana: 30/30
-  Tank (WARRIOR) - HP: 150/150, Mana: 0/0
 
 Your turn, Conan!
 1. Attack an enemy
@@ -512,8 +496,7 @@ Choose action (1-2): 1
 Available targets to attack:
 1. Legolas (ARCHER) - HP: 100/100
 2. Shadow (ROGUE) - HP: 90/90
-3. Tank (WARRIOR) - HP: 150/150
-Choose target (1-3): 2
+Choose target (1-2): 2
 
 → Conan attacks Shadow for 48 damage!
   Shadow: 90 → 42 HP
@@ -531,11 +514,6 @@ Legolas's turn...
 [GPT-5] Reasoning: Focus fire on the human player to reduce their effectiveness
 → Legolas attacks Conan for 32 damage!
   Conan: 150 → 118 HP
-
-Tank's turn...
-[Gemini] Reasoning: Support archer by targeting the mage
-→ Tank attacks Gandalf for 48 damage!
-  Gandalf: 80 → 32 HP
 
 ...
 ```
@@ -556,7 +534,7 @@ The game continues until one team is defeated, showing:
 | **TODO 3: Parse Response**     | 10      | Robust JSON parsing with error handling            |
 | **TODO 4: Game Loop**          | 15      | Correct turn alternation and win detection         |
 | **TODO 5: Process Turn**       | 10      | Proper command execution and state updates         |
-| **TODO 6: Team Configuration** | 15      | All three LLMs used, valid team setup              |
+| **TODO 6: Team Configuration** | 15      | Both LLM providers used, valid team setup          |
 | **Code Quality**               | 10      | Clean code, proper error handling, good naming     |
 | **Testing**                    | 10      | Unit tests for key components                      |
 | **Documentation**              | 10      | README with observations, prompt analysis          |
@@ -667,12 +645,6 @@ As you test, observe differences between models:
 - Balanced approach between aggressive and defensive
 - Good at explaining decisions clearly
 
-**Gemini 2.5 Pro (Google):**
-- Fast responses with strong reasoning
-- Creative and sometimes unexpected strategies
-- Excellent at pattern recognition and adaptation
-- Good at long-term planning
-
 ### What to Document
 
 In your README, include observations:
@@ -680,6 +652,7 @@ In your README, include observations:
 - Which followed the JSON format most consistently?
 - Which had the most interesting reasoning?
 - Which made surprising moves?
+- Did one model seem more aggressive or defensive?
 - Cost comparison (tokens used)?
 
 ---
@@ -792,7 +765,6 @@ Include answers in your README:
 ### LLM Provider Docs
 - OpenAI API: https://platform.openai.com/docs
 - Anthropic Claude: https://docs.anthropic.com/
-- Google Gemini: https://ai.google.dev/docs
 
 ### Design Patterns
 - Assignment 5 patterns

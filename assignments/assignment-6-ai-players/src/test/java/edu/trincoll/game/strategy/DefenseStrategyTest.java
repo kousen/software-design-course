@@ -186,19 +186,20 @@ class DefenseStrategyTest {
         }
 
         @Test
-        @DisplayName("Should never return negative damage")
-        void shouldNeverReturnNegativeDamage() {
+        @DisplayName("Should apply 75% cap even with low incoming damage")
+        void shouldApplyCapWithLowIncomingDamage() {
             // Given: Warrior with 60 defense, incoming 30 damage
             CharacterStats warriorStats = CharacterStats.create(150, 40, 60, 0);
             Character warrior = new Character("Heavy", CharacterType.WARRIOR,
                 warriorStats, new MeleeAttackStrategy(), new HeavyArmorDefenseStrategy());
 
             // When: Calculate actual damage
-            // Expected: 30 - 60 = -30, but should return 0
+            // Max reduction: 30 * 0.75 = 22.5 → 22, defense is 60, so reduce by 22
+            // Damage: 30 - 22 = 8 (25% of 30 gets through due to cap)
             int actualDamage = warrior.defend(30);
 
-            // Then: Actual damage should be 0
-            assertThat(actualDamage).isEqualTo(0);
+            // Then: Actual damage should be 8 (not 0, due to 75% cap)
+            assertThat(actualDamage).isEqualTo(8);
         }
 
         @Test
@@ -210,11 +211,13 @@ class DefenseStrategyTest {
                 warriorStats, new MeleeAttackStrategy(), new HeavyArmorDefenseStrategy());
 
             // When/Then: Test with 200 damage
-            // Max 75% reduction, so 25% of 200 = 50
-            assertThat(warrior.defend(200)).isEqualTo(50);
+            // Max reduction: 200 * 0.75 = 150, defense is 100, so reduce by 100
+            // Damage: 200 - 100 = 100
+            assertThat(warrior.defend(200)).isEqualTo(100);
 
             // When/Then: Test with 80 damage
-            // Max 75% reduction, so 25% of 80 = 20
+            // Max reduction: 80 * 0.75 = 60, defense is 100, so reduce by 60
+            // Damage: 80 - 60 = 20
             assertThat(warrior.defend(80)).isEqualTo(20);
         }
     }

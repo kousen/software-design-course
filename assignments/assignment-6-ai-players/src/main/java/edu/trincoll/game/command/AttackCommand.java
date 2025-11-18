@@ -22,7 +22,7 @@ import edu.trincoll.game.model.Character;
 public class AttackCommand implements GameCommand {
     private final Character attacker;
     private final Character target;
-    private int damageDealt;
+    private int actualHealthLost;
 
     public AttackCommand(Character attacker, Character target) {
         this.attacker = attacker;
@@ -31,17 +31,23 @@ public class AttackCommand implements GameCommand {
 
     @Override
     public void execute() {
+        // Store health before attack
+        int healthBefore = target.getStats().health();
+
         // Calculate damage
-        damageDealt = attacker.attack(target);
+        int damageDealt = attacker.attack(target);
 
         // Apply damage to target
         target.takeDamage(damageDealt);
+
+        // Store actual health lost for undo
+        actualHealthLost = healthBefore - target.getStats().health();
     }
 
     @Override
     public void undo() {
-        // Heal the target for the damage that was dealt
-        target.heal(damageDealt);
+        // Heal the target for the actual health lost
+        target.heal(actualHealthLost);
     }
 
     @Override

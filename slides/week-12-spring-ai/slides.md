@@ -264,19 +264,23 @@ System.out.println(response);
 
 # ChatClient Flow
 
+<div class="flex justify-center">
+<div class="w-2/3">
+
 ```mermaid
 sequenceDiagram
-    participant App as Your App
+    participant App
     participant CC as ChatClient
-    participant AI as LLM Provider
+    participant AI as LLM
 
-    App->>CC: prompt().user("message")
-    CC->>CC: Build request
+    App->>CC: prompt().user()
     CC->>AI: HTTP POST
-    AI-->>CC: JSON Response
-    CC->>CC: Parse response
-    CC-->>App: String content
+    AI-->>CC: JSON
+    CC-->>App: String
 ```
+
+</div>
+</div>
 
 ---
 

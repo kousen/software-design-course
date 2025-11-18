@@ -99,26 +99,25 @@ layout: two-cols
 </v-clicks>
 
 ---
+background: https://source.unsplash.com/1920x1080/?network,architecture
+---
 
 # The Spring AI Architecture
 
-```
-Your Application
-       ↓
-  ChatClient API
-       ↓
-  Spring AI Core
-       ↓
-  ┌────┴────┬─────────┬─────────┐
-  ↓         ↓         ↓         ↓
-OpenAI  Anthropic  Ollama   Others
-```
+```mermaid
+flowchart TD
+    A[Your Application] --> B[ChatClient API]
+    B --> C[Spring AI Core]
+    C --> D[OpenAI]
+    C --> E[Anthropic]
+    C --> F[Ollama]
+    C --> G[Other Providers]
 
-<v-clicks>
+    style B fill:#90EE90,stroke:#333
+    style C fill:#87CEEB,stroke:#333
+```
 
 **Benefits:** Write once, run anywhere - switch providers via config
-
-</v-clicks>
 
 ---
 
@@ -260,6 +259,24 @@ System.out.println(response);
 4. `content()` - Extract response
 
 </v-clicks>
+
+---
+
+# ChatClient Flow
+
+```mermaid
+sequenceDiagram
+    participant App as Your App
+    participant CC as ChatClient
+    participant AI as LLM Provider
+
+    App->>CC: prompt().user("message")
+    CC->>CC: Build request
+    CC->>AI: HTTP POST
+    AI-->>CC: JSON Response
+    CC->>CC: Parse response
+    CC-->>App: String content
+```
 
 ---
 
@@ -437,6 +454,22 @@ String getAiDecision(String prompt) {
 
 ---
 
+# Error Handling Flow
+
+```mermaid
+flowchart LR
+    A[Call LLM] --> B{Success?}
+    B -->|Yes| C[Return Response]
+    B -->|No| D[Log Error]
+    D --> E[Use Fallback]
+    E --> F[Continue Game]
+
+    style D fill:#ffcccc
+    style E fill:#90EE90
+```
+
+---
+
 # Assignment 6: AI Game Players
 
 <v-clicks>
@@ -450,6 +483,31 @@ String getAiDecision(String prompt) {
 **Strategy Pattern:** All implement `Player` interface
 
 </v-clicks>
+
+---
+
+# Assignment 6: Architecture
+
+```mermaid
+classDiagram
+    class Player {
+        <<interface>>
+        +decideAction() GameCommand
+    }
+    class HumanPlayer
+    class RuleBasedPlayer
+    class LLMPlayer {
+        -ChatClient client
+        +buildPrompt()
+    }
+
+    Player <|.. HumanPlayer
+    Player <|.. RuleBasedPlayer
+    Player <|.. LLMPlayer
+    LLMPlayer --> ChatClient
+```
+
+**Strategy + Adapter patterns in action**
 
 ---
 
@@ -556,6 +614,8 @@ Two different AI models making strategic decisions
 </v-click>
 
 ---
+background: https://source.unsplash.com/1920x1080/?security,lock
+---
 
 # Security: API Keys
 
@@ -606,6 +666,8 @@ String prompt = "Summarize: " + userInput;
 
 </v-clicks>
 
+---
+background: https://source.unsplash.com/1920x1080/?money,budget
 ---
 
 # Cost Considerations

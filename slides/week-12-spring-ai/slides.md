@@ -610,23 +610,19 @@ String prompt = "Summarize: " + userInput;
 
 # Cost Considerations
 
-## Pricing (2025)
+**OpenAI GPT-4o:** ~$2.50/$10 per M tokens
 
-**OpenAI GPT-4o:** ~$2.50/$10 per M tokens (in/out)
-
-**Anthropic Claude:** ~$3/$15 per M tokens (in/out)
+**Anthropic Claude:** ~$3/$15 per M tokens
 
 <v-clicks>
 
-## Assignment 6 Cost
+## Assignment 6
 - Per game: $0.02-0.10
-- Total testing: < $1.00
-- New accounts have credits
+- Total: < $1.00
 
 ## Cost Control
-- Use smaller models (gpt-4o-mini)
+- Use mini models
 - Limit max_tokens
-- Cache responses
 
 </v-clicks>
 

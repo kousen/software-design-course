@@ -99,6 +99,8 @@ layout: two-cols
 </v-clicks>
 
 ---
+background: https://source.unsplash.com/1920x1080/?network,architecture
+---
 
 # The Spring AI Architecture
 
@@ -622,6 +624,8 @@ Two different AI models making strategic decisions
 </v-click>
 
 ---
+background: https://source.unsplash.com/1920x1080/?security,lock
+---
 
 # Security: API Keys
 
@@ -672,6 +676,8 @@ String prompt = "Summarize: " + userInput;
 
 </v-clicks>
 
+---
+background: https://source.unsplash.com/1920x1080/?money,budget
 ---
 
 # Cost Considerations

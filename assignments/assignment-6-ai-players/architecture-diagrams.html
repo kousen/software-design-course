@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6: AI Players - Architecture Diagrams</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: 'arial'
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .diagram-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        .description {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        nav {
+            background: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Assignment 6: AI-Powered Game Players - Architecture Diagrams</h1>
+
+    <nav>
+        <a href="#package">Package Structure</a>
+        <a href="#domain">Domain Model</a>
+        <a href="#strategy">Strategy Pattern</a>
+        <a href="#player">Player Hierarchy</a>
+        <a href="#command">Command Pattern</a>
+        <a href="#game-flow">Game Flow</a>
+        <a href="#llm-flow">LLM Decision Flow</a>
+        <a href="#spring">Spring Architecture</a>
+    </nav>
+
+    <h2 id="package">1. Package Structure</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Overview:</strong> The application is organized into focused packages, each representing a design pattern or architectural concern. This structure demonstrates separation of concerns and the use of multiple design patterns working together.
+        </div>
+        <div class="mermaid">
+graph TB
+    subgraph "edu.trincoll.game"
+        App[GameApplication<br/>Spring Boot Entry]
+
+        subgraph Config
+            ChatConfig[ChatClientConfig<br/>Spring AI Setup]
+        end
+
+        subgraph Model
+            Char[Character]
+            Stats[CharacterStats]
+            Type[CharacterType]
+        end
+
+        subgraph Strategy
+            AttackStrat[AttackStrategy]
+            DefenseStrat[DefenseStrategy]
+            MeleeAtk[MeleeAttackStrategy]
+            MagicAtk[MagicAttackStrategy]
+            RangedAtk[RangedAttackStrategy]
+            StdDef[StandardDefenseStrategy]
+            HeavyDef[HeavyArmorDefenseStrategy]
+        end
+
+        subgraph Player
+            PlayerInt[Player Interface]
+            Human[HumanPlayer]
+            RuleBased[RuleBasedPlayer]
+            LLM[LLMPlayer]
+            GameState[GameState]
+        end
+
+        subgraph Command
+            GameCmd[GameCommand]
+            AttackCmd[AttackCommand]
+            HealCmd[HealCommand]
+            Invoker[CommandInvoker]
+        end
+
+        subgraph Factory
+            CharFactory[CharacterFactory]
+        end
+
+        subgraph Template
+            BattleSeq[BattleSequence]
+            StdBattle[StandardBattleSequence]
+        end
+
+        subgraph Controller
+            GameCtrl[GameController<br/>Facade + Mediator]
+        end
+    end
+
+    App --> ChatConfig
+    App --> GameCtrl
+    GameCtrl --> PlayerInt
+    GameCtrl --> Char
+    GameCtrl --> Invoker
+    PlayerInt --> GameCmd
+    Char --> AttackStrat
+    Char --> DefenseStrat
+    CharFactory --> Char
+    LLM --> ChatConfig
+
+    style App fill:#3498db,stroke:#2c3e50,color:#fff
+    style GameCtrl fill:#e74c3c,stroke:#c0392b,color:#fff
+    style LLM fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style ChatConfig fill:#f39c12,stroke:#d68910,color:#fff
+        </div>
+    </div>
+
+    <h2 id="domain">2. Core Domain Model</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Key Pattern:</strong> Strategy Pattern + Builder Pattern. The Character class delegates combat behavior to interchangeable strategies, demonstrating the Open-Closed Principle. CharacterStats uses the Value Object pattern (Java record) for immutability.
+        </div>
+        <div class="mermaid">
+classDiagram
+    class Character {
+        -String name
+        -CharacterType type
+        -CharacterStats stats
+        -AttackStrategy attackStrategy
+        -DefenseStrategy defenseStrategy
+        +attack(Character) int
+        +defend(int) int
+        +takeDamage(int) void
+        +heal(int) void
+        +isAlive() boolean
+        +getStats() CharacterStats
+        +builder() Builder
+    }
+
+    class CharacterStats {
+        &lt;&lt;record&gt;&gt;
+        +int health
+        +int maxHealth
+        +int attackPower
+        +int defense
+        +int mana
+        +int maxMana
+        +withHealth(int) CharacterStats
+        +withMana(int) CharacterStats
+    }
+
+    class CharacterType {
+        &lt;&lt;enumeration&gt;&gt;
+        WARRIOR
+        MAGE
+        ARCHER
+        ROGUE
+    }
+
+    class AttackStrategy {
+        &lt;&lt;interface&gt;&gt;
+        +calculateDamage(Character, Character) int
+    }
+
+    class DefenseStrategy {
+        &lt;&lt;interface&gt;&gt;
+        +calculateDamageReduction(Character, int) int
+    }
+
+    class MeleeAttackStrategy {
+        +calculateDamage(Character, Character) int
+    }
+
+    class MagicAttackStrategy {
+        +calculateDamage(Character, Character) int
+    }
+
+    class RangedAttackStrategy {
+        +calculateDamage(Character, Character) int
+    }
+
+    class StandardDefenseStrategy {
+        +calculateDamageReduction(Character, int) int
+    }
+
+    class HeavyArmorDefenseStrategy {
+        +calculateDamageReduction(Character, int) int
+    }
+
+    Character *-- CharacterStats
+    Character --> CharacterType
+    Character --> AttackStrategy
+    Character --> DefenseStrategy
+
+    AttackStrategy <|.. MeleeAttackStrategy
+    AttackStrategy <|.. MagicAttackStrategy
+    AttackStrategy <|.. RangedAttackStrategy
+
+    DefenseStrategy <|.. StandardDefenseStrategy
+    DefenseStrategy <|.. HeavyArmorDefenseStrategy
+        </div>
+    </div>
+
+    <h2 id="strategy">3. Strategy Pattern - Combat Behaviors</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Pattern:</strong> Strategy Pattern. Different attack and defense algorithms are encapsulated in separate classes, allowing characters to have varied combat behaviors without inheritance. Strategies can be swapped at runtime.
+        </div>
+        <div class="mermaid">
+graph TB
+    subgraph "Attack Strategies"
+        AttackStrat[AttackStrategy Interface<br/>calculateDamage]
+        Melee[MeleeAttackStrategy<br/>baseDamage + strength]
+        Magic[MagicAttackStrategy<br/>baseDamage + mana cost<br/>ignores some defense]
+        Ranged[RangedAttackStrategy<br/>baseDamage + accuracy]
+
+        AttackStrat -.implements.- Melee
+        AttackStrat -.implements.- Magic
+        AttackStrat -.implements.- Ranged
+    end
+
+    subgraph "Defense Strategies"
+        DefenseStrat[DefenseStrategy Interface<br/>calculateDamageReduction]
+        StdDef[StandardDefenseStrategy<br/>defense/2 reduction]
+        HeavyDef[HeavyArmorDefenseStrategy<br/>defense * 0.7 reduction]
+
+        DefenseStrat -.implements.- StdDef
+        DefenseStrat -.implements.- HeavyDef
+    end
+
+    Character[Character] --> AttackStrat
+    Character --> DefenseStrat
+
+    style AttackStrat fill:#3498db,stroke:#2c3e50,color:#fff
+    style DefenseStrat fill:#3498db,stroke:#2c3e50,color:#fff
+    style Character fill:#e74c3c,stroke:#c0392b,color:#fff
+        </div>
+    </div>
+
+    <h2 id="player">4. Player Hierarchy - Decision Making</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Key Pattern:</strong> Strategy Pattern + Adapter Pattern. Different Player implementations provide different decision-making algorithms. LLMPlayer acts as an adapter, converting LLM text responses into GameCommand objects.
+        </div>
+        <div class="mermaid">
+classDiagram
+    class Player {
+        &lt;&lt;interface&gt;&gt;
+        +decideAction(Character, List, List, GameState) GameCommand
+    }
+
+    class GameState {
+        &lt;&lt;record&gt;&gt;
+        +int turnNumber
+        +int roundNumber
+        +boolean canUndo
+        +int commandHistorySize
+        +nextTurn() GameState
+        +nextRound() GameState
+    }
+
+    class HumanPlayer {
+        -Scanner scanner
+        +decideAction() GameCommand
+        -displayGameState()
+        -promptForAction()
+        -promptForTarget()
+    }
+
+    class RuleBasedPlayer {
+        +decideAction() GameCommand
+        -shouldHealSelf() boolean
+        -shouldHealAlly() boolean
+        -findWeakestEnemy() Character
+    }
+
+    class LLMPlayer {
+        -ChatClient chatClient
+        -ObjectMapper objectMapper
+        -String modelName
+        +decideAction() GameCommand
+        -buildPrompt() String
+        -callLLM() String
+        -parseResponse() Decision
+        -formatCharacterList()
+        -estimateDamage()
+    }
+
+    class Decision {
+        &lt;&lt;record&gt;&gt;
+        +String action
+        +String target
+        +String reasoning
+    }
+
+    Player <|.. HumanPlayer
+    Player <|.. RuleBasedPlayer
+    Player <|.. LLMPlayer
+
+    Player ..> GameState
+    Player ..> GameCommand
+    LLMPlayer ..> Decision
+    LLMPlayer --> ChatClient
+        </div>
+    </div>
+
+    <h2 id="command">5. Command Pattern - Action Execution</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Pattern:</strong> Command Pattern. Game actions are encapsulated as objects, enabling undo functionality, command history, and separation of action execution from action invocation. This makes the system extensible to new action types.
+        </div>
+        <div class="mermaid">
+classDiagram
+    class GameCommand {
+        &lt;&lt;interface&gt;&gt;
+        +execute() void
+        +undo() void
+        +getDescription() String
+    }
+
+    class AttackCommand {
+        -Character attacker
+        -Character target
+        -int actualHealthLost
+        +execute() void
+        +undo() void
+        +getDescription() String
+    }
+
+    class HealCommand {
+        -Character target
+        -int amount
+        -int actualHealthGained
+        +execute() void
+        +undo() void
+        +getDescription() String
+    }
+
+    class CommandInvoker {
+        -Stack commandHistory
+        +executeCommand(GameCommand) void
+        +undoLastCommand() void
+        +getCommandHistory() List
+    }
+
+    GameCommand <|.. AttackCommand
+    GameCommand <|.. HealCommand
+    CommandInvoker o-- GameCommand
+
+    AttackCommand --> Character
+    HealCommand --> Character
+        </div>
+    </div>
+
+    <h2 id="game-flow">6. Game Flow Sequence</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Flow:</strong> Main game loop managed by GameController (Facade + Mediator patterns). The controller orchestrates turn-based gameplay, coordinating between players, characters, and command execution while maintaining game state.
+        </div>
+        <div class="mermaid">
+sequenceDiagram
+    participant App as GameApplication
+    participant GC as GameController
+    participant Player as Player
+    participant Char as Character
+    participant Invoker as CommandInvoker
+    participant Cmd as GameCommand
+
+    App->>GC: playGame()
+    activate GC
+
+    loop Until Game Over
+        Note over GC: Team 1 Turns
+        loop For each alive character
+            GC->>GC: processTurn(character, allies, enemies)
+            activate GC
+            GC->>Player: decideAction(character, allies, enemies, gameState)
+            activate Player
+            Player->>Player: Analyze situation
+            Player-->>GC: GameCommand
+            deactivate Player
+
+            GC->>Invoker: executeCommand(command)
+            activate Invoker
+            Invoker->>Cmd: execute()
+            activate Cmd
+            Cmd->>Char: attack() or heal()
+            Char-->>Cmd: result
+            Cmd-->>Invoker: done
+            deactivate Cmd
+            Invoker->>Invoker: push to history
+            Invoker-->>GC: done
+            deactivate Invoker
+
+            GC->>GC: gameState.nextTurn()
+            deactivate GC
+
+            GC->>GC: isGameOver()?
+            alt Game Over
+                GC->>GC: break
+            end
+        end
+
+        Note over GC: Check win condition
+        GC->>GC: isGameOver()?
+        alt Game Over
+            GC->>GC: break
+        end
+
+        Note over GC: Team 2 Turns
+        Note over GC: (Same process as Team 1)
+
+        GC->>GC: gameState.nextRound()
+    end
+
+    GC->>GC: displayResult()
+    deactivate GC
+        </div>
+    </div>
+
+    <h2 id="llm-flow">7. LLM Decision Flow (Assignment Core)</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Assignment Focus:</strong> This diagram shows the three main TODOs students implement. LLMPlayer uses Spring AI ChatClient to get decisions from GPT-5, Claude, or Gemini, then parses JSON responses into executable commands. Includes error handling and fallback strategies.
+        </div>
+        <div class="mermaid">
+sequenceDiagram
+    participant GC as GameController
+    participant LLM as LLMPlayer
+    participant CC as ChatClient
+    participant API as LLM API<br/>(GPT/Claude/Gemini)
+    participant OM as ObjectMapper
+
+    GC->>LLM: decideAction(self, allies, enemies, gameState)
+    activate LLM
+
+    Note over LLM: TODO 1: Build Prompt
+    LLM->>LLM: buildPrompt()
+    activate LLM
+    Note right of LLM: - Character role & status<br/>- Allies info with HP%<br/>- Enemies info with HP%<br/>- Available actions<br/>- Strategy guidance<br/>- JSON format spec
+    LLM-->>LLM: prompt string
+    deactivate LLM
+
+    Note over LLM: TODO 2: Call LLM
+    LLM->>CC: prompt(promptText).call()
+    activate CC
+    CC->>API: HTTP POST /chat/completions
+    activate API
+    API-->>CC: JSON response
+    deactivate API
+    CC-->>LLM: content string
+    deactivate CC
+
+    alt LLM API Error
+        LLM->>LLM: defaultAction(self, enemies)
+        LLM-->>GC: fallback AttackCommand
+    else Success
+        Note over LLM: TODO 3: Parse Response
+        LLM->>LLM: Clean markdown (```json)
+        LLM->>OM: readValue(response, Decision.class)
+        activate OM
+        OM-->>LLM: Decision(action, target, reasoning)
+        deactivate OM
+
+        alt Invalid Decision
+            LLM->>LLM: defaultAction(self, enemies)
+            LLM-->>GC: fallback AttackCommand
+        else Valid Attack
+            LLM->>LLM: findCharacterByName(target, enemies)
+            LLM->>LLM: new AttackCommand(self, target)
+            LLM-->>GC: AttackCommand
+        else Valid Heal
+            LLM->>LLM: findCharacterByName(target, allies)
+            LLM->>LLM: new HealCommand(target, 30)
+            LLM-->>GC: HealCommand
+        end
+    end
+
+    deactivate LLM
+
+    Note over GC: Execute returned command
+        </div>
+    </div>
+
+    <h2 id="spring">8. Spring Boot Architecture</h2>
+    <div class="diagram-container">
+        <div class="description">
+            <strong>Spring Integration:</strong> The application uses Spring Boot for dependency injection and Spring AI for LLM integration. ChatClientConfig creates three ChatClient beans (OpenAI, Anthropic, Gemini), which are injected into the CommandLineRunner for game setup.
+        </div>
+        <div class="mermaid">
+graph TB
+    subgraph "Spring Boot Container"
+        App[GameApplication<br/>@SpringBootApplication]
+
+        subgraph "Configuration Layer"
+            Config[ChatClientConfig<br/>@Configuration]
+            Props[application.yml<br/>API Keys & Models]
+        end
+
+        subgraph "Spring AI Beans"
+            OpenAI[OpenAI ChatClient<br/>GPT-5]
+            Anthropic[Anthropic ChatClient<br/>Claude Sonnet 4.5]
+            Gemini[Gemini ChatClient<br/>Gemini 2.5 Pro]
+        end
+
+        subgraph "Application Layer"
+            Runner[CommandLineRunner<br/>@Bean]
+            GC[GameController]
+        end
+
+        subgraph "Player Instances"
+            Human[HumanPlayer]
+            RuleBased[RuleBasedPlayer]
+            LLM1[LLMPlayer<br/>OpenAI]
+            LLM2[LLMPlayer<br/>Anthropic]
+            LLM3[LLMPlayer<br/>Gemini]
+        end
+    end
+
+    Props --> Config
+    Config --> OpenAI
+    Config --> Anthropic
+    Config --> Gemini
+
+    App --> Config
+    App --> Runner
+
+    Runner --> OpenAI
+    Runner --> Anthropic
+    Runner --> Gemini
+
+    Runner --> Human
+    Runner --> RuleBased
+
+    OpenAI --> LLM1
+    Anthropic --> LLM2
+    Gemini --> LLM3
+
+    Runner --> GC
+    GC --> Human
+    GC --> RuleBased
+    GC --> LLM1
+    GC --> LLM2
+    GC --> LLM3
+
+    style App fill:#2ecc71,stroke:#27ae60,color:#fff
+    style Config fill:#f39c12,stroke:#d68910,color:#fff
+    style OpenAI fill:#3498db,stroke:#2c3e50,color:#fff
+    style Anthropic fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style Gemini fill:#e74c3c,stroke:#c0392b,color:#fff
+    style GC fill:#1abc9c,stroke:#16a085,color:#fff
+        </div>
+    </div>
+
+    <h2>Design Patterns Summary</h2>
+    <div class="diagram-container">
+        <div class="mermaid">
+graph LR
+    subgraph "Design Patterns Used"
+        S1[Strategy Pattern<br/>Combat & Players]
+        S2[Command Pattern<br/>Actions & Undo]
+        S3[Factory Pattern<br/>Character Creation]
+        S4[Builder Pattern<br/>Character Building]
+        S5[Template Method<br/>Battle Sequence]
+        S6[Adapter Pattern<br/>LLM → Command]
+        S7[Facade Pattern<br/>GameController]
+        S8[Mediator Pattern<br/>Component Coordination]
+        S9[Value Object<br/>Immutable Records]
+    end
+
+    style S1 fill:#3498db,stroke:#2c3e50,color:#fff
+    style S2 fill:#3498db,stroke:#2c3e50,color:#fff
+    style S3 fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style S4 fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style S5 fill:#9b59b6,stroke:#8e44ad,color:#fff
+    style S6 fill:#e74c3c,stroke:#c0392b,color:#fff
+    style S7 fill:#e74c3c,stroke:#c0392b,color:#fff
+    style S8 fill:#e74c3c,stroke:#c0392b,color:#fff
+    style S9 fill:#f39c12,stroke:#d68910,color:#fff
+        </div>
+        <div class="description">
+            <strong>Legend:</strong>
+            <ul>
+                <li><span style="color: #3498db;">■</span> <strong>Behavioral Patterns</strong> - Strategy, Command</li>
+                <li><span style="color: #9b59b6;">■</span> <strong>Creational Patterns</strong> - Factory, Builder, Template Method</li>
+                <li><span style="color: #e74c3c;">■</span> <strong>Structural Patterns</strong> - Adapter, Facade, Mediator</li>
+                <li><span style="color: #f39c12;">■</span> <strong>Other Patterns</strong> - Value Object</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer style="margin-top: 50px; padding: 20px; background: #ecf0f1; border-radius: 5px; text-align: center;">
+        <p><strong>Assignment 6: AI-Powered Game Players</strong></p>
+        <p>CPSC 310: Software Design - Fall 2025</p>
+        <p>This assignment demonstrates how AI (LLMs) can be integrated into existing systems using design patterns, particularly the Adapter pattern to convert unstructured LLM responses into structured commands.</p>
+    </footer>
+</body>
+</html>

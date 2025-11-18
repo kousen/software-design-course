@@ -844,6 +844,8 @@ spring.ai.chat.client.observations:
 </v-clicks>
 
 ---
+layout: default
+---
 
 # Resources
 

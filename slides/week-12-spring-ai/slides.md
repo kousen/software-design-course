@@ -492,16 +492,19 @@ flowchart LR
 
 # Assignment 6: Architecture
 
+<div class="flex justify-center">
+<div class="w-3/4">
+
 ```mermaid
 classDiagram
     class Player {
         <<interface>>
-        +decideAction() GameCommand
+        +decideAction()
     }
     class HumanPlayer
     class RuleBasedPlayer
     class LLMPlayer {
-        -ChatClient client
+        -ChatClient
         +buildPrompt()
     }
 
@@ -510,6 +513,9 @@ classDiagram
     Player <|.. LLMPlayer
     LLMPlayer --> ChatClient
 ```
+
+</div>
+</div>
 
 **Strategy + Adapter patterns in action**
 

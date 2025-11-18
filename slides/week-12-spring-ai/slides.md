@@ -458,31 +458,18 @@ String getAiDecision(String prompt) {
 Build the LLM prompt
 
 ```java
-class LLMPlayer implements Player {
-
-    String buildPrompt(Character self,
-                      List<Character> allies,
-                      List<Character> enemies,
-                      GameState state) {
-        return """
-            You are %s, a %s with %d/%d HP.
-
-            YOUR TEAM:
-            %s
-
-            ENEMIES:
-            %s
-
-            Choose: attack <enemy> or heal <ally>
-            JSON: {"action": "...", "target": "...", "reasoning": "..."}
-            """.formatted(
-                self.getName(),
-                self.getType(),
-                self.getHealth(), self.getMaxHealth(),
-                formatCharacterList(allies),
-                formatCharacterList(enemies)
-            );
-    }
+String buildPrompt(Character self, List<Character> allies,
+                   List<Character> enemies, GameState state) {
+    return """
+        You are %s, a %s with %d/%d HP.
+        YOUR TEAM: %s
+        ENEMIES: %s
+        Choose: attack <enemy> or heal <ally>
+        JSON: {"action": "...", "target": "...", "reasoning": "..."}
+        """.formatted(self.getName(), self.getType(),
+            self.getHealth(), self.getMaxHealth(),
+            formatCharacterList(allies),
+            formatCharacterList(enemies));
 }
 ```
 
@@ -493,35 +480,19 @@ class LLMPlayer implements Player {
 Call the LLM
 
 ```java
-GameCommand decideAction(Character self,
-                        List<Character> allies,
-                        List<Character> enemies,
-                        GameState state) {
-
+GameCommand decideAction(Character self, List<Character> allies,
+                        List<Character> enemies, GameState state) {
     String prompt = buildPrompt(self, allies, enemies, state);
 
-    String response = chatClient.prompt()
-        .user(prompt)
-        .call()
-        .content();
-
-    // TODO 3: Parse the response...
+    try {
+        String response = chatClient.prompt()
+            .user(prompt).call().content();
+        // TODO 3: Parse the response...
+    } catch (Exception e) {
+        return fallbackAction(self, enemies);
+    }
 }
 ```
-
-<v-click>
-
-## Add Error Handling!
-
-```java
-try {
-    String response = chatClient.prompt()...
-} catch (Exception e) {
-    return fallbackAction(self, enemies);
-}
-```
-
-</v-click>
 
 ---
 

@@ -420,29 +420,24 @@ Decision decision = mapper.readValue(response, Decision.class);
 
 # Error Handling
 
-LLM calls can fail - always have a fallback
+Always have a fallback
 
 ```java
 String getAiDecision(String prompt) {
     try {
         return chatClient.prompt()
-            .user(prompt)
-            .call()
-            .content();
+            .user(prompt).call().content();
     } catch (Exception e) {
-        logger.error("LLM failed", e);
         return fallbackDecision();
     }
 }
 ```
 
-**Common errors:** Network, rate limits, invalid keys
+**Errors:** Network, rate limits, invalid keys
 
 ---
 
 # Assignment 6: AI Game Players
-
-Integrate LLMs into your RPG game
 
 <v-clicks>
 
@@ -452,9 +447,7 @@ Integrate LLMs into your RPG game
 2. **RuleBasedPlayer** - If-then logic
 3. **LLMPlayer** - ChatClient decisions
 
-## Strategy Pattern
-
-All implement `Player` interface - design patterns make this trivial!
+**Strategy Pattern:** All implement `Player` interface
 
 </v-clicks>
 

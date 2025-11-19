@@ -23,17 +23,18 @@ edu.trincoll.solutions/
 - Strategic guidance based on character type
 - JSON format specification with examples
 
-**TODO 2: Call LLM** (5 points)
+**TODO 2: Call LLM and Parse Response** (15 points)
 - Spring AI ChatClient integration
-- Proper use of fluent API (`.prompt().user().call().content()`)
-- Error handling for API failures
+- Proper use of fluent API with automatic deserialization (`.prompt().user().call().entity(Decision.class)`)
+- Spring AI automatically handles JSON parsing to Decision record
+- Error handling for API failures and invalid JSON
 
-**TODO 3: Parse Response** (10 points)
-- Jackson ObjectMapper for JSON parsing
+**TODO 3: Convert Decision to GameCommand** (10 points)
 - Validation of action and target
 - Character name lookup with fallbacks
+- Switch expression to create appropriate GameCommand
 - Robust error handling
-- Default action when parsing fails
+- Default action when validation fails
 
 ### ✅ GameControllerSolution (TODOs 4-5)
 

@@ -1,10 +1,11 @@
 # Assignment 6: AI-Powered Game Players
 
-- **Due:** TBD
+- **Due:** December 2, 2025 at 11:59 PM
 - **Points:** 100
 - **Submission:** Via GitHub (one per team)
 - **Prerequisites:** Assignment 5 (Design Patterns)
 - **Build Requirements:** Gradle 9.1.0, Java 21+
+- **GitHub Repository:** https://github.com/kousen/assignment-6-ai-players
 
 ## Overview
 
@@ -142,38 +143,26 @@ Respond ONLY with JSON:
 
 ---
 
-### TODO 2: Call the LLM (5 points)
+### TODO 2: Call the LLM and Parse Response (15 points)
 **File**: `src/main/java/edu/trincoll/game/player/LLMPlayer.java` (method: `decideAction`)
 
-Use Spring AI's `ChatClient` to get a response from the LLM.
+Use Spring AI's `ChatClient` to get a `Decision` object from the LLM. Spring AI will automatically deserialize the JSON response.
 
 **Implementation:**
 ```java
-String response = chatClient.prompt()
+Decision decision = chatClient.prompt()
     .user(prompt)
     .call()
-    .content();
+    .entity(Decision.class);
 ```
 
 **Key Concepts:**
 - `ChatClient` is Spring AI's fluent API
 - `.user(prompt)` sets the user message
 - `.call()` executes synchronously
-- `.content()` extracts the string response
+- `.entity(Decision.class)` automatically deserializes JSON to the `Decision` record
 
-**Error Handling:**
-- LLM calls can fail (network, rate limits, API errors)
-- Wrap in try-catch
-- Fall back to `RuleBasedPlayer` logic on failure
-
----
-
-### TODO 3: Parse LLM Response (10 points)
-**File**: `src/main/java/edu/trincoll/game/player/LLMPlayer.java` (method: `decideAction`)
-
-Convert the LLM's JSON response into a `GameCommand`.
-
-**Expected JSON:**
+**Expected JSON from LLM:**
 ```json
 {
   "action": "attack",
@@ -182,18 +171,27 @@ Convert the LLM's JSON response into a `GameCommand`.
 }
 ```
 
+**Error Handling:**
+- LLM calls can fail (network, rate limits, API errors, invalid JSON)
+- Wrap in try-catch
+- Fall back to `RuleBasedPlayer` logic on failure
+
+---
+
+### TODO 3: Convert Decision to GameCommand (10 points)
+**File**: `src/main/java/edu/trincoll/game/player/LLMPlayer.java` (method: `decideAction`)
+
+Convert the `Decision` object into an appropriate `GameCommand`.
+
 **Implementation Steps:**
-1. Parse JSON to `Decision` record (provided)
-2. Validate action and target
-3. Find target character in appropriate list
-4. Create corresponding `GameCommand`:
+1. Validate action and target are not null
+2. Find target character in appropriate list (enemies for attack, allies for heal)
+3. Create corresponding `GameCommand`:
    - "attack" → `new AttackCommand(self, target)`
    - "heal" → `new HealCommand(target, 30)`
 
-**Use Jackson ObjectMapper:**
+**Example:**
 ```java
-Decision decision = objectMapper.readValue(response, Decision.class);
-
 // Validate
 if (decision.action() == null || decision.target() == null) {
     // Fall back to default action
@@ -205,7 +203,7 @@ Character target = decision.action().equals("attack")
     : findCharacterByName(decision.target(), allies);
 
 // Create command
-return switch (decision.action()) {
+return switch (decision.action().toLowerCase()) {
     case "attack" -> new AttackCommand(self, target);
     case "heal" -> new HealCommand(target, 30);
     default -> defaultAction(self, enemies); // Fallback
@@ -214,7 +212,7 @@ return switch (decision.action()) {
 
 **Error Handling:**
 - LLMs don't always follow formats perfectly
-- Handle malformed JSON gracefully
+- Handle validation failures gracefully
 - Provide sensible defaults (attack weakest enemy)
 
 ---

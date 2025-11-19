@@ -1,7 +1,6 @@
 package edu.trincoll.game.player;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.trincoll.game.command.AttackCommand;
 import edu.trincoll.game.command.GameCommand;
 import edu.trincoll.game.command.HealCommand;
@@ -28,13 +27,11 @@ import java.util.List;
  */
 public class LLMPlayer implements Player {
     private final ChatClient chatClient;
-    private final ObjectMapper objectMapper;
     private final String modelName;
 
     public LLMPlayer(ChatClient chatClient, String modelName) {
         this.chatClient = chatClient;
         this.modelName = modelName;
-        this.objectMapper = new ObjectMapper();
     }
 
     @Override
@@ -54,33 +51,33 @@ public class LLMPlayer implements Player {
         // Good prompts should be clear, structured, and include examples
         String prompt = buildPrompt(self, allies, enemies, gameState);
 
-        // TODO 2: Call the LLM (5 points)
-        // Use the ChatClient to get a response from the LLM
-        // The response should be a JSON string with the decision
+        // TODO 2: Call the LLM and parse response (15 points)
+        // Use the ChatClient to get a Decision object from the LLM
+        // Spring AI will automatically deserialize the JSON response into the Decision record
         //
         // Example:
-        //   String response = chatClient.prompt()
+        //   Decision decision = chatClient.prompt()
         //       .user(prompt)
         //       .call()
-        //       .content();
-        throw new UnsupportedOperationException("TODO 2: Implement LLM call");
-
-        // TODO 3: Parse the response (10 points)
-        // Convert the LLM's JSON response into a GameCommand
-        // Handle parsing errors gracefully (fallback to default action)
+        //       .entity(Decision.class);
         //
-        // Expected JSON format:
+        // Handle errors gracefully (fallback to default action if parsing fails)
+        //
+        // Expected JSON format from LLM:
         // {
         //   "action": "attack" | "heal",
         //   "target": "character_name",
         //   "reasoning": "why this decision was made"
         // }
+        throw new UnsupportedOperationException("TODO 2: Implement LLM call and parse response");
+
+        // TODO 3: Convert Decision to GameCommand (10 points)
+        // Based on the decision.action(), create the appropriate GameCommand:
+        // - "attack" -> new AttackCommand(self, target)
+        // - "heal" -> new HealCommand(self, target)
         //
-        // IMPORTANT: Some LLMs wrap JSON in markdown code blocks (```json ... ```)
-        // You may need to clean the response before parsing.
-        //
-        // Hint: Use objectMapper.readValue(response, Decision.class)
-        // Then convert Decision to appropriate GameCommand
+        // Use findCharacterByName() to locate the target character
+        // Hint: Use a switch expression or if-else to handle different actions
     }
 
     /**

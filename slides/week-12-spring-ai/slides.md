@@ -847,28 +847,19 @@ Preventing denial of message origin
 
 # Message Integrity
 
-How signatures detect tampering
+Any change to message produces different hash
 
 ```mermaid
-flowchart TD
-    A[Original: 'Hello'] -->|Hash| B[Hash: abc123]
-    C[Tampered: 'Goodbye'] -->|Hash| D[Hash: xyz789]
+flowchart LR
+    A[Message: 'Hello'] -->|Hash| B[abc123]
+    C[Modified: 'Goodbye'] -->|Hash| D[xyz789]
+    B -.->|Different| E[❌ Tampered]
+    D -.->|Different| E
 
-    B --> E{Hashes<br/>Match?}
-    D --> E
-    E -->|No| F[Tampering Detected!]
-
-    style F fill:#ffcccc
+    style E fill:#ffcccc
 ```
 
-<v-clicks>
-
-**Key Insight:**
-- Any change to message → different hash
-- Different hash → signature verification fails
-- Provides tamper detection
-
-</v-clicks>
+**Key Insight:** Different hash → signature fails → tamper detected
 
 ---
 background: https://cover.sli.dev

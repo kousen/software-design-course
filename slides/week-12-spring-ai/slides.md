@@ -345,22 +345,18 @@ Configure different models
 class ChatClientConfig {
 
     @Bean
-    ChatClient openAiClient(OpenAiChatModel model) {
-        return ChatClient.builder(model)
-            .defaultSystem("You are helpful")
-            .build();
+    ChatClient openAiChatClient(OpenAiChatModel model) {
+        return ChatClient.builder(model).build();
     }
 
     @Bean
-    ChatClient anthropicClient(AnthropicChatModel model) {
-        return ChatClient.builder(model)
-            .defaultSystem("You are strategic")
-            .build();
+    ChatClient anthropicChatClient(AnthropicChatModel model) {
+        return ChatClient.builder(model).build();
     }
 }
 ```
 
-Disable auto-config: `spring.ai.chat.client.enabled: false`
+Bean names match injection qualifiers
 
 ---
 
@@ -374,18 +370,14 @@ class GameService {
     private final ChatClient openAiClient;
     private final ChatClient anthropicClient;
 
-    GameService(@Qualifier("openAiClient") ChatClient openAi,
-                @Qualifier("anthropicClient") ChatClient anthropic) {
+    GameService(@Qualifier("openAiChatClient") ChatClient openAi,
+                @Qualifier("anthropicChatClient") ChatClient anthropic) {
         this.openAiClient = openAi;
         this.anthropicClient = anthropic;
     }
 
-    String getOpenAiDecision(String prompt) {
+    String getDecision(String prompt) {
         return openAiClient.prompt().user(prompt).call().content();
-    }
-
-    String getClaudeDecision(String prompt) {
-        return anthropicClient.prompt().user(prompt).call().content();
     }
 }
 ```
@@ -415,27 +407,81 @@ String response = chatClient.prompt()
 
 ---
 
-# Parsing JSON Responses
+# Structured Outputs with .entity()
 
-Convert LLM output to Java objects
+ChatClient can parse JSON responses automatically
 
 ```java
 record Decision(String action, String target, String reasoning) {}
 
-String response = chatClient.prompt()
-    .user("Choose an action...")
+Decision decision = chatClient.prompt()
+    .user("Choose an action: attack or heal")
     .call()
-    .content();
+    .entity(Decision.class);
+```
 
-ObjectMapper mapper = new ObjectMapper();
-Decision decision = mapper.readValue(response, Decision.class);
+<v-clicks>
+
+## How It Works
+- LLM returns JSON matching your record structure
+- Spring AI handles parsing automatically
+- No manual ObjectMapper needed
+- Type-safe and clean
+
+</v-clicks>
+
+---
+
+# Using .entity() with Complex Types
+
+Works with nested structures
+
+```java
+record GameAction(
+    String action,
+    String target,
+    String reasoning,
+    int priority
+) {}
+
+GameAction action = chatClient.prompt()
+    .user(buildGamePrompt())
+    .call()
+    .entity(GameAction.class);
 ```
 
 <v-click>
 
-**Always validate!** LLMs don't always follow formats
+**Spring AI automatically:**
+- Requests JSON output from LLM
+- Validates structure
+- Handles type conversion
 
 </v-click>
+
+---
+
+# Decision Record with Validation
+
+Use Jackson annotations for required fields
+
+```java
+public record Decision(
+    @JsonProperty(required = true) String action,
+    @JsonProperty(required = true) String target,
+    @JsonProperty String reasoning
+) {}
+```
+
+<v-clicks>
+
+## Benefits
+- Type-safe LLM responses
+- Automatic validation
+- Clear contract with LLM
+- Works with .entity() method
+
+</v-clicks>
 
 ---
 
@@ -545,7 +591,7 @@ String buildPrompt(Character self, List<Character> allies,
 
 # Assignment 6: TODO 2
 
-Call the LLM
+Call the LLM using .entity()
 
 ```java
 GameCommand decideAction(Character self, List<Character> allies,
@@ -553,11 +599,14 @@ GameCommand decideAction(Character self, List<Character> allies,
     String prompt = buildPrompt(self, allies, enemies, state);
 
     try {
-        String response = chatClient.prompt()
-            .user(prompt).call().content();
-        // TODO 3: Parse the response...
+        Decision decision = chatClient.prompt()
+            .user(prompt)
+            .call()
+            .entity(Decision.class);
+
+        // TODO 3: Convert Decision to GameCommand...
     } catch (Exception e) {
-        return fallbackAction(self, enemies);
+        return defaultAction(self, enemies);
     }
 }
 ```
@@ -566,21 +615,21 @@ GameCommand decideAction(Character self, List<Character> allies,
 
 # Assignment 6: TODO 3
 
-Parse LLM response to GameCommand
+Convert Decision to GameCommand
 
 ```java
-String response = chatClient.prompt()...
-
-Decision decision = objectMapper.readValue(response, Decision.class);
-
+// decision is already a Decision object from TODO 2
 Character target = decision.action().equals("attack")
     ? findCharacterByName(decision.target(), enemies)
     : findCharacterByName(decision.target(), allies);
 
-return switch (decision.action()) {
+return switch (decision.action().toLowerCase()) {
     case "attack" -> new AttackCommand(self, target);
     case "heal" -> new HealCommand(target, 30);
-    default -> fallbackAction(self, enemies);
+    default -> {
+        System.out.println("Unknown action: " + decision.action());
+        yield defaultAction(self, enemies);
+    }
 };
 ```
 
@@ -588,7 +637,7 @@ return switch (decision.action()) {
 
 ## Adapter Pattern
 
-`LLMPlayer` adapts text responses to `GameCommand` objects
+`LLMPlayer` adapts LLM JSON to `GameCommand` objects
 
 </v-click>
 
@@ -610,8 +659,8 @@ Character rogue = CharacterFactory.createRogue("Shadow");
 Map<Character, Player> playerMap = Map.of(
     warrior, new HumanPlayer(),
     mage, new RuleBasedPlayer(),
-    archer, new LLMPlayer(openAiClient, "GPT-4o"),
-    rogue, new LLMPlayer(anthropicClient, "Claude-Sonnet-4.5")
+    archer, new LLMPlayer(openAiChatClient, "GPT-4o"),
+    rogue, new LLMPlayer(anthropicChatClient, "Claude-Sonnet-4.5")
 );
 ```
 

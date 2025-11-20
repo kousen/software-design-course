@@ -748,15 +748,19 @@ sequenceDiagram
     participant Alice
     participant Bob
 
-    Note over Bob: Bob generates<br/>key pair
     Bob->>Alice: Bob's Public Key
-    Alice->>Alice: Encrypt message<br/>with Bob's Public Key
     Alice->>Bob: Encrypted Message
-    Bob->>Bob: Decrypt with<br/>Bob's Private Key
-    Note over Bob: Only Bob can<br/>read the message
+    Bob->>Bob: Decrypt with Private Key
 ```
 
-**Example:** Sending sensitive data over the internet
+<v-clicks>
+
+**Process:**
+1. Bob shares his public key
+2. Alice encrypts with Bob's public key
+3. Only Bob's private key can decrypt
+
+</v-clicks>
 
 ---
 
@@ -769,39 +773,49 @@ sequenceDiagram
     participant Alice
     participant Bob
 
-    Note over Alice: Alice generates<br/>key pair
-    Alice->>Bob: Alice's Public Key
-    Alice->>Alice: Sign message<br/>with Alice's Private Key
+    Alice->>Bob: Public Key
     Alice->>Bob: Message + Signature
-    Bob->>Bob: Verify signature<br/>with Alice's Public Key
-    Note over Bob: Confirms Alice<br/>sent this message
+    Bob->>Bob: Verify with Public Key
 ```
 
+<v-clicks>
+
+**Process:**
+1. Alice shares her public key
+2. Alice signs message with private key
+3. Bob verifies signature with Alice's public key
+
 **Provides:** Authentication, Integrity, Non-repudiation
+
+</v-clicks>
 
 ---
 
 # Digital Signatures: How It Works
 
-Combining hashing and encryption
+Split into sender and receiver processes
 
+**Sender (Alice):**
 ```mermaid
-flowchart TD
-    A[Original Message] -->|Hash Function| B[Message Hash]
-    B -->|Encrypt with<br/>Private Key| C[Digital Signature]
-    A --> D[Message + Signature]
+flowchart LR
+    A[Message] -->|Hash| B[Hash Value]
+    B -->|Sign with<br/>Private Key| C[Signature]
+    A --> D[Send: Message + Signature]
     C --> D
+```
 
-    D --> E[Recipient]
-    E -->|Hash Message| F[Computed Hash]
-    E -->|Decrypt Signature<br/>with Public Key| G[Original Hash]
-    F --> H{Hashes Match?}
-    G --> H
-    H -->|Yes| I[Valid & Unchanged]
-    H -->|No| J[Tampered or Forged]
+**Receiver (Bob):**
+```mermaid
+flowchart LR
+    E[Message] -->|Hash| F[New Hash]
+    G[Signature] -->|Decrypt with<br/>Public Key| H[Original Hash]
+    F --> I{Match?}
+    H --> I
+    I -->|Yes| J[✓ Valid]
+    I -->|No| K[✗ Invalid]
 
-    style I fill:#90EE90
-    style J fill:#ffcccc
+    style J fill:#90EE90
+    style K fill:#ffcccc
 ```
 
 ---
@@ -833,29 +847,28 @@ Preventing denial of message origin
 
 # Message Integrity
 
-Detecting tampering and modifications
+How signatures detect tampering
 
 ```mermaid
-flowchart LR
-    subgraph Sender
-    A[Message] -->|Hash| B[Hash Value]
-    B -->|Sign with<br/>Private Key| C[Signature]
-    end
+flowchart TD
+    A[Original: 'Hello'] -->|Hash| B[Hash: abc123]
+    C[Tampered: 'Goodbye'] -->|Hash| D[Hash: xyz789]
 
-    A --> D[Message]
-    C --> E[Signature]
+    B --> E{Hashes<br/>Match?}
+    D --> E
+    E -->|No| F[Tampering Detected!]
 
-    subgraph Receiver
-    D -->|Hash| F[New Hash]
-    E -->|Decrypt with<br/>Public Key| G[Original Hash]
-    F --> H{Match?}
-    G --> H
-    end
-
-    style H fill:#FFE4B5
+    style F fill:#ffcccc
 ```
 
-**Any change** to the message produces different hash → signature won't verify
+<v-clicks>
+
+**Key Insight:**
+- Any change to message → different hash
+- Different hash → signature verification fails
+- Provides tamper detection
+
+</v-clicks>
 
 ---
 background: https://cover.sli.dev

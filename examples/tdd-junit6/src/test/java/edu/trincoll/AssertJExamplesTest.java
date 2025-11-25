@@ -52,6 +52,7 @@ class AssertJExamplesTest {
         @Test
         @DisplayName("string comparison assertions")
         void stringComparisonAssertions() {
+            //noinspection EqualsWithItself
             assertThat("Hello")
                     .isEqualTo("Hello")
                     .isEqualToIgnoringCase("HELLO")
@@ -191,6 +192,26 @@ class AssertJExamplesTest {
                             tuple("Deanna", "Troi")
                     );
         }
+
+        @Test
+        @DisplayName("age calculation with valid date of birth")
+        void ageCalculationWithValidDob() {
+            Person person = new Person("John", "Doe", LocalDate.of(1990, Month.JUNE, 15));
+
+            assertThat(person.age())
+                    .isPositive()
+                    .isLessThan(150);
+        }
+
+        @Test
+        @DisplayName("age throws exception when dob is null")
+        void ageThrowsWhenDobIsNull() {
+            Person person = new Person("John", "Doe");
+
+            assertThatIllegalStateException()
+                    .isThrownBy(person::age)
+                    .withMessageContaining("Date of birth");
+        }
     }
 
     @Nested
@@ -223,12 +244,15 @@ class AssertJExamplesTest {
                     });
         }
 
+        @SuppressWarnings("NumericOverflow")
         @Test
         @DisplayName("assertThatCode for no exception")
         void assertNoException() {
             assertThatCode(() -> {
                 // This code should not throw
-                int result = 2 + 2;
+                //noinspection divzero
+                double result = 1.0 / 0.0;
+                System.out.println(result);
             }).doesNotThrowAnyException();
         }
 

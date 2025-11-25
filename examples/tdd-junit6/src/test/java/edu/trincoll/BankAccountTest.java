@@ -36,6 +36,7 @@ class BankAccountTest {
             assertThat(account.getBalance()).isZero();
         }
 
+        @SuppressWarnings("DataFlowIssue")
         @Test
         @DisplayName("with null account number throws exception")
         void throwsForNullAccountNumber() {

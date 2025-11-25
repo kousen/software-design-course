@@ -52,8 +52,4 @@ This module contains example code for the TDD Deep Dive presentation, demonstrat
 
 ## JUnit Version Note
 
-This module currently uses JUnit 5.11.0. When upgrading to JUnit 6:
-
-1. Update the BOM version to 6.0.0
-2. Ensure Java 17+ is configured
-3. All test patterns work unchanged
+This module currently uses JUnit 6.0.1. Everything should work fine with JUnit 5.

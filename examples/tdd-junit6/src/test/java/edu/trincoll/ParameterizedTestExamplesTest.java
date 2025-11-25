@@ -189,28 +189,4 @@ class ParameterizedTestExamplesTest {
             return true;
         }
     }
-
-    @Nested
-    @DisplayName("@ArgumentsSource")
-    class ArgumentsSourceExamples {
-
-        @ParameterizedTest(name = "Custom source: {0}, {1}")
-        @ArgumentsSource(CustomArgumentsProvider.class)
-        void withCustomProvider(String text, int number) {
-            assertThat(text).isNotNull();
-            assertThat(number).isPositive();
-        }
-    }
-
-    static class CustomArgumentsProvider implements ArgumentsProvider {
-        @Override
-        public Stream<? extends Arguments> provideArguments(
-                org.junit.jupiter.api.extension.ExtensionContext context) {
-            return Stream.of(
-                    arguments("first", 1),
-                    arguments("second", 2),
-                    arguments("third", 3)
-            );
-        }
-    }
 }

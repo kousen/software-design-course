@@ -103,3 +103,7 @@ pnpm-lock.yaml
 
 # Student team directories
 students/
+
+# Quiz files (contain answers)
+*_quiz.xml
+*_quiz.gift

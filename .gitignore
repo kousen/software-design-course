@@ -107,3 +107,8 @@ students/
 # Quiz files (contain answers)
 *_quiz.xml
 *_quiz.gift
+
+# Exam files (contain answers and student grades)
+final_exam.xml
+*-grades.csv
+*-grading-analysis.md

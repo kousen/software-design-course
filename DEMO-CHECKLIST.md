@@ -1,8 +1,9 @@
 # Live Demo Checklist - Day 1
 
 ## Pre-Class Setup (5 minutes before)
+
 - [ ] Open IntelliJ IDEA
-- [ ] Open browser to https://start.spring.io
+- [ ] Open browser to <https://start.spring.io>
 - [ ] Open terminal for curl commands
 - [ ] Have GitHub ready (logged in)
 - [ ] Open AI tool (ChatGPT/Claude/Copilot)
@@ -11,7 +12,8 @@
 ## Demo Flow (10-15 minutes)
 
 ### 1. Spring Initializr (2 min)
-```
+
+```text
 Project: Gradle - Groovy (or Kotlin)
 Language: Java
 Spring Boot: 3.5.5
@@ -31,6 +33,7 @@ GENERATE → Download → Open in IntelliJ
 ```
 
 ### 2. Create Task Record (2 min)
+
 ```java
 package edu.trincoll.demo;
 
@@ -52,8 +55,10 @@ public record Task(
 ```
 
 ### 3. AI Prompt for Controller (3 min)
+
 **Show this prompt to students:**
-```
+
+```text
 "Create a Spring Boot REST controller for Task with:
 - GET all tasks
 - GET task by id (return 404 if not found)
@@ -64,12 +69,14 @@ Use an in-memory Map<Long, Task> for storage."
 ```
 
 **AI will generate something, but point out issues:**
+
 - "Look, AI forgot @RequestBody"
 - "No @Valid annotation"
 - "ID generation might be wrong"
 - "What about duplicate checking?"
 
 ### 4. Fix the Controller (3 min)
+
 ```java
 package edu.trincoll.demo;
 
@@ -134,6 +141,7 @@ record TaskRequest(
 ```
 
 ### 5. Test with curl (2 min)
+
 ```bash
 # Start the app
 ./gradlew bootRun
@@ -157,6 +165,7 @@ curl -X POST http://localhost:8080/api/tasks \
 ```
 
 ### 6. Write One Test (2 min)
+
 ```java
 package edu.trincoll.demo;
 
@@ -194,6 +203,7 @@ class TaskControllerTest {
 Run test: `./gradlew test`
 
 ### 7. Push to GitHub (1 min)
+
 ```bash
 git init
 git add .
@@ -206,41 +216,50 @@ git push -u origin main
 ## Key Teaching Points
 
 ### What Went Right ✅
+
 - Spring Boot started immediately
 - Basic CRUD works
 - AI saved typing time
 - Test verifies behavior
 
 ### What AI Missed ❌
+
 - Forgot @RequestBody initially
 - No validation annotations
 - Didn't handle duplicates
 - Missing proper error responses
 
 ### The Lesson 💡
-**"AI is your assistant, not your architect. You must understand every line."**
+
+> "AI is your assistant, not your architect. You must understand every line."
 
 ## Transition to Assignment
+
 "Now you've seen me build a Task tracker. Your assignment is to take the starter code I've prepared - which has 15 comprehensive tests - and make it work for YOUR domain: Bookmarks, Quotes, Habits, Recipes, or Movies."
 
 ## If Things Go Wrong
 
 ### Spring won't start
+
 - Check Java version: `java -version` (needs 21)
 - Try: `./gradlew clean build`
 
 ### Port already in use
+
 - Change port in application.properties: `server.port=8081`
 
 ### AI generates bad code
+
 - Perfect! Show them why it's wrong
 - "This is why we test everything"
 
 ### Can't push to GitHub
+
 - Make sure logged in
 - Create repo through UI if CLI fails
 
 ## Time Management
+
 - 2 min: Spring Initializr
 - 5 min: Code the API (with AI help)
 - 3 min: Test with curl
@@ -248,9 +267,12 @@ git push -u origin main
 - 2 min: Push to GitHub
 - 1 min: Explain assignment connection
 
-**Total: ~15 minutes**
+### Total
+
+~15 minutes
 
 ## Remember
+
 - Go slow enough for them to follow
 - Narrate what you're thinking
 - Intentionally let AI make mistakes
